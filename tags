@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Event	Event.h	/^class Event$/;"	c
+EventLoop	EventLoop.h	/^class EventLoop$/;"	c
+EventSourceBase	EventSourceBase.h	/^class EventSourceBase$/;"	c
+IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
+ProtocolConnRules	ProtocolConnRules.h	/^class ProtocolConnRules$/;"	c
+ProtocolFactory	ProtocolFactory.h	/^class ProtocolFactory$/;"	c
+ProtocolWaitPool	ProtocolWaitPool.h	/^class ProtocolWaitPool$/;"	c
+StateMachine	StateMachine.h	/^class StateMachine$/;"	c
+Target	Target.h	/^class Target$/;"	c
+ThreadPool	ThreadPool.h	/^class ThreadPool$/;"	c
+cc	makefile	/^cc = g++$/;"	m
+cflags	makefile	/^cflags = $(include_dirs) -g$/;"	m
+include_dirs	makefile	/^include_dirs =$/;"	m
+main	testmain.cpp	/^int main()$/;"	f	signature:()
+objects	makefile	/^objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+target	makefile	/^target = Rano$/;"	m

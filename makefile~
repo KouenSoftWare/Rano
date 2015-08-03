@@ -1,0 +1,12 @@
+cc = g++
+objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+target = Rano
+cflags = $(include_dirs) -g
+include_dirs =
+
+$(target): $(objects)
+    cc -o $(target) $(cflags) $(objects)
+
+.PHONY : clean
+clean:
+    rm -f $(target) $(objects)
