@@ -4,19 +4,100 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+AbortNotInLoopThread	EventLoop.cpp	/^void EventLoop::AbortNotInLoopThread()$/;"	f	class:EventLoop	signature:()
+AbortNotInLoopThread	EventLoop.h	/^	void AbortNotInLoopThread();$/;"	p	class:EventLoop	access:private	signature:()
+AssertInLoopThread	EventLoop.h	/^	void AssertInLoopThread(){$/;"	f	class:EventLoop	access:public	signature:()
+AutoMutex	AutoMutex.h	/^	AutoMutex(CMutex mutex):$/;"	f	class:AutoMutex	access:public	signature:(CMutex mutex)
+AutoMutex	AutoMutex.h	/^class AutoMutex$/;"	c
+AutoMutex::AutoMutex	AutoMutex.h	/^	AutoMutex(CMutex mutex):$/;"	f	class:AutoMutex	access:public	signature:(CMutex mutex)
+CMutex	CMutex.h	/^	CMutex(){$/;"	f	class:CMutex	access:public	signature:()
+CMutex	CMutex.h	/^class CMutex$/;"	c
+CMutex::CMutex	CMutex.h	/^	CMutex(){$/;"	f	class:CMutex	access:public	signature:()
+CMutex::lock	CMutex.h	/^	lock(){$/;"	f	class:CMutex	access:public	signature:()
+CMutex::mutex_	CMutex.h	/^	pthread_mutex_t mutex_;$/;"	m	class:CMutex	access:private
+CMutex::unlock	CMutex.h	/^	unlock(){$/;"	f	class:CMutex	access:public	signature:()
+CMutex::~CMutex	CMutex.h	/^	~CMutex(){$/;"	f	class:CMutex	access:public	signature:()
+CPPFLAGS	makefile	/^CPPFLAGS =  $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS))$/;"	m
+DoOtherThreadWork	EventLoop.cpp	/^void EventLoop::DoOtherThreadWork()$/;"	f	class:EventLoop	signature:()
+DoOtherThreadWork	EventLoop.h	/^	void DoOtherThreadWork();$/;"	p	class:EventLoop	access:private	signature:()
 Event	Event.h	/^class Event$/;"	c
-EventLoop	EventLoop.h	/^class EventLoop$/;"	c
+EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func, shared_ptr<Event> event, weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, shared_ptr<Event> event, weak_ptr<EventLoop> el)
+EventFunc	EventLoop.h	/^class EventFunc$/;"	c
+EventFunc::EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func, shared_ptr<Event> event, weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, shared_ptr<Event> event, weak_ptr<EventLoop> el)
+EventFunc::el_	EventLoop.h	/^	weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
+EventFunc::event_	EventLoop.h	/^	shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
+EventFunc::func_	EventLoop.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
+EventFunc::operator =	EventLoop.h	/^	EventFunc& operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	access:public	signature:(const EventFunc& rhs)
+EventLoop	EventLoop.cpp	/^EventLoop::EventLoop():$/;"	f	class:EventLoop	signature:()
+EventLoop	EventLoop.h	/^	EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
+EventLoop	EventLoop.h	/^class EventLoop : $/;"	c	inherits:enable_shared_from_this,noncopyable
+EventLoop::AbortNotInLoopThread	EventLoop.cpp	/^void EventLoop::AbortNotInLoopThread()$/;"	f	class:EventLoop	signature:()
+EventLoop::AbortNotInLoopThread	EventLoop.h	/^	void AbortNotInLoopThread();$/;"	p	class:EventLoop	access:private	signature:()
+EventLoop::AssertInLoopThread	EventLoop.h	/^	void AssertInLoopThread(){$/;"	f	class:EventLoop	access:public	signature:()
+EventLoop::DoOtherThreadWork	EventLoop.cpp	/^void EventLoop::DoOtherThreadWork()$/;"	f	class:EventLoop	signature:()
+EventLoop::DoOtherThreadWork	EventLoop.h	/^	void DoOtherThreadWork();$/;"	p	class:EventLoop	access:private	signature:()
+EventLoop::EventLoop	EventLoop.cpp	/^EventLoop::EventLoop():$/;"	f	class:EventLoop	signature:()
+EventLoop::EventLoop	EventLoop.h	/^	EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
+EventLoop::Quit	EventLoop.h	/^	void Quit(){$/;"	f	class:EventLoop	access:public	signature:()
+EventLoop::RunInLoop	EventLoop.h	/^	void RunInLoop(FuncPtr func, shared_ptr<Event> eventPtr){$/;"	f	class:EventLoop	access:public	signature:(FuncPtr func, shared_ptr<Event> eventPtr)
+EventLoop::eventFuncPtr_	EventLoop.h	/^	map<string, EventFunc> eventFuncPtr_;$/;"	m	class:EventLoop	access:private
+EventLoop::eventSources_	EventLoop.h	/^	vector<shared_ptr<EventSourceBase> > eventSources_;$/;"	m	class:EventLoop	access:private
+EventLoop::getEventLoopOfCurrentThread	EventLoop.cpp	/^EventLoop* EventLoop::getEventLoopOfCurrentThread()$/;"	f	class:EventLoop	signature:()
+EventLoop::getEventLoopOfCurrentThread	EventLoop.h	/^	static EventLoop* getEventLoopOfCurrentThread();$/;"	p	class:EventLoop	access:public	signature:()
+EventLoop::isInLoopThread	EventLoop.h	/^	bool isInLoopThread() const {$/;"	f	class:EventLoop	access:public	signature:() const
+EventLoop::loop	EventLoop.cpp	/^void EventLoop::loop()$/;"	f	class:EventLoop	signature:()
+EventLoop::loop	EventLoop.h	/^	void loop();$/;"	p	class:EventLoop	access:public	signature:()
+EventLoop::looping_	EventLoop.h	/^	bool looping_;$/;"	m	class:EventLoop	access:private
+EventLoop::mutex_	EventLoop.h	/^	CMutex mutex_;$/;"	m	class:EventLoop	access:private
+EventLoop::protocolFactorys_	EventLoop.h	/^	map<string, shread_ptr<ProtocolFactory> > protocolFactorys_;$/;"	m	class:EventLoop	access:private
+EventLoop::reg	EventLoop.h	/^	void reg(shared_ptr<EventSourceBase> source){$/;"	f	class:EventLoop	access:public	signature:(shared_ptr<EventSourceBase> source)
+EventLoop::reg	EventLoop.h	/^	void reg(string eventName, shared_ptr<Event> eventPtr, FuncPtr func){$/;"	f	class:EventLoop	access:public	signature:(string eventName, shared_ptr<Event> eventPtr, FuncPtr func)
+EventLoop::reg	EventLoop.h	/^	void reg(string protocolName, shared_ptr<ProtocolFactory> factory){$/;"	f	class:EventLoop	access:public	signature:(string protocolName, shared_ptr<ProtocolFactory> factory)
+EventLoop::taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:EventLoop	access:private
+EventLoop::threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
+EventLoop::~EventLoop	EventLoop.cpp	/^EventLoop::~EventLoop()$/;"	f	class:EventLoop	signature:()
+EventLoop::~EventLoop	EventLoop.h	/^	~EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
 EventSourceBase	EventSourceBase.h	/^class EventSourceBase$/;"	c
+FuncPtr	EventLoop.h	/^typedef function<void(shared_ptr<Event>, weak_ptr<EventLoop>)> FuncPtr;$/;"	t
 IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
+LDFLAGS	makefile	/^LDFLAGS = $/;"	m
+LIBS	makefile	/^LIBS = $/;"	m
 ProtocolConnRules	ProtocolConnRules.h	/^class ProtocolConnRules$/;"	c
 ProtocolFactory	ProtocolFactory.h	/^class ProtocolFactory$/;"	c
 ProtocolWaitPool	ProtocolWaitPool.h	/^class ProtocolWaitPool$/;"	c
+Quit	EventLoop.h	/^	void Quit(){$/;"	f	class:EventLoop	access:public	signature:()
+RunInLoop	EventLoop.h	/^	void RunInLoop(FuncPtr func, shared_ptr<Event> eventPtr){$/;"	f	class:EventLoop	access:public	signature:(FuncPtr func, shared_ptr<Event> eventPtr)
 StateMachine	StateMachine.h	/^class StateMachine$/;"	c
 Target	Target.h	/^class Target$/;"	c
 ThreadPool	ThreadPool.h	/^class ThreadPool$/;"	c
 cc	makefile	/^cc = g++$/;"	m
-cflags	makefile	/^cflags = $(include_dirs) -g$/;"	m
-include_dirs	makefile	/^include_dirs =$/;"	m
+el_	EventLoop.h	/^	weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
+eventFuncPtr_	EventLoop.h	/^	map<string, EventFunc> eventFuncPtr_;$/;"	m	class:EventLoop	access:private
+eventSources_	EventLoop.h	/^	vector<shared_ptr<EventSourceBase> > eventSources_;$/;"	m	class:EventLoop	access:private
+event_	EventLoop.h	/^	shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
+func_	EventLoop.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
+getEventLoopOfCurrentThread	EventLoop.cpp	/^EventLoop* EventLoop::getEventLoopOfCurrentThread()$/;"	f	class:EventLoop	signature:()
+getEventLoopOfCurrentThread	EventLoop.h	/^	static EventLoop* getEventLoopOfCurrentThread();$/;"	p	class:EventLoop	access:public	signature:()
+include_dirs	makefile	/^include_dirs = $/;"	m
+isInLoopThread	EventLoop.h	/^	bool isInLoopThread() const {$/;"	f	class:EventLoop	access:public	signature:() const
+linkFlags	makefile	/^linkFlags = -g -Wall$/;"	m
+lock	CMutex.h	/^	lock(){$/;"	f	class:CMutex	access:public	signature:()
+loop	EventLoop.cpp	/^void EventLoop::loop()$/;"	f	class:EventLoop	signature:()
+loop	EventLoop.h	/^	void loop();$/;"	p	class:EventLoop	access:public	signature:()
+looping_	EventLoop.h	/^	bool looping_;$/;"	m	class:EventLoop	access:private
 main	testmain.cpp	/^int main()$/;"	f	signature:()
+mutex_	CMutex.h	/^	pthread_mutex_t mutex_;$/;"	m	class:CMutex	access:private
+mutex_	EventLoop.h	/^	CMutex mutex_;$/;"	m	class:EventLoop	access:private
 objects	makefile	/^objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+operator =	EventLoop.h	/^	EventFunc& operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	access:public	signature:(const EventFunc& rhs)
+protocolFactorys_	EventLoop.h	/^	map<string, shread_ptr<ProtocolFactory> > protocolFactorys_;$/;"	m	class:EventLoop	access:private
+reg	EventLoop.h	/^	void reg(shared_ptr<EventSourceBase> source){$/;"	f	class:EventLoop	access:public	signature:(shared_ptr<EventSourceBase> source)
+reg	EventLoop.h	/^	void reg(string eventName, shared_ptr<Event> eventPtr, FuncPtr func){$/;"	f	class:EventLoop	access:public	signature:(string eventName, shared_ptr<Event> eventPtr, FuncPtr func)
+reg	EventLoop.h	/^	void reg(string protocolName, shared_ptr<ProtocolFactory> factory){$/;"	f	class:EventLoop	access:public	signature:(string protocolName, shared_ptr<ProtocolFactory> factory)
 target	makefile	/^target = Rano$/;"	m
+taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:EventLoop	access:private
+threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
+unlock	CMutex.h	/^	unlock(){$/;"	f	class:CMutex	access:public	signature:()
+~CMutex	CMutex.h	/^	~CMutex(){$/;"	f	class:CMutex	access:public	signature:()
+~EventLoop	EventLoop.cpp	/^EventLoop::~EventLoop()$/;"	f	class:EventLoop	signature:()
+~EventLoop	EventLoop.h	/^	~EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
