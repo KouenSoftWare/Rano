@@ -13,5 +13,9 @@ public:
 	char* data();
 	int length();
 	void append(string&);
-	void update(int&);
+	void append(char*, size_t);
+	void update(size_t);
+	void clear(){
+		storage_.clear();
+	}
 };

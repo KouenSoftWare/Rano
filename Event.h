@@ -1,11 +1,15 @@
 #pragma once
 
+#include "CommunicationsProtocol.h"
+
 class Event
 {
 protected:
 	string name_;
 
 public:
+	level1 l1;
+
 	void setName(string& name){
 		name = name_;
 	}
