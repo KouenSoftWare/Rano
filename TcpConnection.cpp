@@ -1,18 +1,31 @@
-#include "TcpConnection.h"
-#include "ServerTcpEvent.h"
-#include "CommunicationsProtocol.h"
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
 #include <sys/types.h>          /* See NOTES */
+#include <iostream>
 #include <errno.h>
 #include <sys/socket.h>
 #include <string>
 #include <unistd.h>
 #include <fcntl.h>
 #include <assert.h>
+#include <boost/weak_ptr.hpp>
+#include "EventLoop.h"
+#include "EventFactory.h"
+#include "TcpConnection.h"
+#include "ServerTcpEvent.h"
+#include "CommunicationsProtocol.h"
 
 using namespace std;
+
+void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
+{
+	assert(strcmp(event->getName(),"TcpRecvEvent")==0);	
+	ServerTcpEvent* pE = (ServerTcpEvent*)event.get();
+	boost::shared_ptr<EventLoop> sp_el = el.lock();
+	boost::shared_ptr<EventFactory> f = sp_el->getFactroy("TcpRecvEvent");
+	sp_el->push(f->GetEvent(&(pE->getBuf()[0]), pE->getBuf().size()));
+}
 
 TcpConnection::~TcpConnection()
 {
@@ -192,6 +205,7 @@ bool TcpConnection::openServer()
 	struct sockaddr_in serveraddr;
 	fd_ = socket(AF_INET, SOCK_STREAM, 0);
 	if(fd_ < 0){
+		cout << "Socket create failed" << endl;
 		return false;
 	}
 	SetNonBlock();
@@ -200,9 +214,11 @@ bool TcpConnection::openServer()
     inet_aton(ip_.c_str(),&(serveraddr.sin_addr));//htons(portnumber);
 	serveraddr.sin_port=htons(port_);
 	if(0 > bind(fd_,(sockaddr *)&serveraddr, sizeof(serveraddr))){
+		cout << "Socket bind failed" << endl;
 		return false;
 	};
     if(0 > listen(fd_, LISTENQ)){
+		cout << "Socket listen failed" << endl;
 		return false;
 	};
 

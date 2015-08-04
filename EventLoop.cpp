@@ -1,6 +1,7 @@
 #include "Event.h"
 #include "EventLoop.h"
 #include "EventTargetBase.h"
+#include "EventSourceBase.h"
 #include <iostream>
 
 using namespace std;
@@ -59,9 +60,11 @@ void EventLoop::loop()
 
 	vector<boost::shared_ptr<Event> > eventArray;
 	while(looping_){
+		cout << "!!!" << endl;
 		eventArray.clear();
+		eventArray.swap(eventArrayOtherThread_);
 		for(size_t i = 0; i != eventSources_.size(); i++){
-			//eventSources_[i]->GetEvents(eventArray);
+			eventSources_[i]->GetEvents(eventArray);
 		}	
 		map<string, EventFunc>::iterator iter;
 		for(size_t i = 0; i != eventArray.size(); i++){
@@ -73,10 +76,15 @@ void EventLoop::loop()
 			iter->second.doWork();
 		}
 		eventArray.clear();
+		sleep(1);
 	}
 }
 
-
+void EventLoop::push(boost::shared_ptr<Event> event)
+{
+	AutoMutex m(mutex_);
+	eventArrayOtherThread_.push_back(event);
+}
 /*
  * ret:
  *		-1	no EventTargetBase Object

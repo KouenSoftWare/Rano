@@ -2,22 +2,23 @@
 
 #include "CommunicationsProtocol.h"
 #include <string>
+#include <string.h>
 
 using namespace std;
 
 class Event
 {
 protected:
-	string name_;
+	char name_[32];
 
 public:
 	level1 l1;
 
-	void setName(string name){
-		name = name_;
+	void setName(const char* name){
+		memcpy(name_, name, 32);
 	}
 
-	const string& getName() const{
+	const char* getName() const{
 		return name_;
 	}
 

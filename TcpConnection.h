@@ -12,6 +12,7 @@
 using namespace std;
 
 class Event;
+class EventLoop;
 
 class TcpConnection
 {
@@ -40,3 +41,5 @@ private:
 	bool open_;//是否已经开启某种模式
 	int fd_;
 };
+
+void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&);

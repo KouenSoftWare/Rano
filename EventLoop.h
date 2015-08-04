@@ -19,6 +19,7 @@ using namespace std;
 
 
 class Event;
+class EventFactory;
 class EventSourceBase;
 class EventTargetBase;
 class ProtocolFactory;
@@ -26,7 +27,7 @@ class ProtocolFactory;
 class EventFunc;
 class EventLoop;
 
-typedef boost::function<void(boost::shared_ptr<Event>, boost::weak_ptr<EventLoop>)> FuncPtr;
+typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;
 
 class EventFunc
 {
@@ -146,16 +147,31 @@ public:
 		eventTarget_.insert(pair<string, boost::shared_ptr<EventTargetBase> >(name, target));
 	}
 
+	void reg(string name, boost::shared_ptr<EventFactory> factory){
+		AutoMutex m(mutex_);
+		eventFactory_.insert(pair<string, boost::shared_ptr<EventFactory> >(name, factory));
+	}
+
+	boost::shared_ptr<EventFactory> getFactroy(string name){
+		AutoMutex m(mutex_);
+		return eventFactory_.find(name)->second;
+	}
+
 	void loop();
 
 	int SendEvents(string name, boost::shared_ptr<Event>&);//ret success ? fail?
+
+	void push(boost::shared_ptr<Event>);
+
 private:
 	CMutex mutex_;
 	bool looping_;
 	const pid_t threadID_;
 	vector<EventFunc>	taskArray_;
+	vector<boost::shared_ptr<Event> > eventArrayOtherThread_;
 	vector<boost::shared_ptr<EventSourceBase> > eventSources_;
 	map<string, boost::shared_ptr<EventTargetBase> > eventTarget_;
+	map<string, boost::shared_ptr<EventFactory> > eventFactory_;
 	map<string, EventFunc> eventFuncPtr_;
 	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;
 
