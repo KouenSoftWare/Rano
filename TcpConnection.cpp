@@ -90,7 +90,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 			if(errno == EAGAIN || errno == EINTR){
 				break;
 			}else{
-				return 0;
+				return -1;
 			}
 		}else if(buflen == 0){
 			return -1;//关闭socket,如果有剩余数据，先使用抛弃策略
@@ -167,8 +167,8 @@ int TcpConnection::OnWrite()
 {
 	//将缓冲区的数据写入，同时设置状态
 	isWrite_ = true;
-	send();
-	return 0;
+	
+	return send();
 }
 
 int TcpConnection::Fd()
@@ -211,10 +211,11 @@ bool TcpConnection::openServer()
 	SetNonBlock();
 	bzero(&serveraddr, sizeof(serveraddr));
     serveraddr.sin_family = AF_INET;
-    inet_aton(ip_.c_str(),&(serveraddr.sin_addr));//htons(portnumber);
+	//inet_aton(ip_.c_str(),&(serveraddr.sin_addr));//htons(portnumber);
+	serveraddr.sin_addr.s_addr = htons(INADDR_ANY);
 	serveraddr.sin_port=htons(port_);
 	if(0 > bind(fd_,(sockaddr *)&serveraddr, sizeof(serveraddr))){
-		cout << "Socket bind failed" << endl;
+		cout << "Socket bind failed:" << errno << endl;
 		return false;
 	};
     if(0 > listen(fd_, LISTENQ)){

@@ -60,7 +60,6 @@ void EventLoop::loop()
 
 	vector<boost::shared_ptr<Event> > eventArray;
 	while(looping_){
-		cout << "!!!" << endl;
 		eventArray.clear();
 		eventArray.swap(eventArrayOtherThread_);
 		for(size_t i = 0; i != eventSources_.size(); i++){

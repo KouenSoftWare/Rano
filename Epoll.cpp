@@ -2,8 +2,10 @@
 #include "EventLoop.h"
 #include "TcpConnection.h"
 #include <netinet/in.h>
+#include <errno.h>
 #include <netdb.h>
 #include <assert.h>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -11,15 +13,15 @@ using namespace std;
 
 Epoll::Epoll()
 {
-	epfd_ =	epoll_create(0);
-	string ip("127.0.0.1"), port("12345");
+	epfd_ =	epoll_create(MAXEVENTS);
+	string ip("127.0.0.1"), port("7392");
 	server_.SetIpPort(ip, port);
 	assert(server_.openServer());
 	struct epoll_event event;
 	event.data.fd = server_.Fd();
 	event.events = EPOLLIN | EPOLLET;
-	if(-1 == epoll_ctl (server_.Fd(), EPOLL_CTL_ADD, server_.Fd(), &event)){
-		;//删除监听错误
+	if(-1 == epoll_ctl(epfd_ , EPOLL_CTL_ADD, server_.Fd(), &event)){
+		cout << "服务器句柄不能被添加到监听队列中:" << errno << endl;
 	}
 }
 
@@ -27,14 +29,15 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 {
 	struct epoll_event event;
 	int n = epoll_wait(epfd_, waitEP_, MAXEVENTS, -1);
-	for(int i=0; i!=n; i++){
+	for(int i=0; i<n; i++){
 		if ((waitEP_[i].events & EPOLLERR) || (waitEP_[i].events & EPOLLHUP) || (!(waitEP_[i].events & EPOLLIN))){
 			map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 			assert(iter != listen_list_.end());
 			iter->second->OnError();
 			event.data.fd = iter->second->Fd();
 			event.events = EPOLLIN | EPOLLET;
-			if(-1 == epoll_ctl (server_.Fd(), EPOLL_CTL_DEL, iter->second->Fd(), &event)){
+			if(-1 == epoll_ctl (epfd_, EPOLL_CTL_DEL, iter->second->Fd(), &event)){
+				cout << server_.Fd() << ":删除一个监听->" << iter->second->Fd() << endl;
 				;//删除监听错误
 			}
 			listen_list_.erase(iter);
@@ -53,10 +56,12 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				pTcp->SetIpPort(hbuf, sbuf);
 				event.data.fd = clientFd;
 				event.events = EPOLLIN | EPOLLET;
-				if(-1 == epoll_ctl (server_.Fd(), EPOLL_CTL_ADD, clientFd, &event)){
+				if(-1 == epoll_ctl (epfd_, EPOLL_CTL_ADD, clientFd, &event)){
 					;//添加监听错误
+					cout << server_.Fd() << ":添加监听错误->" << clientFd << endl;
 				}else{
 					listen_list_.insert(pair<int, boost::shared_ptr<TcpConnection> >(clientFd ,pTcp));
+					cout << server_.Fd() << ":添加一个监听成功" << endl;
 				}
 			}
 		}else{
@@ -70,6 +75,9 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 				assert(iter != listen_list_.end());
 				if(iter->second->OnRead(ret_eventArray) < 0){
+					if(-1 == epoll_ctl (epfd_, EPOLL_CTL_DEL, iter->second->Fd(), &event)){
+						cout << server_.Fd() << ":删除一个监听->" << iter->second->Fd() << endl;
+					}
 					listen_list_.erase(iter);
 				}
 			}
@@ -78,6 +86,9 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 				assert(iter != listen_list_.end());
 				if(iter->second->OnWrite() < 0){
+					if(-1 == epoll_ctl (epfd_, EPOLL_CTL_DEL, iter->second->Fd(), &event)){
+						cout << server_.Fd() << ":删除一个监听->" << iter->second->Fd() << endl;
+					}
 					listen_list_.erase(iter);
 				}
 			}

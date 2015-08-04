@@ -14,6 +14,8 @@ struct echoEvent:public Event
 void echo(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 {
 	assert(0==strcmp(event->getName(),"echoEvent"));
+	echoEvent* e = (echoEvent*)event.get();
+	cout << e->msg << endl;
 }
 
 class echoFactory:
@@ -30,8 +32,9 @@ public:
 int main()
 {
 	EventLoop el;
-	boost::shared_ptr<EventSourceBase> source(new Epoll);	
-	boost::shared_ptr<EventTargetBase> target(new Epoll);	
+	Epoll *epoll = new Epoll;
+	boost::shared_ptr<EventSourceBase> source(epoll);	
+	boost::shared_ptr<EventTargetBase> target(epoll);	
 	boost::shared_ptr<EventFactory> f(new echoFactory);	
 	el.reg("TcpRecvEvent", boost::bind(&TcpRecvEventToOtherEvent, _1 ,_2));
 	el.reg("echoFactory", f);
