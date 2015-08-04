@@ -3,6 +3,7 @@
 #include <map>
 #include <sys/epoll.h>
 #include "EventSourceBase.h"
+#include "EventTargetBase.h"
 #include "TcpConnection.h"
 
 #define MAXEVENTS 64
@@ -14,7 +15,8 @@ class TcpConnection;
 class Event;
 
 class Epoll:
-	public EventSourceBase
+	public EventSourceBase,
+	public EventTargetBase
 {
 public:
 	Epoll();
@@ -23,6 +25,7 @@ public:
 	void Add(TcpConnection*);
 
 	void GetEvents(vector<boost::shared_ptr<Event> >&);
+	int SendEvents(boost::shared_ptr<Event> &event);
 private:
 	map<int, boost::shared_ptr<TcpConnection> > listen_list_;
 	int epfd_;

@@ -1,4 +1,5 @@
 #include "EventLoop.h"
+#include "EventTargetBase.h"
 #include <iostream>
 
 using namespace std;
@@ -68,3 +69,19 @@ void EventLoop::loop()
 		}
 	}
 }
+
+
+/*
+ * ret:
+ *		-1	no EventTargetBase Object
+ *		-2  no TcpConnection Object
+ */
+int EventLoop::SendEvents(string name, boost::shared_ptr<Event>& event)
+{
+	map<string, boost::shared_ptr<EventTargetBase> >::iterator iter = eventTarget_.find(name);
+	if(iter == eventTarget_.end()){
+		return -1;
+	}
+	return iter->second->SendEvents(event);
+}
+

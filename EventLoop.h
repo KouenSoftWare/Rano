@@ -20,6 +20,7 @@ using namespace std;
 
 class Event;
 class EventSourceBase;
+class EventTargetBase;
 class ProtocolFactory;
 
 class EventFunc;
@@ -33,7 +34,7 @@ class EventFunc
 	boost::shared_ptr<Event> event_;
 	boost::weak_ptr<EventLoop> el_;
 public:
-	EventFunc(FuncPtr func, boost::shared_ptr<Event> event, boost::weak_ptr<EventLoop> el):
+	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):
 		func_(func),
 		event_(event),
 		el_(el)
@@ -80,13 +81,13 @@ public:
 	}
 
 	//其他线程调用的时候，将数据添加到队列
-	void RunInLoop(FuncPtr func, boost::shared_ptr<Event> eventPtr){
+	void RunInLoop(FuncPtr func, boost::shared_ptr<Event>& eventPtr){
 		EventFunc ef(func, eventPtr, boost::weak_ptr<EventLoop>(shared_from_this()));
 		AutoMutex m(mutex_);		
 		taskArray_.push_back(ef);
 	}
 
-	void reg(string eventName, boost::shared_ptr<Event> eventPtr, FuncPtr func){
+	void reg(string eventName, boost::shared_ptr<Event>& eventPtr, FuncPtr func){
 		map<string, EventFunc>::iterator iter = eventFuncPtr_.find(eventName);		
 		{
 			EventFunc ef(func, eventPtr, boost::weak_ptr<EventLoop>(shared_from_this()));
@@ -99,7 +100,7 @@ public:
 		}
 	}
 	
-	void reg(string protocolName, boost::shared_ptr<ProtocolFactory> factory){
+	void reg(string protocolName, boost::shared_ptr<ProtocolFactory>& factory){
 		map<string, boost::shared_ptr<ProtocolFactory> >::iterator iter = protocolFactorys_.find(protocolName);		
 		{
 			AutoMutex m(mutex_);		
@@ -111,18 +112,26 @@ public:
 		}
 	}
 
-	void reg(boost::shared_ptr<EventSourceBase> source){
+	void reg(boost::shared_ptr<EventSourceBase>& source){
 		AutoMutex m(mutex_);
 		eventSources_.push_back(source);
 	}
 
+	void reg(string name, boost::shared_ptr<EventTargetBase>& target){
+		AutoMutex m(mutex_);
+		eventTarget_.insert(pair<string, boost::shared_ptr<EventTargetBase> >(name, target));
+	}
+
 	void loop();
+
+	int SendEvents(string name, boost::shared_ptr<Event>&);//ret success ? fail?
 private:
 	CMutex mutex_;
 	bool looping_;
 	const pid_t threadID_;
 	vector<EventFunc>	taskArray_;
 	vector<boost::shared_ptr<EventSourceBase> > eventSources_;
+	map<string, boost::shared_ptr<EventTargetBase> > eventTarget_;
 	map<string, EventFunc> eventFuncPtr_;
 	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;
 

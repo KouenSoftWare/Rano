@@ -1,10 +1,5 @@
 #include "TcpConnection.h"
 
-TcpConnection::TcpConnection()
-{
-
-}
-
 TcpConnection::~TcpConnection()
 {
 	/*
@@ -12,8 +7,16 @@ TcpConnection::~TcpConnection()
 	 *	1.关闭套接字
 	 *	2.处理未发送的数据
 	 */
+	if(isWrite_ && bufferSpace_){
+		OnWrite();
+	}
+	close(fd_);
 }
 
+int TcpConnection::write(string& msg)
+{
+	return 0;	
+}
 
 int TcpConnection::OnError()
 {

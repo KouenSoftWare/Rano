@@ -4,6 +4,10 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <assert.h>
+#include <string>
+
+using namespace std;
+
 
 Epoll::Epoll()
 {
@@ -79,4 +83,15 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 			}
 		}	
 	}
+}
+
+int Epoll::SendEvents(boost::shared_ptr<Event> &event)
+{
+	int fd;	//获取Event的fd，强制将其转换成对应的TCP事件，就行.这种属于框架的内部事件	
+	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
+	if(iter == listen_list_.end()){
+		return -2;
+	}
+	return 0;
+	//return iter->second->write();
 }
