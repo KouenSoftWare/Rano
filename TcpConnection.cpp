@@ -92,6 +92,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 			int bufCur = 0;				
 			if(readBuffer_.length() >= int(sizeof(level1))){
 				ServerTcpEvent* pSTE = new ServerTcpEvent();
+				pSTE->setName("TcpRecvEvent");
 				memcpy(&pSTE->l1, readBuffer_.data(), sizeof(level1));	
 				readBuffer_.update(sizeof(level1));
 				vector<char> temp;
@@ -109,6 +110,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 				ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
 			}else{
 				ServerTcpEvent* pSTE = new ServerTcpEvent();
+				pSTE->setName("TcpRecvEvent");
 				memcpy(&pSTE->l1, readBuffer_.data(), readBuffer_.length());	
 				bufCur = sizeof(level1) - readBuffer_.length();
 				memcpy(&pSTE->l1+readBuffer_.length(), buf, bufCur);
@@ -124,6 +126,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 					string level2Size(buf[bufCur+4], 4); 
 					if(int(bufCur+sizeof(level1)+atoi(level2Size.c_str())) < buflen){
 						ServerTcpEvent* pSTE = new ServerTcpEvent();
+						pSTE->setName("TcpRecvEvent");
 						memcpy(&pSTE->l1, buf+bufCur, sizeof(level1));	
 						bufCur += sizeof(level1);	
 						assert(atoi(level2Size.c_str()) != int(pSTE->l1.level2Size));

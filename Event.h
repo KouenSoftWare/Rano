@@ -1,6 +1,9 @@
 #pragma once
 
 #include "CommunicationsProtocol.h"
+#include <string>
+
+using namespace std;
 
 class Event
 {
@@ -10,7 +13,7 @@ protected:
 public:
 	level1 l1;
 
-	void setName(string& name){
+	void setName(string name){
 		name = name_;
 	}
 

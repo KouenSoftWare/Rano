@@ -40,8 +40,19 @@ public:
 		el_(el)
 	{}
 
+	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):
+		func_(func),
+		event_(),
+		el_(el)
+	{}
+
+	void setEvent(boost::shared_ptr<Event> &e){
+		event_.swap(e);
+	}
+
 	void doWork(){
 		func_(event_, el_);
+		event_.reset();
 	}
 
 	EventFunc& operator=(const EventFunc& rhs){
@@ -99,7 +110,20 @@ public:
 			}
 		}
 	}
-	
+
+	void reg(string eventName, FuncPtr func){
+		map<string, EventFunc>::iterator iter = eventFuncPtr_.find(eventName);		
+		{
+			EventFunc ef(func, boost::weak_ptr<EventLoop>(shared_from_this()));
+			AutoMutex m(mutex_);		
+			if (iter == eventFuncPtr_.end()){
+				eventFuncPtr_.insert(pair<string, EventFunc>(eventName, ef));
+			}else{
+				iter->second = ef;
+			}
+		}
+	}
+
 	void reg(string protocolName, boost::shared_ptr<ProtocolFactory>& factory){
 		map<string, boost::shared_ptr<ProtocolFactory> >::iterator iter = protocolFactorys_.find(protocolName);		
 		{

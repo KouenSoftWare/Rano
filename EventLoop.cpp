@@ -1,3 +1,4 @@
+#include "Event.h"
 #include "EventLoop.h"
 #include "EventTargetBase.h"
 #include <iostream>
@@ -62,11 +63,16 @@ void EventLoop::loop()
 		for(size_t i = 0; i != eventSources_.size(); i++){
 			//eventSources_[i]->GetEvents(eventArray);
 		}	
+		map<string, EventFunc>::iterator iter;
 		for(size_t i = 0; i != eventArray.size(); i++){
-			//eventArray[i]->doWork();
 			//利用每个Event的名字，去查找注册进来的函数，如果没有就缓存或者发到其他地方去
 			//最好加一个限制，如果查找超过三次就放弃这个包
+			iter = eventFuncPtr_.find(eventArray[i]->getName());
+			assert(iter != eventFuncPtr_.end());
+			iter->second.setEvent(eventArray[i]);
+			iter->second.doWork();
 		}
+		eventArray.clear();
 	}
 }
 
