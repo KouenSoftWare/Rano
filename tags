@@ -6,6 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 AbortNotInLoopThread	EventLoop.cpp	/^void EventLoop::AbortNotInLoopThread()$/;"	f	class:EventLoop	signature:()
 AbortNotInLoopThread	EventLoop.h	/^	void AbortNotInLoopThread();$/;"	p	class:EventLoop	access:private	signature:()
+Add	Epoll.h	/^	void Add(TcpConnection*);$/;"	p	class:Epoll	access:public	signature:(TcpConnection*)
 AssertInLoopThread	EventLoop.h	/^	void AssertInLoopThread(){$/;"	f	class:EventLoop	access:public	signature:()
 AutoMutex	AutoMutex.h	/^	AutoMutex(CMutex mutex):$/;"	f	class:AutoMutex	access:public	signature:(CMutex mutex)
 AutoMutex	AutoMutex.h	/^class AutoMutex$/;"	c
@@ -25,12 +26,15 @@ DoOtherThreadWork	EventLoop.h	/^	void DoOtherThreadWork();$/;"	p	class:EventLoop
 Epoll	Epoll.cpp	/^Epoll::Epoll()$/;"	f	class:Epoll	signature:()
 Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
 Epoll	Epoll.h	/^class Epoll:$/;"	c	inherits:EventSourceBase
+Epoll::Add	Epoll.h	/^	void Add(TcpConnection*);$/;"	p	class:Epoll	access:public	signature:(TcpConnection*)
 Epoll::Epoll	Epoll.cpp	/^Epoll::Epoll()$/;"	f	class:Epoll	signature:()
 Epoll::Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
-Epoll::GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >)
+Epoll::GetEvents	Epoll.cpp	/^Epoll::GetEvents(vector<boost::shared_ptr<EventFunc> > &ret_eventArray)$/;"	f	class:Epoll	signature:(vector<boost::shared_ptr<EventFunc> > &ret_eventArray)
+Epoll::GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >&)
 Epoll::epfd_	Epoll.h	/^	int epfd_;$/;"	m	class:Epoll	access:private
 Epoll::listen_list_	Epoll.h	/^	map<int, boost::shared_ptr<TcpConnection> > listen_list_;$/;"	m	class:Epoll	access:private
-Epoll::waitEP	Epoll.h	/^	epoll_event	waitEP[MAXEVENTS];	$/;"	m	class:Epoll	access:private
+Epoll::server_	Epoll.h	/^	TcpConnection server_;$/;"	m	class:Epoll	access:private
+Epoll::waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
 Event	Event.h	/^class Event$/;"	c
 EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func, boost::shared_ptr<Event> event, boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, boost::shared_ptr<Event> event, boost::weak_ptr<EventLoop> el)
 EventFunc	EventLoop.h	/^class EventFunc$/;"	c
@@ -69,28 +73,49 @@ EventLoop::taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:E
 EventLoop::threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
 EventLoop::~EventLoop	EventLoop.cpp	/^EventLoop::~EventLoop()$/;"	f	class:EventLoop	signature:()
 EventLoop::~EventLoop	EventLoop.h	/^	~EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
+EventSourceBase	EventSourceBase.cpp	/^EventSourceBase::EventSourceBase():$/;"	f	class:EventSourceBase	signature:()
 EventSourceBase	EventSourceBase.h	/^	EventSourceBase();$/;"	p	class:EventSourceBase	access:public	signature:()
 EventSourceBase	EventSourceBase.h	/^class EventSourceBase$/;"	c
+EventSourceBase::EventSourceBase	EventSourceBase.cpp	/^EventSourceBase::EventSourceBase():$/;"	f	class:EventSourceBase	signature:()
 EventSourceBase::EventSourceBase	EventSourceBase.h	/^	EventSourceBase();$/;"	p	class:EventSourceBase	access:public	signature:()
-EventSourceBase::GetEvents	EventSourceBase.h	/^	virtual	void GetEvents(vector<boost::shared_ptr<Event> >);$/;"	p	class:EventSourceBase	access:public	signature:(vector<boost::shared_ptr<Event> >)
+EventSourceBase::GetEvents	EventSourceBase.h	/^	virtual	void GetEvents(vector<boost::shared_ptr<EventFunc> >&);$/;"	p	class:EventSourceBase	access:public	signature:(vector<boost::shared_ptr<EventFunc> >&)
 EventSourceBase::init	EventSourceBase.h	/^	virtual void init(){};$/;"	f	class:EventSourceBase	access:public	signature:()
-EventSourceBase::loop_	EventSourceBase.h	/^	EventLoop* loop_;$/;"	m	class:EventSourceBase	access:private
+EventSourceBase::loop_	EventSourceBase.h	/^	boost::shared_ptr<EventLoop> loop_;$/;"	m	class:EventSourceBase	access:protected
 EventSourceBase::~EventSourceBase	EventSourceBase.h	/^	virtual ~EventSourceBase(){};$/;"	f	class:EventSourceBase	access:public	signature:()
+Fd	TcpConnection.h	/^	int Fd();$/;"	p	class:TcpConnection	access:public	signature:()
 FuncPtr	EventLoop.h	/^typedef boost::function<void(boost::shared_ptr<Event>, boost::weak_ptr<EventLoop>)> FuncPtr;$/;"	t
-GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >)
-GetEvents	EventSourceBase.h	/^	virtual	void GetEvents(vector<boost::shared_ptr<Event> >);$/;"	p	class:EventSourceBase	access:public	signature:(vector<boost::shared_ptr<Event> >)
+GetEvents	Epoll.cpp	/^Epoll::GetEvents(vector<boost::shared_ptr<EventFunc> > &ret_eventArray)$/;"	f	class:Epoll	signature:(vector<boost::shared_ptr<EventFunc> > &ret_eventArray)
+GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >&)
+GetEvents	EventSourceBase.h	/^	virtual	void GetEvents(vector<boost::shared_ptr<EventFunc> >&);$/;"	p	class:EventSourceBase	access:public	signature:(vector<boost::shared_ptr<EventFunc> >&)
 IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
 LDFLAGS	makefile	/^LDFLAGS := $/;"	m
 LIBS	makefile	/^LIBS := boost_system pthread$/;"	m
-MAXEVENTS	Epoll.h	6;"	d
+MAXEVENTS	Epoll.h	8;"	d
+OnError	TcpConnection.h	/^	int OnError();$/;"	p	class:TcpConnection	access:public	signature:()
+OnRead	TcpConnection.h	/^	int OnRead(vector<boost::shared_ptr<EventFunc> >&);$/;"	p	class:TcpConnection	access:public	signature:(vector<boost::shared_ptr<EventFunc> >&)
+OnWrite	TcpConnection.h	/^	int OnWrite();$/;"	p	class:TcpConnection	access:public	signature:()
 ProtocolConnRules	ProtocolConnRules.h	/^class ProtocolConnRules$/;"	c
 ProtocolFactory	ProtocolFactory.h	/^class ProtocolFactory$/;"	c
 ProtocolWaitPool	ProtocolWaitPool.h	/^class ProtocolWaitPool$/;"	c
 Quit	EventLoop.h	/^	void Quit(){$/;"	f	class:EventLoop	access:public	signature:()
 RunInLoop	EventLoop.h	/^	void RunInLoop(FuncPtr func, boost::shared_ptr<Event> eventPtr){$/;"	f	class:EventLoop	access:public	signature:(FuncPtr func, boost::shared_ptr<Event> eventPtr)
+SetIpPort	TcpConnection.h	/^	void SetIpPort(char*, char*);$/;"	p	class:TcpConnection	access:public	signature:(char*, char*)
+SetNonBlock	TcpConnection.h	/^	void SetNonBlock();\/\/构造函数，默认就会调用$/;"	p	class:TcpConnection	access:public	signature:()
 StateMachine	StateMachine.h	/^class StateMachine$/;"	c
 Target	Target.h	/^class Target$/;"	c
+TcpConnection	TcpConnection.h	/^	TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
 TcpConnection	TcpConnection.h	/^class TcpConnection$/;"	c
+TcpConnection::Fd	TcpConnection.h	/^	int Fd();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::OnError	TcpConnection.h	/^	int OnError();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::OnRead	TcpConnection.h	/^	int OnRead(vector<boost::shared_ptr<EventFunc> >&);$/;"	p	class:TcpConnection	access:public	signature:(vector<boost::shared_ptr<EventFunc> >&)
+TcpConnection::OnWrite	TcpConnection.h	/^	int OnWrite();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::SetIpPort	TcpConnection.h	/^	void SetIpPort(char*, char*);$/;"	p	class:TcpConnection	access:public	signature:(char*, char*)
+TcpConnection::SetNonBlock	TcpConnection.h	/^	void SetNonBlock();\/\/构造函数，默认就会调用$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::TcpConnection	TcpConnection.h	/^	TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::fd_	TcpConnection.h	/^	int fd_;$/;"	m	class:TcpConnection	access:private
+TcpConnection::isWrite_	TcpConnection.h	/^	bool isWrite_; \/\/能否进行写入$/;"	m	class:TcpConnection	access:private
+TcpConnection::openServer	TcpConnection.h	/^	bool openServer();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
 ThreadPool	ThreadPool.h	/^class ThreadPool$/;"	c
 cc	makefile	/^cc = g++$/;"	m
 doWork	EventLoop.h	/^	void doWork(){$/;"	f	class:EventFunc	access:public	signature:()
@@ -99,36 +124,41 @@ epfd_	Epoll.h	/^	int epfd_;$/;"	m	class:Epoll	access:private
 eventFuncPtr_	EventLoop.h	/^	map<string, EventFunc> eventFuncPtr_;$/;"	m	class:EventLoop	access:private
 eventSources_	EventLoop.h	/^	vector<boost::shared_ptr<EventSourceBase> > eventSources_;$/;"	m	class:EventLoop	access:private
 event_	EventLoop.h	/^	boost::shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
+fd_	TcpConnection.h	/^	int fd_;$/;"	m	class:TcpConnection	access:private
 func_	EventLoop.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
 getEventLoopOfCurrentThread	EventLoop.cpp	/^EventLoop* EventLoop::getEventLoopOfCurrentThread()$/;"	f	class:EventLoop	signature:()
 getEventLoopOfCurrentThread	EventLoop.h	/^	static EventLoop* getEventLoopOfCurrentThread();$/;"	p	class:EventLoop	access:public	signature:()
 include_dirs	makefile	/^include_dirs := $/;"	m
 init	EventSourceBase.h	/^	virtual void init(){};$/;"	f	class:EventSourceBase	access:public	signature:()
 isInLoopThread	EventLoop.h	/^	bool isInLoopThread() const {$/;"	f	class:EventLoop	access:public	signature:() const
+isWrite_	TcpConnection.h	/^	bool isWrite_; \/\/能否进行写入$/;"	m	class:TcpConnection	access:private
 linkFlags	makefile	/^linkFlags := -g -Wall -lpthread$/;"	m
 listen_list_	Epoll.h	/^	map<int, boost::shared_ptr<TcpConnection> > listen_list_;$/;"	m	class:Epoll	access:private
 lock	CMutex.h	/^	void lock(){$/;"	f	class:CMutex	access:public	signature:()
 loop	EventLoop.cpp	/^void EventLoop::loop()$/;"	f	class:EventLoop	signature:()
 loop	EventLoop.h	/^	void loop();$/;"	p	class:EventLoop	access:public	signature:()
-loop_	EventSourceBase.h	/^	EventLoop* loop_;$/;"	m	class:EventSourceBase	access:private
+loop_	EventSourceBase.h	/^	boost::shared_ptr<EventLoop> loop_;$/;"	m	class:EventSourceBase	access:protected
 looping_	EventLoop.h	/^	bool looping_;$/;"	m	class:EventLoop	access:private
 main	testmain.cpp	/^int main()$/;"	f	signature:()
 mutex_	AutoMutex.h	/^	CMutex mutex_;$/;"	m	class:AutoMutex	access:private
 mutex_	CMutex.h	/^	pthread_mutex_t mutex_;$/;"	m	class:CMutex	access:private
 mutex_	EventLoop.h	/^	CMutex mutex_;$/;"	m	class:EventLoop	access:private
 objects	makefile	/^objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+openServer	TcpConnection.h	/^	bool openServer();$/;"	p	class:TcpConnection	access:public	signature:()
 operator =	EventLoop.h	/^	EventFunc& operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	access:public	signature:(const EventFunc& rhs)
 protocolFactorys_	EventLoop.h	/^	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;$/;"	m	class:EventLoop	access:private
 reg	EventLoop.h	/^	void reg(boost::shared_ptr<EventSourceBase> source){$/;"	f	class:EventLoop	access:public	signature:(boost::shared_ptr<EventSourceBase> source)
 reg	EventLoop.h	/^	void reg(string eventName, boost::shared_ptr<Event> eventPtr, FuncPtr func){$/;"	f	class:EventLoop	access:public	signature:(string eventName, boost::shared_ptr<Event> eventPtr, FuncPtr func)
 reg	EventLoop.h	/^	void reg(string protocolName, boost::shared_ptr<ProtocolFactory> factory){$/;"	f	class:EventLoop	access:public	signature:(string protocolName, boost::shared_ptr<ProtocolFactory> factory)
+server_	Epoll.h	/^	TcpConnection server_;$/;"	m	class:Epoll	access:private
 target	makefile	/^target = Rano$/;"	m
 taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:EventLoop	access:private
 threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
 unlock	CMutex.h	/^	void unlock(){$/;"	f	class:CMutex	access:public	signature:()
-waitEP	Epoll.h	/^	epoll_event	waitEP[MAXEVENTS];	$/;"	m	class:Epoll	access:private
+waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
 ~AutoMutex	AutoMutex.h	/^	~AutoMutex(){$/;"	f	class:AutoMutex	access:public	signature:()
 ~CMutex	CMutex.h	/^	~CMutex(){$/;"	f	class:CMutex	access:public	signature:()
 ~EventLoop	EventLoop.cpp	/^EventLoop::~EventLoop()$/;"	f	class:EventLoop	signature:()
 ~EventLoop	EventLoop.h	/^	~EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
 ~EventSourceBase	EventSourceBase.h	/^	virtual ~EventSourceBase(){};$/;"	f	class:EventSourceBase	access:public	signature:()
+~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()

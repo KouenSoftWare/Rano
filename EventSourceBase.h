@@ -6,16 +6,16 @@
 using namespace std;
 
 class EventLoop;
-class EventFunc;
+class Event;
 
 class EventSourceBase
 {	
 protected:
-	shared_ptr<EventLoop> loop_;
+	boost::shared_ptr<EventLoop> loop_;
 public:
 	EventSourceBase();
 	
-	virtual ~EventSourceBase(){};
-	virtual void init(){};
-	virtual	void GetEvents(vector<boost::shared_ptr<EventFunc> >&);
+	virtual ~EventSourceBase();
+	virtual void init();
+	virtual	void GetEvents(vector<boost::shared_ptr<Event> >&);
 };

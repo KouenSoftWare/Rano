@@ -1,15 +1,24 @@
 #pragma once 
 
+#include <map>
+#include <sys/epoll.h>
 #include "EventSourceBase.h"
 #include "TcpConnection.h"
 
 #define MAXEVENTS 64
+
+using namespace std;
+
+
+class TcpConnection;
+class Event;
 
 class Epoll:
 	public EventSourceBase
 {
 public:
 	Epoll();
+	~Epoll(){}
 
 	void Add(TcpConnection*);
 

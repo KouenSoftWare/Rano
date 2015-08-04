@@ -2,7 +2,22 @@
 #include "EventSourceBase.h"
 
 EventSourceBase::EventSourceBase():
-	loop_(getEventLoopOfCurrentThread())
+	loop_(EventLoop::getEventLoopOfCurrentThread())
 {
-	
+	;	
+}
+
+EventSourceBase::~EventSourceBase()
+{
+	;
+}
+
+void EventSourceBase::init()
+{
+	;
+}
+
+void EventSourceBase::GetEvents(vector<boost::shared_ptr<Event> >& ret)
+{
+	;
 }
