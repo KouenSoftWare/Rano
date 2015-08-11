@@ -20,11 +20,15 @@ using namespace std;
 
 void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 {
+	char tempBuf[4096];
 	assert(strcmp(event->getName(),"TcpRecvEvent")==0);	
 	ServerTcpEvent* pE = (ServerTcpEvent*)event.get();
 	boost::shared_ptr<EventLoop> sp_el = el.lock();
-	boost::shared_ptr<EventFactory> f = sp_el->getFactroy("TcpRecvEvent");
-	sp_el->push(f->GetEvent(&(pE->getBuf()[0]), pE->getBuf().size()));
+	boost::shared_ptr<EventFactory> f = sp_el->getFactroy(pE->l1.level2Name);
+	memcpy(tempBuf, &pE->l1, sizeof(level1));
+	memcpy(tempBuf+sizeof(level1), &(pE->getBuf()[0]), pE->getBuf().size());
+	boost::shared_ptr<Event> pEvent = f->GetEvent(&tempBuf[0], pE->l1.level2Size);
+	sp_el->push(pEvent);
 }
 
 void TcpConnection::setFd(int f)
@@ -90,7 +94,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 	int buflen;
 	char buf[MAXREADBUFFER];
 	while(flag){
-	    buflen = recv(fd_, buf, sizeof(MAXREADBUFFER), 0);
+	    buflen = recv(fd_, buf, MAXREADBUFFER, 0);
 		if(buflen < 0){
 			if(errno == EAGAIN || errno == EINTR){
 				break;
@@ -108,56 +112,63 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 			//	3.将事件插入数据中
 			//3.将剩余数据放入readBuffer_
 			int bufCur = 0;				
-			if(readBuffer_.length() >= int(sizeof(level1))){
-				ServerTcpEvent* pSTE = new ServerTcpEvent();
-				pSTE->setName("TcpRecvEvent");
-				memcpy(&pSTE->l1, readBuffer_.data(), sizeof(level1));	
-				readBuffer_.update(sizeof(level1));
-				vector<char> temp;
-				char *p = readBuffer_.data();
-				unsigned int i, j, rBlength = readBuffer_.length();
-				for(i = 0; i != rBlength; i++){
-					temp.push_back(p[i]);	
-				}
-				for(j=0; i != pSTE->l1.level2Size; i++, j++){
-					temp.push_back(buf[j]);
-				}
-				pSTE->setBuf(temp);
-				readBuffer_.clear();
-				bufCur += j;
-				ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
+			level1 check_head;
+			if(buflen + readBuffer_.length() < int(sizeof(level1))){
+				readBuffer_.append(buf, buflen);	
 			}else{
-				ServerTcpEvent* pSTE = new ServerTcpEvent();
-				pSTE->setName("TcpRecvEvent");
-				memcpy(&pSTE->l1, readBuffer_.data(), readBuffer_.length());	
-				bufCur = sizeof(level1) - readBuffer_.length();
-				memcpy(&pSTE->l1+readBuffer_.length(), buf, bufCur);
-				readBuffer_.clear();
-				vector<char> temp; temp.resize(pSTE->l1.level2Size);
-				memcpy(&temp, buf+bufCur, pSTE->l1.level2Size);	
-				bufCur += pSTE->l1.level2Size;
-				pSTE->setBuf(temp);
-				ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
-			}
-			while(1){
-				if(int(bufCur+sizeof(level1)) < buflen){
-					string level2Size(buf[bufCur+4], 4); 
-					if(int(bufCur+sizeof(level1)+atoi(level2Size.c_str())) < buflen){
+				memcpy(&check_head, readBuffer_.data(), readBuffer_.length());	
+				memcpy(&check_head, buf, sizeof(level1) - readBuffer_.length());
+				if(int(check_head.level2Size) <= buflen +int( readBuffer_.length())){
+					if(readBuffer_.length() >= int(sizeof(level1))){
 						ServerTcpEvent* pSTE = new ServerTcpEvent();
 						pSTE->setName("TcpRecvEvent");
-						memcpy(&pSTE->l1, buf+bufCur, sizeof(level1));	
-						bufCur += sizeof(level1);	
-						assert(atoi(level2Size.c_str()) != int(pSTE->l1.level2Size));
-						vector<char> temp; temp.resize(pSTE->l1.level2Size);
-						memcpy(&temp, buf+bufCur, pSTE->l1.level2Size);	
-						bufCur += pSTE->l1.level2Size;
+						memcpy(&pSTE->l1, readBuffer_.data(), sizeof(level1));	
+						readBuffer_.update(sizeof(level1));
+
+						vector<char> temp; temp.resize(pSTE->l1.level2Size-sizeof(level1));
+						memcpy(&temp[0], readBuffer_.data(), readBuffer_.length());
+						memcpy(&temp[readBuffer_.length()], buf, (pSTE->l1.level2Size-sizeof(level1)));
+						
+						pSTE->setBuf(temp);
+						readBuffer_.clear();
+						bufCur += (pSTE->l1.level2Size-sizeof(level1));
+						ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
+					}else{
+						ServerTcpEvent* pSTE = new ServerTcpEvent();
+						pSTE->setName("TcpRecvEvent");
+						memcpy(&pSTE->l1, readBuffer_.data(), readBuffer_.length());	
+						bufCur = sizeof(level1) - readBuffer_.length();
+						memcpy(&pSTE->l1+readBuffer_.length(), buf, bufCur);
+						readBuffer_.clear();
+						vector<char> temp; temp.resize(pSTE->l1.level2Size-sizeof(level1));
+						memcpy(&temp[0], buf+bufCur, pSTE->l1.level2Size-sizeof(level1));	
+						bufCur += pSTE->l1.level2Size-sizeof(level1);
 						pSTE->setBuf(temp);
 						ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
-						continue;
 					}
+					while(1){
+						if(int(bufCur+sizeof(level1)) < buflen){
+							string level2Size(buf[bufCur+4], 4); 
+							if(int(bufCur+atoi(level2Size.c_str())) < buflen){
+								ServerTcpEvent* pSTE = new ServerTcpEvent();
+								pSTE->setName("TcpRecvEvent");
+								memcpy(&pSTE->l1, buf+bufCur, sizeof(level1));	
+								bufCur += sizeof(level1);	
+								assert(atoi(level2Size.c_str()) != int(pSTE->l1.level2Size));
+								vector<char> temp; temp.resize(pSTE->l1.level2Size-sizeof(level1));
+								memcpy(&temp[0], buf+bufCur, pSTE->l1.level2Size-sizeof(level1));	
+								bufCur += pSTE->l1.level2Size-sizeof(level1);
+								pSTE->setBuf(temp);
+								ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
+								continue;
+							}
+						}
+						readBuffer_.append(buf, buflen-bufCur);
+						break;
+					}	
+				}else{
+					readBuffer_.append(buf, buflen);	
 				}
-				readBuffer_.append(buf, buflen-bufCur);
-				break;
 			}
 		}
 		if(buflen == MAXREADBUFFER){

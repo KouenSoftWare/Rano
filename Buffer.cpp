@@ -23,7 +23,7 @@ void Buffer::append(string& msg)
 
 void Buffer::append(char* msg, size_t size)
 {
-	for(size_t i=0; i!= size;i++){
+	for(size_t i=0; i< size;i++){
 		storage_.push_back(msg[i]);
 	}
 }

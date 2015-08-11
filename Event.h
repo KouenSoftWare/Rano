@@ -8,11 +8,12 @@ using namespace std;
 
 class Event
 {
-protected:
+public:
+	level1 l1;
+private:
 	char name_[32];
 
 public:
-	level1 l1;
 
 	void setName(const char* name){
 		memcpy(name_, name, 32);

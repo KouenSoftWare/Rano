@@ -43,7 +43,7 @@ int Epoll::DelListen(const int& fd, map<int, boost::shared_ptr<TcpConnection> >:
 void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 {
 	struct epoll_event event;
-	int n = epoll_wait(epfd_, waitEP_, MAXEVENTS, -1);
+	int n = epoll_wait(epfd_, waitEP_, MAXEVENTS, 1);
 	for(int i=0; i<n; i++){
 		if ((waitEP_[i].events & EPOLLERR) || (waitEP_[i].events & EPOLLHUP) || (!(waitEP_[i].events & EPOLLIN))){
 			map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);

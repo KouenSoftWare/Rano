@@ -8,7 +8,7 @@ LIBS := boost_system pthread
 LDFLAGS := 
 
 CPPFLAGS =  $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS))
-CPPFLAGS += -g -Wall -Wsign-compare
+CPPFLAGS += -g -Wall 
 
 $(target): $(objects)
 	$(cc) $(linkFlags) -o $(target)  $(objects) $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS)) $(addprefix -l,$(LIBS))
