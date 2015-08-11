@@ -18,6 +18,7 @@ class Epoll:
 	public EventSourceBase,
 	public EventTargetBase
 {
+	int DelListen(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&);
 public:
 	Epoll();
 	~Epoll(){}

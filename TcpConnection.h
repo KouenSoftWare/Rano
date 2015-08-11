@@ -27,6 +27,7 @@ public:
 	int write(string&);//用来发送数据的
 	void SetNonBlock();//构造函数，默认就会调用
 	void SetIpPort(const string&, const string&);
+	void setFd(int f);
 	int send();
 	bool openServer();
 	bool openClient();

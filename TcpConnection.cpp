@@ -27,6 +27,11 @@ void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<E
 	sp_el->push(f->GetEvent(&(pE->getBuf()[0]), pE->getBuf().size()));
 }
 
+void TcpConnection::setFd(int f)
+{
+	fd_ = f;
+}
+
 TcpConnection::~TcpConnection()
 {
 	/*
