@@ -35,7 +35,7 @@ int Epoll::DelListen(const int& fd, map<int, boost::shared_ptr<TcpConnection> >:
 		return -1;
 	}else{
 		listen_list_.erase(iter);
-		cout << "\t删除监听成功" << endl;
+		//cout << "\t删除监听成功" << endl;
 		return 0;
 	}
 }
@@ -69,7 +69,7 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				if(-1 == epoll_ctl (epfd_, EPOLL_CTL_ADD, clientFd, &event)){
 					cout << "<!>添加监听错误<!>"<< endl;
 				}else{
-					cout << "添加监听成功" << endl;
+					//cout << "添加监听成功" << endl;
 					listen_list_.insert(pair<int, boost::shared_ptr<TcpConnection> >(clientFd ,pTcp));
 				}
 			}
@@ -103,11 +103,14 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 
 int Epoll::SendEvents(boost::shared_ptr<Event> &event)
 {
-	int fd;	//获取Event的fd，强制将其转换成对应的TCP事件，就行.这种属于框架的内部事件	
-	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
+	//int fd;	//获取Event的fd，强制将其转换成对应的TCP事件，就行.这种属于框架的内部事件	
+			
+	//map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
+	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.begin();
 	if(iter == listen_list_.end()){
+		cout << "<!>Not Find TcpConnection<!>" << endl;
 		return -2;
 	}
-	return 0;
-	//return iter->second->write();
+	
+	return iter->second->write(event);
 }

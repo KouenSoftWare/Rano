@@ -74,7 +74,6 @@ void EventLoop::loop()
 			iter->second.setEvent(eventArray[i]);
 			iter->second.doWork();
 		}
-		eventArray.clear();
 	}
 }
 

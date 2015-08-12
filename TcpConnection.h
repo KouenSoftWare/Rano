@@ -24,7 +24,7 @@ public:
 	int OnRead(vector<boost::shared_ptr<Event> >&);
 	int OnWrite();
 	int Fd();
-	int write(string&);//用来发送数据的
+	int write(boost::shared_ptr<Event>&);//用来发送数据的
 	void SetNonBlock();//构造函数，默认就会调用
 	void SetIpPort(const string&, const string&);
 	void setFd(int f);

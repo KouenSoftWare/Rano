@@ -68,13 +68,17 @@ int TcpConnection::send()
 	}
 }
 
-int TcpConnection::write(string& msg)
+int TcpConnection::write(boost::shared_ptr<Event>& event)
 {
-	writeBuffer_.append(msg);
+	ServerTcpEvent* pE = (ServerTcpEvent*)event.get();	
+	int msgSize= pE->getBuf().size();
+	boost::shared_ptr<char> pChar(new char[msgSize]);
+	memcpy(pChar.get(), &pE->getBuf()[0], msgSize);
+	writeBuffer_.append(pChar.get(), msgSize);
 	if(isWrite_){
 		return send();		
 	}	
-	return 0;	
+	return 0;
 }
 
 int TcpConnection::OnError()

@@ -4,6 +4,7 @@
 #include "EventLoop.h"
 #include "EventFactory.h"
 #include "Event.h"
+#include "ServerTcpEvent.h"
 #include <string.h>
 
 struct echoEvent:public Event
@@ -15,7 +16,22 @@ void echo(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 {
 	assert(0==strcmp(event->getName(),"echoEvent"));
 	echoEvent* e = (echoEvent*)event.get();
-	cout << e->l1.sourceID << "Say: " << e->msg << endl;
+	//cout << "\tSourceID " << e->l1.sourceID << "Say: " << e->msg << endl;
+	ServerTcpEvent *pServerTcp = new ServerTcpEvent();
+	strcpy(pServerTcp->l1.featureCode, "$#@!");
+	strcpy(pServerTcp->l1.level2Name, "echoEvent");
+	pServerTcp->l1.jumpCount = 0;
+	pServerTcp->l1.level2Size = sizeof(echoEvent);
+	pServerTcp->l1.missCount = 0;
+	pServerTcp->l1.sourceID = 1;
+	pServerTcp->l1.targetID = 0;
+	pServerTcp->l1.serialNumber = e->l1.serialNumber;
+	vector<char> temp; temp.resize(sizeof(echoEvent));
+	memcpy(&temp[0], e, sizeof(echoEvent));
+	pServerTcp->setBuf(temp);
+	boost::shared_ptr<Event> pE(pServerTcp);
+	boost::shared_ptr<EventLoop> pEL = el.lock();
+	pEL->SendEvents("Epoll", pE);
 }
 
 class echoFactory:

@@ -2,7 +2,7 @@ cc = g++
 objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 target = Rano
 
-linkFlags := -g -Wall
+linkFlags := -g -Wall 
 include_dirs := 
 LIBS := boost_system pthread
 LDFLAGS := 
