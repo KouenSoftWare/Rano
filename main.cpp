@@ -18,6 +18,8 @@ void echo(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 	echoEvent* e = (echoEvent*)event.get();
 	//cout << "\tSourceID " << e->l1.sourceID << "Say: " << e->msg << endl;
 	ServerTcpEvent *pServerTcp = new ServerTcpEvent();
+	pServerTcp->l1.set("$#@!", sizeof(echoEvent), 1, 0, 0, 0, e->l1.serialNumber, "echoEvent");
+	/*
 	strcpy(pServerTcp->l1.featureCode, "$#@!");
 	strcpy(pServerTcp->l1.level2Name, "echoEvent");
 	pServerTcp->l1.jumpCount = 0;
@@ -26,6 +28,7 @@ void echo(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 	pServerTcp->l1.sourceID = 1;
 	pServerTcp->l1.targetID = 0;
 	pServerTcp->l1.serialNumber = e->l1.serialNumber;
+	*/
 	vector<char> temp; temp.resize(sizeof(echoEvent));
 	memcpy(&temp[0], e, sizeof(echoEvent));
 	pServerTcp->setBuf(temp);

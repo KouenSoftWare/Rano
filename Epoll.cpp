@@ -108,7 +108,7 @@ int Epoll::SendEvents(boost::shared_ptr<Event> &event)
 	//map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
 	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.begin();
 	if(iter == listen_list_.end()){
-		cout << "<!>Not Find TcpConnection<!>" << endl;
+		cout << "<!>Not Find TcpConnection: " << listen_list_.size() <<  "<!>" << endl;
 		return -2;
 	}
 	
