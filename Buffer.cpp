@@ -1,7 +1,8 @@
 #include "Buffer.h"
+#include <string.h>
 bool Buffer::hasData()
 {
-	return !storage_.empty();
+	return length_?true:false;
 }
 
 char* Buffer::data()
@@ -11,28 +12,24 @@ char* Buffer::data()
 
 int Buffer::length()
 {
-	return storage_.size();
-}
-
-void Buffer::append(string& msg)
-{
-	for(size_t i=0; i!= msg.size();i++){
-		storage_.push_back(msg[i]);
-	}
+	return length_; 
 }
 
 void Buffer::append(char* msg, size_t size)
 {
-	for(size_t i=0; i< size;i++){
-		storage_.push_back(msg[i]);
+	if(storage_.size()-length_ < size){
+		storage_.resize(storage_.size()*2 + size*2);
 	}
+	memcpy(&storage_[length_], msg, size);
+	length_ += size;
 }
 
 void Buffer::update(size_t size)
 {
-	vector<char> temp;
-	for(size_t i=size; i!=storage_.size(); i++){
-		temp.push_back(storage_[i]);	
+	if(length_ >= int(size)){
+		memcpy(&storage_[0], &storage_[size], length_-size);
+		length_ -= size;
+	}else{
+		length_ = 0;
 	}
-	storage_.swap(temp);
 }

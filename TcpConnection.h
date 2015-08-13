@@ -13,11 +13,14 @@ using namespace std;
 
 class Event;
 class EventLoop;
+class Epoll;
 
 class TcpConnection
 {
 public:
-	TcpConnection():isWrite_(true){}
+	TcpConnection(Epoll* e):isWrite_(true){
+		epoll_ = e;	
+	}
 	~TcpConnection();
 
 	int OnError();
@@ -41,6 +44,7 @@ private:
 	bool isWrite_; //能否进行写入
 	bool open_;//是否已经开启某种模式
 	int fd_;
+	Epoll* epoll_;
 };
 
 void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&);

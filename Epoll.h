@@ -27,9 +27,16 @@ public:
 
 	void GetEvents(vector<boost::shared_ptr<Event> >&);
 	int SendEvents(boost::shared_ptr<Event> &event);
+
+	void SetSourceID(int, int);
+	void SaveEvent(boost::shared_ptr<Event>&);
+	void LoadEvents(int, vector<boost::shared_ptr<Event> >&);
 private:
 	map<int, boost::shared_ptr<TcpConnection> > listen_list_;
 	int epfd_;
 	epoll_event	waitEP_[MAXEVENTS];	
 	TcpConnection server_;
+
+	map<int, int> mapSourceID_;
+	map<int, vector<boost::shared_ptr<Event> > > mapSourceIDToSaveEvents_;
 };

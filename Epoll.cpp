@@ -1,4 +1,5 @@
 #include "Epoll.h"
+#include "Event.h"
 #include "EventLoop.h"
 #include "TcpConnection.h"
 #include <netinet/in.h>
@@ -11,7 +12,8 @@
 using namespace std;
 
 
-Epoll::Epoll()
+Epoll::Epoll():
+	server_(this)
 {
 	epfd_ =	epoll_create(MAXEVENTS);
 	string ip("127.0.0.1"), port("7392");
@@ -45,10 +47,11 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 	struct epoll_event event;
 	int n = epoll_wait(epfd_, waitEP_, MAXEVENTS, 1);
 	for(int i=0; i<n; i++){
-		if ((waitEP_[i].events & EPOLLERR) || (waitEP_[i].events & EPOLLHUP) || (!(waitEP_[i].events & EPOLLIN))){
+		if ((waitEP_[i].events & EPOLLERR) || (waitEP_[i].events & EPOLLHUP)){
 			map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 			assert(iter != listen_list_.end());
 			iter->second->OnError();
+			//cout << "\t<!>各种断开错误事件触发<!> errno:" << errno << " Events:" << waitEP_[i].events;
 			DelListen(iter->second->Fd(), iter);
 		}else if(server_.Fd() == waitEP_[i].data.fd){
 			while(1){
@@ -61,7 +64,7 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				}
 				char hbuf[NI_MAXHOST], sbuf[NI_MAXSERV];
 				assert(0 == getnameinfo (&in_addr, in_len, hbuf, sizeof(hbuf), sbuf, sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV));
-				boost::shared_ptr<TcpConnection> pTcp(new TcpConnection());
+				boost::shared_ptr<TcpConnection> pTcp(new TcpConnection(this));
 				pTcp->SetIpPort(hbuf, sbuf);
 				pTcp->setFd(clientFd);
 				event.data.fd = clientFd;
@@ -84,6 +87,7 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 				if(iter != listen_list_.end()){
 					if(iter->second->OnRead(ret_eventArray) < 0){
+						//cout << "\t<!>错误的可读事件<!>";
 						DelListen(iter->second->Fd(), iter);
 					}
 				}
@@ -93,6 +97,7 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 				map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(waitEP_[i].data.fd);
 				if(iter != listen_list_.end()){
 					if(iter->second->OnWrite() < 0){
+						//cout << "\t<!>错误的可写事件<!>";
 						DelListen(iter->second->Fd(), iter);
 					}
 				}
@@ -101,16 +106,51 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 	}
 }
 
+void Epoll::SetSourceID(int fd, int sId)
+{
+	map<int, int>::iterator iter = mapSourceID_.find(sId);
+	if(iter == mapSourceID_.end()){
+		mapSourceID_.insert(pair<int, int>(sId, fd));	
+	}else{
+		iter->second = fd;
+	}
+}
+
 int Epoll::SendEvents(boost::shared_ptr<Event> &event)
 {
-	//int fd;	//获取Event的fd，强制将其转换成对应的TCP事件，就行.这种属于框架的内部事件	
-			
-	//map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
-	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.begin();
-	if(iter == listen_list_.end()){
-		cout << "<!>Not Find TcpConnection: " << listen_list_.size() <<  "<!>" << endl;
-		return -2;
+	int fd;	//获取Event的fd，强制将其转换成对应的TCP事件，就行.这种属于框架的内部事件	
+	map<int, int>::iterator iterSouceId = mapSourceID_.find(event->l1.targetID);
+	if(iterSouceId == mapSourceID_.end()){
+		SaveEvent(event); 	
+		cout << "<!>Not Find SourceID<!>" << endl;
+		return -1;
 	}
-	
+	fd = iterSouceId->second;
+	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
+	if(iter == listen_list_.end()){
+		SaveEvent(event); 	
+		cout << "<!>Not Find TcpConnection<!>" << endl;
+		return -1;
+	}
 	return iter->second->write(event);
+}
+
+void Epoll::SaveEvent(boost::shared_ptr<Event> &event)
+{
+	map<int, vector<boost::shared_ptr<Event> > >::iterator iter = mapSourceIDToSaveEvents_.find(event->l1.targetID);
+	if(iter == mapSourceIDToSaveEvents_.end()){
+		vector<boost::shared_ptr<Event> > vec;
+		vec.push_back(event);
+		mapSourceIDToSaveEvents_.insert(pair<int, vector<boost::shared_ptr<Event> > >(event->l1.targetID, vec));
+	}else{
+		iter->second.push_back(event);
+	}
+}
+
+void Epoll::LoadEvents(int sId, vector<boost::shared_ptr<Event> > &vecEvent)
+{
+	map<int, vector<boost::shared_ptr<Event> > >::iterator iter = mapSourceIDToSaveEvents_.find(sId);
+	if(iter != mapSourceIDToSaveEvents_.end()){
+		vecEvent.swap(iter->second);
+	}
 }
