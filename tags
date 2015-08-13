@@ -55,7 +55,9 @@ Epoll::Epoll	Epoll.cpp	/^Epoll::Epoll():$/;"	f	class:Epoll	signature:()
 Epoll::Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
 Epoll::GetEvents	Epoll.cpp	/^void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)$/;"	f	class:Epoll	signature:(vector<boost::shared_ptr<Event> >&ret_eventArray)
 Epoll::GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >&)
+Epoll::LoadEvents	Epoll.cpp	/^void Epoll::LoadEvents(int sId, vector<boost::shared_ptr<Event> > &vecEvent)$/;"	f	class:Epoll	signature:(int sId, vector<boost::shared_ptr<Event> > &vecEvent)
 Epoll::LoadEvents	Epoll.h	/^	void LoadEvents(int, vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(int, vector<boost::shared_ptr<Event> >&)
+Epoll::SaveEvent	Epoll.cpp	/^void Epoll::SaveEvent(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 Epoll::SaveEvent	Epoll.h	/^	void SaveEvent(boost::shared_ptr<Event>&);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event>&)
 Epoll::SendEvents	Epoll.cpp	/^int Epoll::SendEvents(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 Epoll::SendEvents	Epoll.h	/^	int SendEvents(boost::shared_ptr<Event> &event);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event> &event)
@@ -77,16 +79,34 @@ EventFactory	EventFactory.h	/^class EventFactory{$/;"	c
 EventFactory::GetEvent	EventFactory.cpp	/^boost::shared_ptr<Event> EventFactory::GetEvent(char* buf, int size)$/;"	f	class:EventFactory	signature:(char* buf, int size)
 EventFactory::GetEvent	EventFactory.h	/^	boost::shared_ptr<Event> GetEvent(char*,  int);$/;"	p	class:EventFactory	access:public	signature:(char*, int)
 EventFactory::create	EventFactory.h	/^	virtual boost::shared_ptr<Event> create()=0;$/;"	p	class:EventFactory	access:public	signature:()
+EventFunc	EventFunc.cpp	/^EventFunc::EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
+EventFunc	EventFunc.cpp	/^EventFunc::EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
+EventFunc	EventFunc.h	/^	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el);$/;"	p	class:EventFunc	access:public	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
+EventFunc	EventFunc.h	/^	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el);$/;"	p	class:EventFunc	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
+EventFunc	EventFunc.h	/^class EventFunc$/;"	c
 EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
 EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
 EventFunc	EventLoop.h	/^class EventFunc$/;"	c
+EventFunc::EventFunc	EventFunc.cpp	/^EventFunc::EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
+EventFunc::EventFunc	EventFunc.cpp	/^EventFunc::EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
+EventFunc::EventFunc	EventFunc.h	/^	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el);$/;"	p	class:EventFunc	access:public	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
+EventFunc::EventFunc	EventFunc.h	/^	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el);$/;"	p	class:EventFunc	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
 EventFunc::EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, boost::weak_ptr<EventLoop> el)
 EventFunc::EventFunc	EventLoop.h	/^	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):$/;"	f	class:EventFunc	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el)
+EventFunc::doWork	EventFunc.cpp	/^void EventFunc::doWork(){$/;"	f	class:EventFunc	signature:()
+EventFunc::doWork	EventFunc.h	/^	void doWork();$/;"	p	class:EventFunc	access:public	signature:()
 EventFunc::doWork	EventLoop.h	/^	void doWork(){$/;"	f	class:EventFunc	access:public	signature:()
+EventFunc::el_	EventFunc.h	/^	boost::weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
 EventFunc::el_	EventLoop.h	/^	boost::weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
+EventFunc::event_	EventFunc.h	/^	boost::shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
 EventFunc::event_	EventLoop.h	/^	boost::shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
+EventFunc::func_	EventFunc.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
 EventFunc::func_	EventLoop.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
+EventFunc::operator =	EventFunc.cpp	/^EventFunc& EventFunc::operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	signature:(const EventFunc& rhs)
+EventFunc::operator =	EventFunc.h	/^	EventFunc& operator=(const EventFunc& rhs);$/;"	p	class:EventFunc	access:public	signature:(const EventFunc& rhs)
 EventFunc::operator =	EventLoop.h	/^	EventFunc& operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	access:public	signature:(const EventFunc& rhs)
+EventFunc::setEvent	EventFunc.cpp	/^void EventFunc::setEvent(boost::shared_ptr<Event> &e){$/;"	f	class:EventFunc	signature:(boost::shared_ptr<Event> &e)
+EventFunc::setEvent	EventFunc.h	/^	void setEvent(boost::shared_ptr<Event> &e);$/;"	p	class:EventFunc	access:public	signature:(boost::shared_ptr<Event> &e)
 EventFunc::setEvent	EventLoop.h	/^	void setEvent(boost::shared_ptr<Event> &e){$/;"	f	class:EventFunc	access:public	signature:(boost::shared_ptr<Event> &e)
 EventLoop	EventLoop.cpp	/^EventLoop::EventLoop():$/;"	f	class:EventLoop	signature:()
 EventLoop	EventLoop.h	/^	EventLoop();$/;"	p	class:EventLoop	access:public	signature:()
@@ -152,6 +172,7 @@ EventTargetBase::~EventTargetBase	EventTargetBase.cpp	/^EventTargetBase::~EventT
 EventTargetBase::~EventTargetBase	EventTargetBase.h	/^	virtual ~EventTargetBase();$/;"	p	class:EventTargetBase	access:public	signature:()
 Fd	TcpConnection.cpp	/^int TcpConnection::Fd()$/;"	f	class:TcpConnection	signature:()
 Fd	TcpConnection.h	/^	int Fd();$/;"	p	class:TcpConnection	access:public	signature:()
+FuncPtr	EventFunc.h	/^typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;$/;"	t
 FuncPtr	EventLoop.h	/^typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;$/;"	t
 GetEvent	EventFactory.cpp	/^boost::shared_ptr<Event> EventFactory::GetEvent(char* buf, int size)$/;"	f	class:EventFactory	signature:(char* buf, int size)
 GetEvent	EventFactory.h	/^	boost::shared_ptr<Event> GetEvent(char*,  int);$/;"	p	class:EventFactory	access:public	signature:(char*, int)
@@ -169,7 +190,22 @@ IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
 LDFLAGS	makefile	/^LDFLAGS := $/;"	m
 LIBS	makefile	/^LIBS := boost_system pthread$/;"	m
 LISTENQ	TcpConnection.h	10;"	d
+LoadEvents	Epoll.cpp	/^void Epoll::LoadEvents(int sId, vector<boost::shared_ptr<Event> > &vecEvent)$/;"	f	class:Epoll	signature:(int sId, vector<boost::shared_ptr<Event> > &vecEvent)
 LoadEvents	Epoll.h	/^	void LoadEvents(int, vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(int, vector<boost::shared_ptr<Event> >&)
+LockQueue	LockQueue.h	/^class LockQueue  $/;"	c
+LockQueue::empty	LockQueue.h	/^    bool empty() const;$/;"	p	class:LockQueue	access:public	signature:() const
+LockQueue::empty	LockQueue.h	/^bool LockQueue<Data>::empty() const  $/;"	f	class:LockQueue	signature:() const
+LockQueue::push	LockQueue.h	/^    void push(Data const& data);$/;"	p	class:LockQueue	access:public	signature:(Data const& data)
+LockQueue::push	LockQueue.h	/^void LockQueue<Data>::push(Data const& data)  $/;"	f	class:LockQueue	signature:(Data const& data)
+LockQueue::size	LockQueue.h	/^	int size();$/;"	p	class:LockQueue	access:public	signature:()
+LockQueue::size	LockQueue.h	/^int LockQueue<Data>::size() $/;"	f	class:LockQueue	signature:()
+LockQueue::the_condition_variable	LockQueue.h	/^    boost::condition_variable the_condition_variable;  $/;"	m	class:LockQueue	access:private
+LockQueue::the_mutex	LockQueue.h	/^    mutable boost::mutex the_mutex;  $/;"	m	class:LockQueue	access:private
+LockQueue::the_queue	LockQueue.h	/^    std::queue<Data> the_queue;  $/;"	m	class:LockQueue	access:private
+LockQueue::try_pop	LockQueue.h	/^    bool try_pop(Data& popped_value);$/;"	p	class:LockQueue	access:public	signature:(Data& popped_value)
+LockQueue::try_pop	LockQueue.h	/^bool LockQueue<Data>::try_pop(Data& popped_value)  $/;"	f	class:LockQueue	signature:(Data& popped_value)
+LockQueue::wait_and_pop	LockQueue.h	/^    void wait_and_pop(Data& popped_value); $/;"	p	class:LockQueue	access:public	signature:(Data& popped_value)
+LockQueue::wait_and_pop	LockQueue.h	/^void LockQueue<Data>::wait_and_pop(Data& popped_value)  $/;"	f	class:LockQueue	signature:(Data& popped_value)
 MAXEVENTS	Epoll.h	9;"	d
 MAXREADBUFFER	TcpConnection.h	9;"	d
 OnError	TcpConnection.cpp	/^int TcpConnection::OnError()$/;"	f	class:TcpConnection	signature:()
@@ -183,6 +219,7 @@ ProtocolFactory	ProtocolFactory.h	/^class ProtocolFactory$/;"	c
 ProtocolWaitPool	ProtocolWaitPool.h	/^class ProtocolWaitPool$/;"	c
 Quit	EventLoop.h	/^	void Quit(){$/;"	f	class:EventLoop	access:public	signature:()
 RunInLoop	EventLoop.h	/^	void RunInLoop(FuncPtr func, boost::shared_ptr<Event>& eventPtr){$/;"	f	class:EventLoop	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& eventPtr)
+SaveEvent	Epoll.cpp	/^void Epoll::SaveEvent(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 SaveEvent	Epoll.h	/^	void SaveEvent(boost::shared_ptr<Event>&);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event>&)
 SendEvents	Epoll.cpp	/^int Epoll::SendEvents(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 SendEvents	Epoll.h	/^	int SendEvents(boost::shared_ptr<Event> &event);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event> &event)
@@ -261,7 +298,6 @@ TcpConnection::~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection(
 TcpConnection::~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
 TcpRecvEventToOtherEvent	TcpConnection.cpp	/^void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)$/;"	f	signature:(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 TcpRecvEventToOtherEvent	TcpConnection.h	/^void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&);$/;"	p	signature:(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)
-ThreadPool	ThreadPool.h	/^class ThreadPool$/;"	c
 append	Buffer.cpp	/^void Buffer::append(char* msg, size_t size)$/;"	f	class:Buffer	signature:(char* msg, size_t size)
 append	Buffer.h	/^	void append(char*, size_t);$/;"	p	class:Buffer	access:public	signature:(char*, size_t)
 buf_	ServerTcpEvent.h	/^	vector<char> buf_;$/;"	m	class:ServerTcpEvent	access:private
@@ -271,13 +307,18 @@ create	EventFactory.h	/^	virtual boost::shared_ptr<Event> create()=0;$/;"	p	clas
 create	main.cpp	/^	boost::shared_ptr<Event> create(){$/;"	f	class:echoFactory	access:public	signature:()
 data	Buffer.cpp	/^char* Buffer::data()$/;"	f	class:Buffer	signature:()
 data	Buffer.h	/^	char* data();$/;"	p	class:Buffer	access:public	signature:()
+doWork	EventFunc.cpp	/^void EventFunc::doWork(){$/;"	f	class:EventFunc	signature:()
+doWork	EventFunc.h	/^	void doWork();$/;"	p	class:EventFunc	access:public	signature:()
 doWork	EventLoop.h	/^	void doWork(){$/;"	f	class:EventFunc	access:public	signature:()
 echo	main.cpp	/^void echo(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)$/;"	f	signature:(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 echoEvent	main.cpp	/^struct echoEvent:public Event$/;"	s	file:	inherits:Event
 echoEvent::msg	main.cpp	/^	char msg[32];$/;"	m	struct:echoEvent	file:	access:public
 echoFactory	main.cpp	/^class echoFactory:$/;"	c	file:	inherits:EventFactory
 echoFactory::create	main.cpp	/^	boost::shared_ptr<Event> create(){$/;"	f	class:echoFactory	access:public	signature:()
+el_	EventFunc.h	/^	boost::weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
 el_	EventLoop.h	/^	boost::weak_ptr<EventLoop> el_;$/;"	m	class:EventFunc	access:private
+empty	LockQueue.h	/^    bool empty() const;$/;"	p	class:LockQueue	access:public	signature:() const
+empty	LockQueue.h	/^bool LockQueue<Data>::empty() const  $/;"	f	class:LockQueue	signature:() const
 epfd_	Epoll.h	/^	int epfd_;$/;"	m	class:Epoll	access:private
 epoll_	TcpConnection.h	/^	Epoll* epoll_;$/;"	m	class:TcpConnection	access:private
 eventArrayOtherThread_	EventLoop.h	/^	vector<boost::shared_ptr<Event> > eventArrayOtherThread_;$/;"	m	class:EventLoop	access:private
@@ -285,10 +326,12 @@ eventFactory_	EventLoop.h	/^	map<string, boost::shared_ptr<EventFactory> > event
 eventFuncPtr_	EventLoop.h	/^	map<string, EventFunc> eventFuncPtr_;$/;"	m	class:EventLoop	access:private
 eventSources_	EventLoop.h	/^	vector<boost::shared_ptr<EventSourceBase> > eventSources_;$/;"	m	class:EventLoop	access:private
 eventTarget_	EventLoop.h	/^	map<string, boost::shared_ptr<EventTargetBase> > eventTarget_;$/;"	m	class:EventLoop	access:private
+event_	EventFunc.h	/^	boost::shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
 event_	EventLoop.h	/^	boost::shared_ptr<Event> event_;$/;"	m	class:EventFunc	access:private
 fd_	ServerTcpEvent.h	/^	int fd_;$/;"	m	class:ServerTcpEvent	access:private
 fd_	TcpConnection.h	/^	int fd_;$/;"	m	class:TcpConnection	access:private
 featureCode	CommunicationsProtocol.h	/^	char			featureCode[4];	$/;"	m	struct:level1	access:public
+func_	EventFunc.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
 func_	EventLoop.h	/^	FuncPtr func_;$/;"	m	class:EventFunc	access:private
 getBuf	ServerTcpEvent.h	/^	const vector<char>& getBuf() const{$/;"	f	class:ServerTcpEvent	access:public	signature:() const
 getEventLoopOfCurrentThread	EventLoop.cpp	/^EventLoop* EventLoop::getEventLoopOfCurrentThread()$/;"	f	class:EventLoop	signature:()
@@ -347,12 +390,16 @@ openClient	TcpConnection.h	/^	bool openClient();$/;"	p	class:TcpConnection	acces
 openServer	TcpConnection.cpp	/^bool TcpConnection::openServer()$/;"	f	class:TcpConnection	signature:()
 openServer	TcpConnection.h	/^	bool openServer();$/;"	p	class:TcpConnection	access:public	signature:()
 open_	TcpConnection.h	/^	bool open_;\/\/是否已经开启某种模式$/;"	m	class:TcpConnection	access:private
+operator =	EventFunc.cpp	/^EventFunc& EventFunc::operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	signature:(const EventFunc& rhs)
+operator =	EventFunc.h	/^	EventFunc& operator=(const EventFunc& rhs);$/;"	p	class:EventFunc	access:public	signature:(const EventFunc& rhs)
 operator =	EventLoop.h	/^	EventFunc& operator=(const EventFunc& rhs){$/;"	f	class:EventFunc	access:public	signature:(const EventFunc& rhs)
 operator =	StorageZone.h	/^	StorageZone& operator =(const StorageZone& rhs);$/;"	p	class:StorageZone	access:private	signature:(const StorageZone& rhs)
 port_	TcpConnection.h	/^	int port_;$/;"	m	class:TcpConnection	access:private
 protocolFactorys_	EventLoop.h	/^	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;$/;"	m	class:EventLoop	access:private
 push	EventLoop.cpp	/^void EventLoop::push(boost::shared_ptr<Event> event)$/;"	f	class:EventLoop	signature:(boost::shared_ptr<Event> event)
 push	EventLoop.h	/^	void push(boost::shared_ptr<Event>);$/;"	p	class:EventLoop	access:public	signature:(boost::shared_ptr<Event>)
+push	LockQueue.h	/^    void push(Data const& data);$/;"	p	class:LockQueue	access:public	signature:(Data const& data)
+push	LockQueue.h	/^void LockQueue<Data>::push(Data const& data)  $/;"	f	class:LockQueue	signature:(Data const& data)
 readBuffer_	TcpConnection.h	/^	Buffer readBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
 reg	EventLoop.h	/^	void reg(boost::shared_ptr<EventSourceBase>& source){$/;"	f	class:EventLoop	access:public	signature:(boost::shared_ptr<EventSourceBase>& source)
 reg	EventLoop.h	/^	void reg(string eventName, FuncPtr func){$/;"	f	class:EventLoop	access:public	signature:(string eventName, FuncPtr func)
@@ -366,21 +413,32 @@ serialNumber	CommunicationsProtocol.h	/^	unsigned long	serialNumber;$/;"	m	struc
 server_	Epoll.h	/^	TcpConnection server_;$/;"	m	class:Epoll	access:private
 set	CommunicationsProtocol.h	/^	void set(const char* f, int l, int s, int t, int j, int m, int se, const char* le)$/;"	f	struct:level1	access:public	signature:(const char* f, int l, int s, int t, int j, int m, int se, const char* le)
 setBuf	ServerTcpEvent.h	/^	void setBuf(vector<char>& vc){$/;"	f	class:ServerTcpEvent	access:public	signature:(vector<char>& vc)
+setEvent	EventFunc.cpp	/^void EventFunc::setEvent(boost::shared_ptr<Event> &e){$/;"	f	class:EventFunc	signature:(boost::shared_ptr<Event> &e)
+setEvent	EventFunc.h	/^	void setEvent(boost::shared_ptr<Event> &e);$/;"	p	class:EventFunc	access:public	signature:(boost::shared_ptr<Event> &e)
 setEvent	EventLoop.h	/^	void setEvent(boost::shared_ptr<Event> &e){$/;"	f	class:EventFunc	access:public	signature:(boost::shared_ptr<Event> &e)
 setFd	ServerTcpEvent.h	/^	void setFd(int &i){$/;"	f	class:ServerTcpEvent	access:public	signature:(int &i)
 setFd	TcpConnection.cpp	/^void TcpConnection::setFd(int f)$/;"	f	class:TcpConnection	signature:(int f)
 setFd	TcpConnection.h	/^	void setFd(int f);$/;"	p	class:TcpConnection	access:public	signature:(int f)
 setName	Event.h	/^	void setName(const char* name){$/;"	f	class:Event	access:public	signature:(const char* name)
+size	LockQueue.h	/^	int size();$/;"	p	class:LockQueue	access:public	signature:()
+size	LockQueue.h	/^int LockQueue<Data>::size() $/;"	f	class:LockQueue	signature:()
 sourceID	CommunicationsProtocol.h	/^	unsigned int	sourceID;$/;"	m	struct:level1	access:public
 storage_	Buffer.h	/^	vector<char> storage_;$/;"	m	class:Buffer	access:private
 target	makefile	/^target = Rano$/;"	m
 targetID	CommunicationsProtocol.h	/^	unsigned int	targetID;$/;"	m	struct:level1	access:public
 taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:EventLoop	access:private
+the_condition_variable	LockQueue.h	/^    boost::condition_variable the_condition_variable;  $/;"	m	class:LockQueue	access:private
+the_mutex	LockQueue.h	/^    mutable boost::mutex the_mutex;  $/;"	m	class:LockQueue	access:private
+the_queue	LockQueue.h	/^    std::queue<Data> the_queue;  $/;"	m	class:LockQueue	access:private
 threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
+try_pop	LockQueue.h	/^    bool try_pop(Data& popped_value);$/;"	p	class:LockQueue	access:public	signature:(Data& popped_value)
+try_pop	LockQueue.h	/^bool LockQueue<Data>::try_pop(Data& popped_value)  $/;"	f	class:LockQueue	signature:(Data& popped_value)
 unlock	CMutex.h	/^	void unlock(){$/;"	f	class:CMutex	access:public	signature:()
 update	Buffer.cpp	/^void Buffer::update(size_t size)$/;"	f	class:Buffer	signature:(size_t size)
 update	Buffer.h	/^	void update(size_t);$/;"	p	class:Buffer	access:public	signature:(size_t)
 waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
+wait_and_pop	LockQueue.h	/^    void wait_and_pop(Data& popped_value); $/;"	p	class:LockQueue	access:public	signature:(Data& popped_value)
+wait_and_pop	LockQueue.h	/^void LockQueue<Data>::wait_and_pop(Data& popped_value)  $/;"	f	class:LockQueue	signature:(Data& popped_value)
 write	TcpConnection.cpp	/^int TcpConnection::write(boost::shared_ptr<Event>& event)$/;"	f	class:TcpConnection	signature:(boost::shared_ptr<Event>& event)
 write	TcpConnection.h	/^	int write(boost::shared_ptr<Event>&);\/\/用来发送数据的$/;"	p	class:TcpConnection	access:public	signature:(boost::shared_ptr<Event>&)
 writeBuffer_	TcpConnection.h	/^	Buffer writeBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
