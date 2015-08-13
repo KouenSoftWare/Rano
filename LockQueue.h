@@ -11,7 +11,7 @@ private:
     mutable boost::mutex the_mutex;  
     boost::condition_variable the_condition_variable;  
 public:  
-    void push(Data const& data);
+    void push(Data& data);
     bool empty() const;
     bool try_pop(Data& popped_value);
     void wait_and_pop(Data& popped_value); 
@@ -19,7 +19,7 @@ public:
 };  
 
 template<typename Data>  
-void LockQueue<Data>::push(Data const& data)  
+void LockQueue<Data>::push(Data& data)  
 {  
     boost::mutex::scoped_lock lock(the_mutex);  
     the_queue.push(data);  

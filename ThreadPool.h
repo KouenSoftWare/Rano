@@ -13,11 +13,12 @@ using namespace std;
 
 class Event;
 class EventLoop;
+class EventFunc;
 
 typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;
 
 class ThreadPool{
-	LockQueue<boost::shared_ptr<EventFunc> > queue_;
+	LockQueue<EventFunc> queue_;
 	map<string, EventFunc> eventExecuteList_;
 	boost::weak_ptr<EventLoop> el_;
 	vector<boost::shared_ptr<pthread_t> > threadGroup_;

@@ -10,6 +10,18 @@ EventFunc::EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):
 		event_(),
 		el_(el){}
 
+EventFunc::EventFunc():
+		func_(),
+		event_(),
+		el_(){}
+
+EventFunc::EventFunc(const EventFunc& rhs)
+{
+	event_ = rhs.event_;
+	el_ = rhs.el_;
+	func_ = rhs.func_;
+}
+		
 void EventFunc::setEvent(boost::shared_ptr<Event> &e){
 	event_.swap(e);
 }
@@ -23,6 +35,7 @@ EventFunc& EventFunc::operator=(const EventFunc& rhs){
 	if(&rhs != this){
 		event_ = rhs.event_;	
 		func_  = rhs.func_;
+		el_ = rhs.el_;
 	}
 	return *this;
 }

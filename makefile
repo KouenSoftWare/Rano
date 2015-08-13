@@ -4,7 +4,7 @@ target = Rano
 
 linkFlags := -g -Wall 
 include_dirs := 
-LIBS := boost_system pthread
+LIBS := boost_thread boost_system pthread
 LDFLAGS := 
 
 CPPFLAGS =  $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS))

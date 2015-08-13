@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "AutoMutex.h"
+#include "EventFunc.h"
 
 using namespace std;
 
@@ -29,45 +30,6 @@ class EventLoop;
 
 typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;
 
-class EventFunc
-{
-	FuncPtr func_;
-	boost::shared_ptr<Event> event_;
-	boost::weak_ptr<EventLoop> el_;
-public:
-	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):
-		func_(func),
-		event_(event),
-		el_(el)
-	{}
-
-	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):
-		func_(func),
-		event_(),
-		el_(el)
-	{}
-
-	void setEvent(boost::shared_ptr<Event> &e){
-		event_.swap(e);
-	}
-
-	void setFunc(FuncPtr f){
-		func_ = f;
-	}
-
-	void doWork(){
-		func_(event_, el_);
-		event_.reset();
-	}
-
-	EventFunc& operator=(const EventFunc& rhs){
-		if(&rhs != this){
-			event_ = rhs.event_;	
-			func_  = rhs.func_;
-		}
-		return *this;
-	}
-};
 
 class EventLoop: 
 	public boost::enable_shared_from_this<EventLoop>,

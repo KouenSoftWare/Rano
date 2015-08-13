@@ -1,13 +1,16 @@
 #include "ThreadPool.h"
+#include "Event.h"
+#include "EventFunc.h"
 
 void* Consumer(void* a)
 {
-	LockQueue<boost::shared_ptr<EventFunc> >* queue = (LockQueue<boost::shared_ptr<EventFunc> >* )a;
-	boost::shared_ptr<EventFunc> event;
+	LockQueue<EventFunc>* queue = (LockQueue<EventFunc>* )a;
+	EventFunc event;
 	while(1){
-		wait_and_pop(event);
+		queue->wait_and_pop(event);
 		//执行具体工作;
 	}
+	return NULL;
 }
 
 ThreadPool::ThreadPool(boost::weak_ptr<EventLoop> el):el_(el)

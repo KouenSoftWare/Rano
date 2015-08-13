@@ -15,8 +15,13 @@ class EventFunc
 public:
 	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el);
 	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el);
+	EventFunc();
+	EventFunc(const EventFunc&);
 	void setEvent(boost::shared_ptr<Event> &e);
 	void doWork();
+	void setFunc(FuncPtr f){
+		func_ = f;
+	}
 
 	EventFunc& operator=(const EventFunc& rhs);
 };

@@ -13,8 +13,8 @@
 #include <sys/syscall.h>
 #include <unistd.h>
 
-#include "EventFunc.h"
 #include "AutoMutex.h"
+#include "EventFunc.h"
 
 using namespace std;
 
@@ -25,7 +25,11 @@ class EventSourceBase;
 class EventTargetBase;
 class ProtocolFactory;
 
+class EventFunc;
+class EventLoop;
+
 typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;
+
 
 class EventLoop: 
 	public boost::enable_shared_from_this<EventLoop>,
