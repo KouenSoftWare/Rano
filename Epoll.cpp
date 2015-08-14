@@ -63,7 +63,7 @@ void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)
 					break;
 				}
 				char hbuf[NI_MAXHOST], sbuf[NI_MAXSERV];
-				assert(0 == getnameinfo (&in_addr, in_len, hbuf, sizeof(hbuf), sbuf, sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV));
+				getnameinfo (&in_addr, in_len, hbuf, sizeof(hbuf), sbuf, sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV);
 				boost::shared_ptr<TcpConnection> pTcp(new TcpConnection(this));
 				pTcp->SetIpPort(hbuf, sbuf);
 				pTcp->setFd(clientFd);
