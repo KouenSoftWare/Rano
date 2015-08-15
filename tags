@@ -45,6 +45,7 @@ DelListen	Epoll.cpp	/^int Epoll::DelListen(const int& fd, map<int, boost::shared
 DelListen	Epoll.h	/^	int DelListen(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&);$/;"	p	class:Epoll	access:private	signature:(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&)
 DoOtherThreadWork	EventLoop.cpp	/^void EventLoop::DoOtherThreadWork()$/;"	f	class:EventLoop	signature:()
 DoOtherThreadWork	EventLoop.h	/^	void DoOtherThreadWork();$/;"	p	class:EventLoop	access:private	signature:()
+ERROR	ThreadPool.h	10;"	d
 Epoll	Epoll.cpp	/^Epoll::Epoll():$/;"	f	class:Epoll	signature:()
 Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
 Epoll	Epoll.h	/^class Epoll:$/;"	c	inherits:EventSourceBase,EventTargetBase
@@ -55,7 +56,9 @@ Epoll::Epoll	Epoll.cpp	/^Epoll::Epoll():$/;"	f	class:Epoll	signature:()
 Epoll::Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
 Epoll::GetEvents	Epoll.cpp	/^void Epoll::GetEvents(vector<boost::shared_ptr<Event> >&ret_eventArray)$/;"	f	class:Epoll	signature:(vector<boost::shared_ptr<Event> >&ret_eventArray)
 Epoll::GetEvents	Epoll.h	/^	void GetEvents(vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(vector<boost::shared_ptr<Event> >&)
+Epoll::LoadEvents	Epoll.cpp	/^void Epoll::LoadEvents(int sId, vector<boost::shared_ptr<Event> > &vecEvent)$/;"	f	class:Epoll	signature:(int sId, vector<boost::shared_ptr<Event> > &vecEvent)
 Epoll::LoadEvents	Epoll.h	/^	void LoadEvents(int, vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(int, vector<boost::shared_ptr<Event> >&)
+Epoll::SaveEvent	Epoll.cpp	/^void Epoll::SaveEvent(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 Epoll::SaveEvent	Epoll.h	/^	void SaveEvent(boost::shared_ptr<Event>&);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event>&)
 Epoll::SendEvents	Epoll.cpp	/^int Epoll::SendEvents(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 Epoll::SendEvents	Epoll.h	/^	int SendEvents(boost::shared_ptr<Event> &event);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event> &event)
@@ -165,13 +168,16 @@ GetInstance	StorageZone.cpp	/^StorageZone* StorageZone::GetInstance()$/;"	f	clas
 GetInstance	StorageZone.h	/^	static StorageZone* GetInstance();$/;"	p	class:StorageZone	access:public	signature:()
 GetObject	StorageZone.cpp	/^bool StorageZone::GetObject(int id, boost::shared_ptr<TcpConnection>& rhs)$/;"	f	class:StorageZone	signature:(int id, boost::shared_ptr<TcpConnection>& rhs)
 GetObject	StorageZone.h	/^	bool GetObject(int, boost::shared_ptr<TcpConnection>&);$/;"	p	class:StorageZone	access:public	signature:(int, boost::shared_ptr<TcpConnection>&)
+IN	ThreadPool.h	8;"	d
 IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
 LDFLAGS	makefile	/^LDFLAGS := $/;"	m
 LIBS	makefile	/^LIBS := boost_system pthread$/;"	m
 LISTENQ	TcpConnection.h	10;"	d
+LoadEvents	Epoll.cpp	/^void Epoll::LoadEvents(int sId, vector<boost::shared_ptr<Event> > &vecEvent)$/;"	f	class:Epoll	signature:(int sId, vector<boost::shared_ptr<Event> > &vecEvent)
 LoadEvents	Epoll.h	/^	void LoadEvents(int, vector<boost::shared_ptr<Event> >&);$/;"	p	class:Epoll	access:public	signature:(int, vector<boost::shared_ptr<Event> >&)
 MAXEVENTS	Epoll.h	9;"	d
 MAXREADBUFFER	TcpConnection.h	9;"	d
+OUT	ThreadPool.h	9;"	d
 OnError	TcpConnection.cpp	/^int TcpConnection::OnError()$/;"	f	class:TcpConnection	signature:()
 OnError	TcpConnection.h	/^	int OnError();$/;"	p	class:TcpConnection	access:public	signature:()
 OnRead	TcpConnection.cpp	/^int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)$/;"	f	class:TcpConnection	signature:(vector<boost::shared_ptr<Event> > &ret_vecEF)
@@ -182,7 +188,9 @@ ProtocolConnRules	ProtocolConnRules.h	/^class ProtocolConnRules$/;"	c
 ProtocolFactory	ProtocolFactory.h	/^class ProtocolFactory$/;"	c
 ProtocolWaitPool	ProtocolWaitPool.h	/^class ProtocolWaitPool$/;"	c
 Quit	EventLoop.h	/^	void Quit(){$/;"	f	class:EventLoop	access:public	signature:()
+Run	ThreadPool.h	/^	void Run();$/;"	p	class:ThreadPool	access:public	signature:()
 RunInLoop	EventLoop.h	/^	void RunInLoop(FuncPtr func, boost::shared_ptr<Event>& eventPtr){$/;"	f	class:EventLoop	access:public	signature:(FuncPtr func, boost::shared_ptr<Event>& eventPtr)
+SaveEvent	Epoll.cpp	/^void Epoll::SaveEvent(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 SaveEvent	Epoll.h	/^	void SaveEvent(boost::shared_ptr<Event>&);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event>&)
 SendEvents	Epoll.cpp	/^int Epoll::SendEvents(boost::shared_ptr<Event> &event)$/;"	f	class:Epoll	signature:(boost::shared_ptr<Event> &event)
 SendEvents	Epoll.h	/^	int SendEvents(boost::shared_ptr<Event> &event);$/;"	p	class:Epoll	access:public	signature:(boost::shared_ptr<Event> &event)
@@ -261,7 +269,14 @@ TcpConnection::~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection(
 TcpConnection::~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
 TcpRecvEventToOtherEvent	TcpConnection.cpp	/^void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)$/;"	f	signature:(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
 TcpRecvEventToOtherEvent	TcpConnection.h	/^void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&);$/;"	p	signature:(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)
+ThreadPool	ThreadPool.h	/^	ThreadPool(int threadCount, boost::lockfree::queue<boost::shared_ptr<Event> > (&queues)[3]):$/;"	f	class:ThreadPool	access:public	signature:(int threadCount, boost::lockfree::queue<boost::shared_ptr<Event> > (&queues)[3])
 ThreadPool	ThreadPool.h	/^class ThreadPool$/;"	c
+ThreadPool::Run	ThreadPool.h	/^	void Run();$/;"	p	class:ThreadPool	access:public	signature:()
+ThreadPool::ThreadPool	ThreadPool.h	/^	ThreadPool(int threadCount, boost::lockfree::queue<boost::shared_ptr<Event> > (&queues)[3]):$/;"	f	class:ThreadPool	access:public	signature:(int threadCount, boost::lockfree::queue<boost::shared_ptr<Event> > (&queues)[3])
+ThreadPool::boost::lockfree::queues_	ThreadPool.h	/^	boost::lockfree::queue<boost::shared_ptr<Event> > (&queues_)[3];$/;"	m	class:ThreadPool::boost::lockfree	access:private
+ThreadPool::threadCount_	ThreadPool.h	/^	int threadCount_;$/;"	m	class:ThreadPool	access:private
+ThreadPool::vecpThrd_	ThreadPool.h	/^	vector<boost::thread*> vecpThrd_;$/;"	m	class:ThreadPool	access:private
+ThreadPool::~ThreadPool	ThreadPool.h	/^	~ThreadPool(){$/;"	f	class:ThreadPool	access:public	signature:()
 append	Buffer.cpp	/^void Buffer::append(char* msg, size_t size)$/;"	f	class:Buffer	signature:(char* msg, size_t size)
 append	Buffer.h	/^	void append(char*, size_t);$/;"	p	class:Buffer	access:public	signature:(char*, size_t)
 buf_	ServerTcpEvent.h	/^	vector<char> buf_;$/;"	m	class:ServerTcpEvent	access:private
@@ -353,6 +368,7 @@ port_	TcpConnection.h	/^	int port_;$/;"	m	class:TcpConnection	access:private
 protocolFactorys_	EventLoop.h	/^	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;$/;"	m	class:EventLoop	access:private
 push	EventLoop.cpp	/^void EventLoop::push(boost::shared_ptr<Event> event)$/;"	f	class:EventLoop	signature:(boost::shared_ptr<Event> event)
 push	EventLoop.h	/^	void push(boost::shared_ptr<Event>);$/;"	p	class:EventLoop	access:public	signature:(boost::shared_ptr<Event>)
+queues_	ThreadPool.h	/^	boost::lockfree::queue<boost::shared_ptr<Event> > (&queues_)[3];$/;"	m	class:ThreadPool::boost::lockfree	access:private
 readBuffer_	TcpConnection.h	/^	Buffer readBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
 reg	EventLoop.h	/^	void reg(boost::shared_ptr<EventSourceBase>& source){$/;"	f	class:EventLoop	access:public	signature:(boost::shared_ptr<EventSourceBase>& source)
 reg	EventLoop.h	/^	void reg(string eventName, FuncPtr func){$/;"	f	class:EventLoop	access:public	signature:(string eventName, FuncPtr func)
@@ -376,10 +392,12 @@ storage_	Buffer.h	/^	vector<char> storage_;$/;"	m	class:Buffer	access:private
 target	makefile	/^target = Rano$/;"	m
 targetID	CommunicationsProtocol.h	/^	unsigned int	targetID;$/;"	m	struct:level1	access:public
 taskArray_	EventLoop.h	/^	vector<EventFunc>	taskArray_;$/;"	m	class:EventLoop	access:private
+threadCount_	ThreadPool.h	/^	int threadCount_;$/;"	m	class:ThreadPool	access:private
 threadID_	EventLoop.h	/^	const pid_t threadID_;$/;"	m	class:EventLoop	access:private
 unlock	CMutex.h	/^	void unlock(){$/;"	f	class:CMutex	access:public	signature:()
 update	Buffer.cpp	/^void Buffer::update(size_t size)$/;"	f	class:Buffer	signature:(size_t size)
 update	Buffer.h	/^	void update(size_t);$/;"	p	class:Buffer	access:public	signature:(size_t)
+vecpThrd_	ThreadPool.h	/^	vector<boost::thread*> vecpThrd_;$/;"	m	class:ThreadPool	access:private
 waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
 write	TcpConnection.cpp	/^int TcpConnection::write(boost::shared_ptr<Event>& event)$/;"	f	class:TcpConnection	signature:(boost::shared_ptr<Event>& event)
 write	TcpConnection.h	/^	int write(boost::shared_ptr<Event>&);\/\/用来发送数据的$/;"	p	class:TcpConnection	access:public	signature:(boost::shared_ptr<Event>&)
@@ -395,3 +413,4 @@ writeBuffer_	TcpConnection.h	/^	Buffer writeBuffer_; \/\/缓冲区$/;"	m	class:T
 ~EventTargetBase	EventTargetBase.h	/^	virtual ~EventTargetBase();$/;"	p	class:EventTargetBase	access:public	signature:()
 ~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection()$/;"	f	class:TcpConnection	signature:()
 ~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
+~ThreadPool	ThreadPool.h	/^	~ThreadPool(){$/;"	f	class:ThreadPool	access:public	signature:()
