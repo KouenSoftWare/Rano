@@ -1,35 +1,24 @@
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <sys/types.h>          /* See NOTES */
-#include <iostream>
-#include <errno.h>
-#include <sys/socket.h>
-#include <string>
-#include <unistd.h>
-#include <fcntl.h>
-#include <assert.h>
-#include <boost/weak_ptr.hpp>
 #include "EventLoop.h"
 #include "Epoll.h"
 #include "EventFactory.h"
 #include "TcpConnection.h"
 #include "ServerTcpEvent.h"
 #include "CommunicationsProtocol.h"
+#include "ThreadPool.h"
 
 using namespace std;
 
-void TcpRecvEventToOtherEvent(boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop>& el)
+int TcpRecvEventToOtherEvent(Event*& event, ThreadPool* pool)
 {
 	char tempBuf[4096];
 	assert(strcmp(event->getName(),"TcpRecvEvent")==0);	
-	ServerTcpEvent* pE = (ServerTcpEvent*)event.get();
-	boost::shared_ptr<EventLoop> sp_el = el.lock();
-	boost::shared_ptr<EventFactory> f = sp_el->getFactroy(pE->l1.level2Name);
+	ServerTcpEvent* pE = (ServerTcpEvent*)event;
+	boost::shared_ptr<EventFactory> f = pool->getFactroy(pE->l1.level2Name);
 	memcpy(tempBuf, &pE->l1, sizeof(level1));
 	memcpy(tempBuf+sizeof(level1), &(pE->getBuf()[0]), pE->getBuf().size());
-	boost::shared_ptr<Event> pEvent = f->GetEvent(&tempBuf[0], pE->l1.level2Size);
-	sp_el->push(pEvent);
+	Event* pEvent = f->GetEvent(&tempBuf[0], pE->l1.level2Size);
+	pool->push(IN, pEvent);
+	return 0;
 }
 
 void TcpConnection::setFd(int f)
@@ -69,13 +58,16 @@ int TcpConnection::send()
 	}
 }
 
-int TcpConnection::write(boost::shared_ptr<Event>& event)
+int TcpConnection::write(Event*& event)
 {
-	ServerTcpEvent* pE = (ServerTcpEvent*)event.get();	
+	ServerTcpEvent* pE = (ServerTcpEvent*)event;	
 	int msgSize= pE->getBuf().size();
 	boost::shared_ptr<char> pChar(new char[msgSize]);
 	memcpy(pChar.get(), &pE->getBuf()[0], msgSize);
 	writeBuffer_.append(pChar.get(), msgSize);
+
+	delete event;
+
 	if(isWrite_){
 		return send();		
 	}	
@@ -90,7 +82,7 @@ int TcpConnection::OnError()
 	return 0;
 }
 
-int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
+int TcpConnection::OnRead(vector<Event*> &ret_vecEF)
 {
 	/*
 	 * 接受数据，并将数据转换成具体的处理事件
@@ -123,7 +115,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 				if(strcmp(check_head.level2Name, "InitEvent") == 0){
 					readBuffer_.update(sizeof(level1));
 					epoll_->SetSourceID(fd_, check_head.sourceID);
-					vector<boost::shared_ptr<Event> > temp;
+					vector<Event*> temp;
 					epoll_->LoadEvents(check_head.sourceID, temp);
 					int tempSize = temp.size();
 					for(int i = 0; i < tempSize; i++){
@@ -142,7 +134,7 @@ int TcpConnection::OnRead(vector<boost::shared_ptr<Event> > &ret_vecEF)
 				memcpy(&temp[0], readBuffer_.data(), pSTE->l1.level2Size-sizeof(level1));	
 				readBuffer_.update(pSTE->l1.level2Size - sizeof(level1));
 				pSTE->setBuf(temp);
-				ret_vecEF.push_back(boost::shared_ptr<Event>(pSTE));
+				ret_vecEF.push_back(pSTE);
 			}
 		}
 		if(buflen == MAXREADBUFFER){

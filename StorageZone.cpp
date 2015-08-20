@@ -12,12 +12,12 @@ StorageZone* StorageZone::GetInstance()
 	return instance_;
 }
 
-void StorageZone::Addition(int id, boost::shared_ptr<Event> pEvent)
+void StorageZone::Addition(int id, Event*& pEvent)
 {
-	map<int, vector<boost::shared_ptr<Event> > >::iterator iter = mapOnEvents_.find(id);
+	map<int, vector<Event*> >::iterator iter = mapOnEvents_.find(id);
 	if(iter == mapOnEvents_.end()){
-		vector<boost::shared_ptr<Event> > events;
-		mapOnEvents_.insert(pair<int, vector<boost::shared_ptr<Event> > >(id, events));			
+		vector<Event* > events;
+		mapOnEvents_.insert(pair<int, vector<Event* > >(id, events));			
 		iter = mapOnEvents_.find(id);
 		assert(iter != mapOnEvents_.end());
 	}
@@ -34,9 +34,9 @@ void StorageZone::Addition(int id, boost::weak_ptr<TcpConnection> pTcp)
 	}
 }
 
-void StorageZone::GetEvent(int id, vector<boost::shared_ptr<Event> >& rhs)
+void StorageZone::GetEvent(int id, vector<Event* >& rhs)
 {
-	map<int, vector<boost::shared_ptr<Event> > >::iterator iter = mapOnEvents_.find(id);
+	map<int, vector<Event* > >::iterator iter = mapOnEvents_.find(id);
 	if(iter != mapOnEvents_.end()){
 		iter->second.swap(rhs);	
 	}		
@@ -48,7 +48,7 @@ bool StorageZone::GetObject(int id, boost::shared_ptr<TcpConnection>& rhs)
 		return false;
 	}else{
 		if(iter->second.expired()){
-			map<int, vector<boost::shared_ptr<Event> > >::iterator iterEvent = mapOnEvents_.find(id);
+			map<int, vector<Event* > >::iterator iterEvent = mapOnEvents_.find(id);
 			if(iterEvent == mapOnEvents_.end()){
 				mapOnObject_.erase(iter);
 			}else if(iterEvent->second.size() == 0){

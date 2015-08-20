@@ -17,11 +17,11 @@ void ThreadPool::Run()
 {
 	Event* event;
 	while(looping_){
-		while(qIn_.pop(event)){
+		while(queues_[IN].pop(event)){
 			map<string, FuncPtr>::iterator iter = eventFunctionList_.find(event->getName());
 			if(iter == eventFunctionList_.end()){
 			    assert(false);
-				while(!qError_.push(event));
+				queues_[ERROR].push(event);
 				continue;
 			}
 			EventFunc ef(iter->second, event, this);
@@ -32,17 +32,7 @@ void ThreadPool::Run()
 
 void ThreadPool::push(int Option, Event *e)
 {
-	switch(Option){
-	case IN:
-		while(!qIn_.push(e));
-		break;
-	case OUT:
-		while(!qOut_.push(e));
-		break;
-	default:
-		while(!qError_.push(e));
-		break;
-	}
+	while(!queues_[Option].push(e));
 }
 	
 

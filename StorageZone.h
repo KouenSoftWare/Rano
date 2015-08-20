@@ -18,12 +18,12 @@ private:
 
 	static StorageZone* instance_;
 	map<int, boost::weak_ptr<TcpConnection> > mapOnObject_;
-	map<int, vector<boost::shared_ptr<Event> > > mapOnEvents_;
+	map<int, vector<Event*> > mapOnEvents_;
 public:
 	static StorageZone* GetInstance();
 	
-	void Addition(int, boost::shared_ptr<Event>);
+	void Addition(int, Event*&);
 	void Addition(int, boost::weak_ptr<TcpConnection>);
-	void GetEvent(int, vector<boost::shared_ptr<Event> >&);
+	void GetEvent(int, vector<Event*>&);
 	bool GetObject(int, boost::shared_ptr<TcpConnection>&);
 };

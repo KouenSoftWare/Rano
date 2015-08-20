@@ -1,98 +1,54 @@
-#include "Event.h"
 #include "EventLoop.h"
+#include "Event.h"
 #include "EventTargetBase.h"
 #include "EventSourceBase.h"
 #include <iostream>
 
 using namespace std;
 
-__thread EventLoop* t_loopInThisThread = NULL;
-
-EventLoop* EventLoop::getEventLoopOfCurrentThread()
-{
-	return t_loopInThisThread;
-}
-
 EventLoop::EventLoop():
-	looping_(false),
-	threadID_(getpid())
+	qIn_(12800),
+	qOut_(12800),
+	qError_(12800),
+	threadPool_(5, qIn_, qOut_, qError_),
+	mutex_(),
+	looping_(false)
 {
-	if(t_loopInThisThread){
-		cout << "Another EventLoop " << t_loopInThisThread
-			 << " exists in this thread " << threadID_ << endl;
-	}else{
-		t_loopInThisThread = this;
-	}
 }
 
 EventLoop::~EventLoop()
 {
 	assert(!looping_);
-	t_loopInThisThread = NULL;
-}
-
-void EventLoop::DoOtherThreadWork()
-{
-	vector<EventFunc> work;
-	{
-		AutoMutex m(mutex_);
-		taskArray_.swap(work);
-	}
-
-	vector<EventFunc>::iterator beg = work.begin(), end = work.end();
-	while(beg != end){
-		beg->doWork();
-		beg++;
-	}
-}
-
-
-void EventLoop::AbortNotInLoopThread()
-{
-	cout << "请别在其他线程运行Eventloop!" << endl;;//打印错误信息
 }
 
 void EventLoop::loop()
 {
 	assert(!looping_);
-	AssertInLoopThread();
 	looping_ = true;
 
-	vector<boost::shared_ptr<Event> > eventArray;
+	vector<Event*> eventArray;
+	Event* event;
+	threadPool_.start();
 	while(looping_){
 		eventArray.clear();
-		eventArray.swap(eventArrayOtherThread_);
 		for(size_t i = 0; i != eventSources_.size(); i++){
 			eventSources_[i]->GetEvents(eventArray);
 		}	
-		map<string, EventFunc>::iterator iter;
-		for(size_t i = 0; i != eventArray.size(); i++){
-			//利用每个Event的名字，去查找注册进来的函数，如果没有就缓存或者发到其他地方去
-			//最好加一个限制，如果查找超过三次就放弃这个包
-			iter = eventFuncPtr_.find(eventArray[i]->getName());
-			assert(iter != eventFuncPtr_.end());
-			iter->second.setEvent(eventArray[i]);
-			iter->second.doWork();
+		for(size_t i = 0; i < eventArray.size(); i++){
+			while(!qIn_.push(eventArray[i]));	
+		}
+		map<string, boost::shared_ptr<EventTargetBase> >::iterator iter = eventTarget_.begin();
+		while(qOut_.pop(event)){
+			if(iter == eventTarget_.end() || iter->first != event->getName()){
+				iter = eventTarget_.find(event->getName());
+				if (iter == eventTarget_.end()){
+					while(!qError_.push(event));
+				}
+			}else{
+				iter->second->SendEvents(event);
+			}
 		}
 	}
-}
-
-void EventLoop::push(boost::shared_ptr<Event> event)
-{
-	AutoMutex m(mutex_);
-	eventArrayOtherThread_.push_back(event);
-}
-/*
- * ret:
- *		-1	no EventTargetBase Object
- *		-2  no TcpConnection Object
- */
-int EventLoop::SendEvents(string name, boost::shared_ptr<Event>& event)
-{
-	map<string, boost::shared_ptr<EventTargetBase> >::iterator iter = eventTarget_.find(name);
-	if(iter == eventTarget_.end()){
-		return -1;
-	}
-	return iter->second->SendEvents(event);
+	threadPool_.shutdown();
 }
 

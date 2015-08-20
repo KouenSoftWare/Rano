@@ -38,4 +38,4 @@ private:
 	Epoll* epoll_;
 };
 
-int TcpRecvEventToOtherEvent(Event*&, ThreadPool*);
+void TcpRecvEventToOtherEvent(Event*&, ThreadPool*);

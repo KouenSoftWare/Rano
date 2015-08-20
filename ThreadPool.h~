@@ -9,30 +9,22 @@
 class ThreadPool
 {
 private:
+	boost::lockfree::queue<Event*> (&queues_)[3];
 	int threadCount_;
 	bool looping_;
 
-	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qIn_;
-	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qOut_;
-	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qError_;
 	vector<boost::thread*> vecpThrd_;
 	map<string, FuncPtr> eventFunctionList_;
 	map<string, boost::shared_ptr<EventFactory> > eventFactory_;
 public:
-	ThreadPool(int threadCount,
-			   boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qIn,
-			   boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qOut,
-			   boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qError):
+	ThreadPool(int threadCount, boost::lockfree::queue<Event*> (&queues)[3]):
+		queues_(queues),
 		threadCount_(threadCount),
-		looping_(true),
-		qIn_(qIn),
-		qOut_(qOut),
-		qError_(qError)
-	{
+		looping_(true){
 	}
-
+	
 	void start(){
-		boost::function<void()> f = boost::bind(&ThreadPool::Run, this);
+		boost::function0<void> f = boost::bind(&ThreadPool::Run, this);
 		for (int i = 0; i < threadCount_; i++){
 			boost::thread* thrd = new boost::thread(f);
 			vecpThrd_.push_back(thrd);

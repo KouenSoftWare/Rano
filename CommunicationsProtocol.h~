@@ -21,15 +21,10 @@
 #include <sys/epoll.h>
 #include <sys/syscall.h>
 #include <unistd.h>
+#include <netinet/in.h>
 #include <errno.h>
 #include <netdb.h>
 #include <assert.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/types.h>          /* See NOTES */
-#include <errno.h>
-#include <sys/socket.h>
-#include <fcntl.h>
 
 
 using namespace std;
@@ -40,7 +35,7 @@ class EventSourceBase;
 class EventTargetBase;
 class ThreadPool;
 class ProtocolFactory;
-class Epoll;
+
 class EventFunc;
 class EventLoop;
 

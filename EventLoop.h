@@ -1,128 +1,35 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <map>
-#include <boost/smart_ptr.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
-#include <boost/function.hpp>
-#include <boost/utility.hpp>
-#include <sys/syscall.h>
-#include <unistd.h>
-
 #include "AutoMutex.h"
-
-using namespace std;
-
-
-class Event;
-class EventFactory;
-class EventSourceBase;
-class EventTargetBase;
-class ProtocolFactory;
-
-class EventFunc;
-class EventLoop;
-
-typedef boost::function<void(boost::shared_ptr<Event>&, boost::weak_ptr<EventLoop>&)> FuncPtr;
-
-class EventFunc
-{
-	FuncPtr func_;
-	boost::shared_ptr<Event> event_;
-	boost::weak_ptr<EventLoop> el_;
-public:
-	EventFunc(FuncPtr func, boost::shared_ptr<Event>& event, boost::weak_ptr<EventLoop> el):
-		func_(func),
-		event_(event),
-		el_(el)
-	{}
-
-	EventFunc(FuncPtr func,  boost::weak_ptr<EventLoop> el):
-		func_(func),
-		event_(),
-		el_(el)
-	{}
-
-	void setEvent(boost::shared_ptr<Event> &e){
-		event_.swap(e);
-	}
-
-	void doWork(){
-		func_(event_, el_);
-		event_.reset();
-	}
-
-	EventFunc& operator=(const EventFunc& rhs){
-		if(&rhs != this){
-			event_ = rhs.event_;	
-			func_  = rhs.func_;
-		}
-		return *this;
-	}
-};
+#include "EventFunc.h"
+#include "ThreadPool.h"
 
 class EventLoop: 
-	public boost::enable_shared_from_this<EventLoop>,
 	public boost::noncopyable
 {
+private:
+	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > qIn_;
+	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > qOut_;
+	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > qError_;
+	ThreadPool threadPool_;
+	CMutex mutex_;
+	bool looping_;
+	vector<boost::shared_ptr<EventSourceBase> > eventSources_;
+	map<string, boost::shared_ptr<EventTargetBase> > eventTarget_;
+	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;
 public:
 	EventLoop();
 	~EventLoop();
 
-	static EventLoop* getEventLoopOfCurrentThread();
-
-	//确认是否是在本地线程
-	void AssertInLoopThread(){
-		if (!isInLoopThread()){
-			AbortNotInLoopThread();
-		}
-	}
-
-	//返回：调用ID是否等于EventLoop的创建ID
-	bool isInLoopThread() const {
-		return threadID_ == getpid();
-	}
 	
 	//通过更改标记位来退出事件循环
 	void Quit(){
 		looping_ = false;	
 	}
 
-	//其他线程调用的时候，将数据添加到队列
-	void RunInLoop(FuncPtr func, boost::shared_ptr<Event>& eventPtr){
-		EventFunc ef(func, eventPtr, boost::weak_ptr<EventLoop>(shared_from_this()));
-		AutoMutex m(mutex_);		
-		taskArray_.push_back(ef);
-	}
-
-	void reg(string eventName, boost::shared_ptr<Event>& eventPtr, FuncPtr func){
-		map<string, EventFunc>::iterator iter = eventFuncPtr_.find(eventName);		
-		{
-			EventFunc ef(func, eventPtr, boost::weak_ptr<EventLoop>(shared_from_this()));
-			AutoMutex m(mutex_);		
-			if (iter == eventFuncPtr_.end()){
-				eventFuncPtr_.insert(pair<string, EventFunc>(eventName, ef));
-			}else{
-				iter->second = ef;
-			}
-		}
-	}
-
 	void reg(string eventName, FuncPtr func){
-		map<string, EventFunc>::iterator iter = eventFuncPtr_.find(eventName);		
-		{
-			EventFunc ef(func, boost::weak_ptr<EventLoop>(shared_from_this()));
-			AutoMutex m(mutex_);		
-			if (iter == eventFuncPtr_.end()){
-				eventFuncPtr_.insert(pair<string, EventFunc>(eventName, ef));
-			}else{
-				iter->second = ef;
-			}
-		}
+		AutoMutex m(mutex_);
+		threadPool_.reg(eventName, func);		
 	}
 
 	void reg(string protocolName, boost::shared_ptr<ProtocolFactory>& factory){
@@ -147,38 +54,11 @@ public:
 		eventTarget_.insert(pair<string, boost::shared_ptr<EventTargetBase> >(name, target));
 	}
 
-	void reg(string name, boost::shared_ptr<EventFactory> factory){
+	void reg(string name, boost::shared_ptr<EventFactory>& factory){
 		AutoMutex m(mutex_);
-		eventFactory_.insert(pair<string, boost::shared_ptr<EventFactory> >(name, factory));
-	}
-
-	boost::shared_ptr<EventFactory> getFactroy(string name){
-		AutoMutex m(mutex_);
-		return eventFactory_.find(name)->second;
+		threadPool_.reg(name, factory);
 	}
 
 	void loop();
 
-	int SendEvents(string name, boost::shared_ptr<Event>&);//ret success ? fail?
-
-	void push(boost::shared_ptr<Event>);
-
-private:
-	CMutex mutex_;
-	bool looping_;
-	const pid_t threadID_;
-	vector<EventFunc>	taskArray_;
-	vector<boost::shared_ptr<Event> > eventArrayOtherThread_;
-	vector<boost::shared_ptr<EventSourceBase> > eventSources_;
-	map<string, boost::shared_ptr<EventTargetBase> > eventTarget_;
-	map<string, boost::shared_ptr<EventFactory> > eventFactory_;
-	map<string, EventFunc> eventFuncPtr_;
-	map<string, boost::shared_ptr<ProtocolFactory> > protocolFactorys_;
-
-private:
-	//退出循环
-	void AbortNotInLoopThread();
-
-	//插入其他队列的任务到本地中你
-	void DoOtherThreadWork();
 };

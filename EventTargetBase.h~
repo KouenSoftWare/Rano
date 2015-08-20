@@ -2,6 +2,9 @@
 
 #include "Event.h"
 
+class EventLoop;
+class Event;
+
 class EventTargetBase
 {	
 public:

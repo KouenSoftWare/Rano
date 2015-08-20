@@ -3,6 +3,7 @@
 #include "Epoll.h"
 #include "EventLoop.h"
 #include "EventFactory.h"
+#include "Event.h"
 #include "ServerTcpEvent.h"
 #include <string.h>
 
@@ -15,6 +16,7 @@ int echo(Event*& event, ThreadPool *pool)
 {
 	assert(0==strcmp(event->getName(),"echoEvent"));
 	echoEvent* e = (echoEvent*)event;
+//	cout << "\tSourceID " << e->l1.sourceID << "Say: " << e->msg << endl;
 	ServerTcpEvent *pServerTcp = new ServerTcpEvent();
 	pServerTcp->l1.set("$#@!", sizeof(echoEvent), -1, e->l1.sourceID, 0, 0, e->l1.serialNumber, "echoEvent");
 	pServerTcp->setName("Epoll");
