@@ -17,8 +17,8 @@ AutoMutex::~AutoMutex	AutoMutex.h	/^	~AutoMutex(){$/;"	f	class:AutoMutex	access:
 Buffer	Buffer.h	/^	Buffer():length_(0){}$/;"	f	class:Buffer	access:public	signature:()
 Buffer	Buffer.h	/^class Buffer$/;"	c
 Buffer::Buffer	Buffer.h	/^	Buffer():length_(0){}$/;"	f	class:Buffer	access:public	signature:()
-Buffer::append	Buffer.cpp	/^void Buffer::append(char* msg, size_t size)$/;"	f	class:Buffer	signature:(char* msg, size_t size)
-Buffer::append	Buffer.h	/^	void append(char*, size_t);$/;"	p	class:Buffer	access:public	signature:(char*, size_t)
+Buffer::append	Buffer.cpp	/^void Buffer::append(const char* msg, size_t size)$/;"	f	class:Buffer	signature:(const char* msg, size_t size)
+Buffer::append	Buffer.h	/^	void append(const char*, size_t);$/;"	p	class:Buffer	access:public	signature:(const char*, size_t)
 Buffer::clear	Buffer.h	/^	void clear(){$/;"	f	class:Buffer	access:public	signature:()
 Buffer::data	Buffer.cpp	/^char* Buffer::data()$/;"	f	class:Buffer	signature:()
 Buffer::data	Buffer.h	/^	char* data();$/;"	p	class:Buffer	access:public	signature:()
@@ -139,9 +139,17 @@ GetEvents	EventSourceBase.cpp	/^void EventSourceBase::GetEvents(vector<Event*>& 
 GetEvents	EventSourceBase.h	/^	virtual	void GetEvents(vector<Event*>&);$/;"	p	class:EventSourceBase	access:public	signature:(vector<Event*>&)
 GetInstance	StorageZone.cpp	/^StorageZone* StorageZone::GetInstance()$/;"	f	class:StorageZone	signature:()
 GetInstance	StorageZone.h	/^	static StorageZone* GetInstance();$/;"	p	class:StorageZone	access:public	signature:()
+GetObject	IOPool.h	/^	void GetObject(T*&);$/;"	p	class:IOPool	access:public	signature:(T*&)
 GetObject	StorageZone.cpp	/^bool StorageZone::GetObject(int id, boost::shared_ptr<TcpConnection>& rhs)$/;"	f	class:StorageZone	signature:(int id, boost::shared_ptr<TcpConnection>& rhs)
 GetObject	StorageZone.h	/^	bool GetObject(int, boost::shared_ptr<TcpConnection>&);$/;"	p	class:StorageZone	access:public	signature:(int, boost::shared_ptr<TcpConnection>&)
 IN	ThreadPool.h	5;"	d
+IOPool	IOPool.h	/^	IOPool(int);$/;"	p	class:IOPool	access:public	signature:(int)
+IOPool	IOPool.h	/^class IOPool{$/;"	c
+IOPool::GetObject	IOPool.h	/^	void GetObject(T*&);$/;"	p	class:IOPool	access:public	signature:(T*&)
+IOPool::IOPool	IOPool.h	/^	IOPool(int);$/;"	p	class:IOPool	access:public	signature:(int)
+IOPool::SaveObject	IOPool.h	/^	void SaveObject(T*&);$/;"	p	class:IOPool	access:public	signature:(T*&)
+IOPool::spaceQueue_	IOPool.h	/^	queue<T*> spaceQueue_;$/;"	m	class:IOPool	access:private
+IOPool::~IOPool	IOPool.h	/^	~IOPool();$/;"	p	class:IOPool	access:public	signature:()
 IPAddress	IPAddress.h	/^class IPAddress{$/;"	c
 LDFLAGS	makefile	/^LDFLAGS := $/;"	m
 LIBS	makefile	/^LIBS := boost_system pthread boost_thread$/;"	m
@@ -165,6 +173,7 @@ Run	ThreadPool.cpp	/^void ThreadPool::Run()$/;"	f	class:ThreadPool	signature:()
 Run	ThreadPool.h	/^	void Run();$/;"	p	class:ThreadPool	access:public	signature:()
 SaveEvent	Epoll.cpp	/^void Epoll::SaveEvent(Event* &event)$/;"	f	class:Epoll	signature:(Event* &event)
 SaveEvent	Epoll.h	/^	void SaveEvent(Event*&);$/;"	p	class:Epoll	access:public	signature:(Event*&)
+SaveObject	IOPool.h	/^	void SaveObject(T*&);$/;"	p	class:IOPool	access:public	signature:(T*&)
 SendEvents	Epoll.cpp	/^int Epoll::SendEvents(Event* &event)$/;"	f	class:Epoll	signature:(Event* &event)
 SendEvents	Epoll.h	/^	int SendEvents(Event* &event);$/;"	p	class:Epoll	access:public	signature:(Event* &event)
 SendEvents	EventTargetBase.cpp	/^int EventTargetBase::SendEvents(Event*& ret)$/;"	f	class:EventTargetBase	signature:(Event*& ret)
@@ -261,8 +270,8 @@ ThreadPool::start	ThreadPool.h	/^	void start(){$/;"	f	class:ThreadPool	access:pu
 ThreadPool::threadCount_	ThreadPool.h	/^	int threadCount_;$/;"	m	class:ThreadPool	access:private
 ThreadPool::vecpThrd_	ThreadPool.h	/^	vector<boost::thread*> vecpThrd_;$/;"	m	class:ThreadPool	access:private
 ThreadPool::~ThreadPool	ThreadPool.h	/^	~ThreadPool(){$/;"	f	class:ThreadPool	access:public	signature:()
-append	Buffer.cpp	/^void Buffer::append(char* msg, size_t size)$/;"	f	class:Buffer	signature:(char* msg, size_t size)
-append	Buffer.h	/^	void append(char*, size_t);$/;"	p	class:Buffer	access:public	signature:(char*, size_t)
+append	Buffer.cpp	/^void Buffer::append(const char* msg, size_t size)$/;"	f	class:Buffer	signature:(const char* msg, size_t size)
+append	Buffer.h	/^	void append(const char*, size_t);$/;"	p	class:Buffer	access:public	signature:(const char*, size_t)
 buf_	ServerTcpEvent.h	/^	vector<char> buf_;$/;"	m	class:ServerTcpEvent	access:private
 cc	makefile	/^cc = g++$/;"	m
 clear	Buffer.h	/^	void clear(){$/;"	f	class:Buffer	access:public	signature:()
@@ -317,7 +326,7 @@ level1::sourceID	CommunicationsProtocol.h	/^	unsigned int	sourceID;$/;"	m	struct
 level1::targetID	CommunicationsProtocol.h	/^	unsigned int	targetID;$/;"	m	struct:level1	access:public
 level2Name	CommunicationsProtocol.h	/^	char			level2Name[32];	\/\/放消息的名字$/;"	m	struct:level1	access:public
 level2Size	CommunicationsProtocol.h	/^	unsigned int	level2Size;$/;"	m	struct:level1	access:public
-linkFlags	makefile	/^linkFlags := -g -Wall $/;"	m
+linkFlags	makefile	/^linkFlags := -o2 -Wall $/;"	m
 listen_list_	Epoll.h	/^	map<int, boost::shared_ptr<TcpConnection> > listen_list_;$/;"	m	class:Epoll	access:private
 lock	CMutex.h	/^	void lock(){$/;"	f	class:CMutex	access:public	signature:()
 loop	EventLoop.cpp	/^void EventLoop::loop()$/;"	f	class:EventLoop	signature:()
@@ -372,6 +381,7 @@ setFd	TcpConnection.h	/^	void setFd(int f);$/;"	p	class:TcpConnection	access:pub
 setName	Event.h	/^	void setName(const char* name){$/;"	f	class:Event	access:public	signature:(const char* name)
 shutdown	ThreadPool.h	/^	void shutdown(){$/;"	f	class:ThreadPool	access:public	signature:()
 sourceID	CommunicationsProtocol.h	/^	unsigned int	sourceID;$/;"	m	struct:level1	access:public
+spaceQueue_	IOPool.h	/^	queue<T*> spaceQueue_;$/;"	m	class:IOPool	access:private
 start	ThreadPool.h	/^	void start(){$/;"	f	class:ThreadPool	access:public	signature:()
 storage_	Buffer.h	/^	vector<char> storage_;$/;"	m	class:Buffer	access:private
 target	makefile	/^target = Rano$/;"	m
@@ -395,6 +405,7 @@ writeBuffer_	TcpConnection.h	/^	Buffer writeBuffer_; \/\/缓冲区$/;"	m	class:T
 ~EventSourceBase	EventSourceBase.h	/^	virtual ~EventSourceBase();$/;"	p	class:EventSourceBase	access:public	signature:()
 ~EventTargetBase	EventTargetBase.cpp	/^EventTargetBase::~EventTargetBase()$/;"	f	class:EventTargetBase	signature:()
 ~EventTargetBase	EventTargetBase.h	/^	virtual ~EventTargetBase();$/;"	p	class:EventTargetBase	access:public	signature:()
+~IOPool	IOPool.h	/^	~IOPool();$/;"	p	class:IOPool	access:public	signature:()
 ~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection()$/;"	f	class:TcpConnection	signature:()
 ~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
 ~ThreadPool	ThreadPool.h	/^	~ThreadPool(){$/;"	f	class:ThreadPool	access:public	signature:()

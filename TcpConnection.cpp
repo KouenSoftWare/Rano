@@ -62,9 +62,7 @@ int TcpConnection::write(Event*& event)
 {
 	ServerTcpEvent* pE = (ServerTcpEvent*)event;	
 	int msgSize= pE->getBuf().size();
-	boost::shared_ptr<char> pChar(new char[msgSize]);
-	memcpy(pChar.get(), &pE->getBuf()[0], msgSize);
-	writeBuffer_.append(pChar.get(), msgSize);
+	writeBuffer_.append(&pE->getBuf()[0], msgSize);
 
 	delete event;
 

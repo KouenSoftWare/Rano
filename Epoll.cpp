@@ -116,14 +116,14 @@ int Epoll::SendEvents(Event* &event)
 	map<int, int>::iterator iterSouceId = mapSourceID_.find(event->l1.targetID);
 	if(iterSouceId == mapSourceID_.end()){
 		SaveEvent(event); 	
-		cout << "<!>Not Find SourceID<!>" << endl;
+	//	cout << "<!>Not Find SourceID<!>" << endl;
 		return -1;
 	}
 	fd = iterSouceId->second;
 	map<int, boost::shared_ptr<TcpConnection> >::iterator iter = listen_list_.find(fd);
 	if(iter == listen_list_.end()){
 		SaveEvent(event); 	
-		cout << "<!>Not Find TcpConnection<!>" << endl;
+	//	cout << "<!>Not Find TcpConnection<!>" << endl;
 		return -1;
 	}
 	return iter->second->write(event);

@@ -15,7 +15,7 @@ public:
 	bool hasData();	
 	char* data();
 	int length();
-	void append(char*, size_t);
+	void append(const char*, size_t);
 	void update(size_t);
 	void clear(){
 		storage_.clear();

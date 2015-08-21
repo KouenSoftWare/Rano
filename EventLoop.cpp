@@ -42,6 +42,7 @@ void EventLoop::loop()
 			if(iter == eventTarget_.end() || iter->first != event->getName()){
 				iter = eventTarget_.find(event->getName());
 				if (iter == eventTarget_.end()){
+					assert(false);
 					while(!qError_.push(event));
 				}
 			}else{

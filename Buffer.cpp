@@ -15,7 +15,7 @@ int Buffer::length()
 	return length_; 
 }
 
-void Buffer::append(char* msg, size_t size)
+void Buffer::append(const char* msg, size_t size)
 {
 	if(storage_.size()-length_ < size){
 		storage_.resize(storage_.size()*2 + size*2);
