@@ -1,0 +1,24 @@
+#pragma once
+
+class Epoll
+{
+	int DelListen(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&);
+public:
+	Epoll();
+	~Epoll(){}
+
+	void Add(TcpConnection*);
+
+	void GetMessages(vector<Message*>&);
+	int SendMessages(Message* &);
+
+private:
+	map<int, boost::shared_ptr<TcpConnection> > listen_list_;
+	int epfd_;
+	epoll_Message	waitEP_[MAXMessageS];	
+	TcpConnection server_;
+
+	map<int, int> mapSourceID_;
+	map<int, vector<Message*> > mapSourceIDToSaveMessages_;
+};
+

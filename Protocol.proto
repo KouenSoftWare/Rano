@@ -5,9 +5,10 @@ message ArrayInt{
 message HeadProtocol{
     optional int32        access_point_fd     = 1;    //接入点的句柄，接入后更改
     optional int32        source_id           = 2;    //来源ID
-    optional ArrayInt   pass_by_id          = 3;    //经过的路由的ID，跳转次数
-    optional int32        proto_body_size     = 4;    //协议体长度
-    optional int32        proto_body_status   = 5;    //协议体状态
-    optional string     proto_body_name     = 6;    //协议体名字
-    optional string     proto_body_buffer   = 7;    //协议体内容
+    optional int32        target_id           = 3;    //来源ID
+    optional ArrayInt   pass_by_id            = 4;    //经过的路由的ID，跳转次数
+    optional int32        proto_body_size     = 5;    //协议体长度
+    optional int32        proto_body_status   = 6;    //协议体状态
+    optional string     proto_body_name     = 7;    //协议体名字
+    optional string     proto_body_buffer   = 8;    //协议体内容
 };
