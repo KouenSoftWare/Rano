@@ -10,14 +10,17 @@ using namespace std;
 
 int TcpRecvEventToOtherEvent(Event*& event, ThreadPool* pool)
 {
-	char tempBuf[4096];
+	char buf[1024];
 	assert(strcmp(event->getName(),"TcpRecvEvent")==0);	
 	ServerTcpEvent* pE = (ServerTcpEvent*)event;
-	boost::shared_ptr<EventFactory> f = pool->getFactroy(pE->l1.level2Name);
-	memcpy(tempBuf, &pE->l1, sizeof(level1));
-	memcpy(tempBuf+sizeof(level1), &(pE->getBuf()[0]), pE->getBuf().size());
-	Event* pEvent = f->GetEvent(&tempBuf[0], pE->l1.level2Size);
+	Event* pEvent = pool->GetEvent(pE->l1.level2Name);
+	assert(pEvent != NULL);
+	memcpy(&buf[0], &pE->l1, sizeof(level1));	
+	memcpy(&buf[sizeof(level1)], &(pE->getBuf()[0]), pE->getBuf().size());	
+	memcpy(pEvent, &buf[0], pE->l1.level2Size);
+	pEvent->setName(pEvent->l1.level2Name);
 	pool->push(IN, pEvent);
+	pool->SaveIOEvent(pE);
 	return 0;
 }
 
@@ -43,7 +46,7 @@ int TcpConnection::send()
 {
 	int tmp;
 	while(1){
-		tmp = ::send(fd_, writeBuffer_.data(), writeBuffer_.length(), 0);	
+		tmp = ::send(fd_, writeBuffer_.data(), writeBuffer_.length(), MSG_NOSIGNAL);	
 		if(tmp < 0){
 			if(errno == EAGAIN){
 				isWrite_ = false;
@@ -64,7 +67,8 @@ int TcpConnection::write(Event*& event)
 	int msgSize= pE->getBuf().size();
 	writeBuffer_.append(&pE->getBuf()[0], msgSize);
 
-	delete event;
+	//delete event;
+	ioPool_->SaveObject(pE);
 
 	if(isWrite_){
 		return send();		
@@ -122,7 +126,10 @@ int TcpConnection::OnRead(vector<Event*> &ret_vecEF)
 				}	
 			}
 			while(readBuffer_.length() >= int(sizeof(level1))){
-				ServerTcpEvent* pSTE = new ServerTcpEvent();
+				//ServerTcpEvent* pSTE = new ServerTcpEvent();
+				ServerTcpEvent* pSTE = NULL;
+				ioPool_->GetObject(pSTE);
+				assert(pSTE != NULL);
 				pSTE->setName("TcpRecvEvent");
 				memcpy(&pSTE->l1, readBuffer_.data(), sizeof(level1));	
 				if(readBuffer_.length() < int(pSTE->l1.level2Size))

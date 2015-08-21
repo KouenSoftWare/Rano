@@ -12,6 +12,7 @@ class Buffer
 	int length_;
 public:
 	Buffer():length_(0){}
+	~Buffer();
 	bool hasData();	
 	char* data();
 	int length();

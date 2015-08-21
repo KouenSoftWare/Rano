@@ -15,10 +15,7 @@ public:
 	{}
 
 	void doWork(){
-		if(0 == func_(event_, pool_)){
-		    delete event_;
-		    event_ = NULL;
-		}
+		func_(event_, pool_);
 	}
 };
 

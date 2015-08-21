@@ -2,13 +2,13 @@ cc = g++
 objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 target = Rano
 
-linkFlags := -o2 -Wall 
+linkFlags := -g -Wall 
 include_dirs := 
 LIBS := boost_system pthread boost_thread
 LDFLAGS := 
 
 CPPFLAGS =  $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS))
-CPPFLAGS += -o2 -Wall 
+CPPFLAGS += -g -Wall 
 
 $(target): $(objects)
 	$(cc) $(linkFlags) -o $(target)  $(objects) $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS)) $(addprefix -l,$(LIBS))

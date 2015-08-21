@@ -45,4 +45,24 @@ void ThreadPool::push(int Option, Event *e)
 	}
 }
 	
+ServerTcpEvent* ThreadPool::GetIOEvent(){
+	mutex_.lock();
+	ServerTcpEvent *retP = NULL;
+	ioPool_.GetObject(retP);
+	mutex_.unlock();
+	return retP;
+}
 
+void ThreadPool::SaveIOEvent(ServerTcpEvent* p){
+	mutex_.lock();
+	ioPool_.SaveObject(p);
+	mutex_.unlock();
+}
+
+Event* ThreadPool::GetEvent(string name){
+	return eventPool_.GetSpaceEvent(name);
+}
+
+void ThreadPool::SaveEvent(string name, Event* p){
+	eventPool_.SaveEvent(name, p);
+}

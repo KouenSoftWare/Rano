@@ -4,6 +4,7 @@
 #include "EventLoop.h"
 #include "EventFactory.h"
 #include "ServerTcpEvent.h"
+#include "ThreadPool.h"
 #include <string.h>
 
 struct echoEvent:public Event
@@ -15,13 +16,15 @@ int echo(Event*& event, ThreadPool *pool)
 {
 	assert(0==strcmp(event->getName(),"echoEvent"));
 	echoEvent* e = (echoEvent*)event;
-	ServerTcpEvent *pServerTcp = new ServerTcpEvent();
+	ServerTcpEvent *pServerTcp = pool->GetIOEvent();
+	assert(pServerTcp != NULL);
 	pServerTcp->l1.set("$#@!", sizeof(echoEvent), -1, e->l1.sourceID, 0, 0, e->l1.serialNumber, "echoEvent");
 	pServerTcp->setName("Epoll");
 	vector<char> temp; temp.resize(sizeof(echoEvent));
 	memcpy(&temp[0], e, sizeof(echoEvent));
 	pServerTcp->setBuf(temp);
 	pool->push(OUT, pServerTcp);
+	pool->SaveEvent(event->getName(), event);
 	return 0;
 }
 

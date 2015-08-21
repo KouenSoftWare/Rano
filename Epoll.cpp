@@ -5,7 +5,7 @@ using namespace std;
 
 
 Epoll::Epoll():
-	server_(this)
+	server_(this, &ioPool_)
 {
 	signal(SIGPIPE, SIG_IGN);
 	epfd_ =	epoll_create(MAXEVENTS);
@@ -58,7 +58,7 @@ void Epoll::GetEvents(vector<Event*>&ret_eventArray)
 				}
 				char hbuf[NI_MAXHOST], sbuf[NI_MAXSERV];
 				assert(0 == getnameinfo (&in_addr, in_len, hbuf, sizeof(hbuf), sbuf, sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV));
-				boost::shared_ptr<TcpConnection> pTcp(new TcpConnection(this));
+				boost::shared_ptr<TcpConnection> pTcp(new TcpConnection(this, &ioPool_));
 				pTcp->SetIpPort(hbuf, sbuf);
 				pTcp->setFd(clientFd);
 				event.data.fd = clientFd;

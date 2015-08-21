@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Event.h"
+#include "IOPool.h"
+#include "EventPool.h"
+#include "ServerTcpEvent.h"
+#include "AutoMutex.h"
 
 #define IN 0
 #define OUT 1
@@ -15,6 +19,12 @@ private:
 	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qIn_;
 	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qOut_;
 	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qError_;
+
+	EventPool eventPool_;
+	IOPool<ServerTcpEvent> ioPool_;
+
+	CMutex mutex_;
+
 	vector<boost::thread*> vecpThrd_;
 	map<string, FuncPtr> eventFunctionList_;
 	map<string, boost::shared_ptr<EventFactory> > eventFactory_;
@@ -49,6 +59,7 @@ public:
 
 	void reg(string name, boost::shared_ptr<EventFactory>& factory){
 		eventFactory_.insert(pair<string, boost::shared_ptr<EventFactory> >(name, factory));
+		eventPool_.InitEventPool(name, factory);
 	}
 
 	~ThreadPool(){
@@ -56,6 +67,14 @@ public:
 			vecpThrd_[i]->join();
 		}
 	}
+
+	ServerTcpEvent* GetIOEvent();
+
+	void SaveIOEvent(ServerTcpEvent* p);
+
+	Event* GetEvent(string name);
+
+	void SaveEvent(string name, Event* p);
 
 	void shutdown(){
 		looping_ = false;

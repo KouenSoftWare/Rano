@@ -4,7 +4,7 @@
 
 class AutoMutex
 {
-	CMutex mutex_;
+	CMutex &mutex_;
 public:
 	AutoMutex(CMutex mutex):
 		mutex_(mutex)

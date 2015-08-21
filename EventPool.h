@@ -1,6 +1,8 @@
 #pragma once
 
 #include "EventFactory.h"
+#include "AutoMutex.h"
+#include <queue>
 
 class EventPool
 {
@@ -9,11 +11,12 @@ private:
 	map<string, queue<Event*> > ep_;
 	map<string, boost::shared_ptr<EventFactory> > eventFactory_;
 	int defaultCount_;
+	CMutex mutex_;
 public:
-	EventPool(int number = 512);
+	EventPool(int number = 100);
 
-	Event* GetSpaceEvent(string)
-	void SaveEvent(Event*);
+	Event* GetSpaceEvent(string);
+	void SaveEvent(string name, Event*);
 
 	void InitEventPool(string, boost::shared_ptr<EventFactory>&);
 };

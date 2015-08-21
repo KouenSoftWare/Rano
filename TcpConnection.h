@@ -2,6 +2,8 @@
 
 #include "Buffer.h"
 #include "Event.h"
+#include "IOPool.h"
+#include "ServerTcpEvent.h"
 
 #define MAXREADBUFFER 65535
 #define LISTENQ 128
@@ -9,7 +11,8 @@
 class TcpConnection
 {
 public:
-	TcpConnection(Epoll* e):isWrite_(true){
+	TcpConnection(Epoll* e,IOPool<ServerTcpEvent> *ioPool):isWrite_(true){
+		ioPool_ = ioPool;
 		epoll_ = e;	
 	}
 	~TcpConnection();
@@ -36,6 +39,7 @@ private:
 	bool open_;//是否已经开启某种模式
 	int fd_;
 	Epoll* epoll_;
+	IOPool<ServerTcpEvent>* ioPool_;
 };
 
 int TcpRecvEventToOtherEvent(Event*&, ThreadPool*);

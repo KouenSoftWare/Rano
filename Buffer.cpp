@@ -15,6 +15,11 @@ int Buffer::length()
 	return length_; 
 }
 
+Buffer::~Buffer()
+{
+	storage_.clear();
+}
+
 void Buffer::append(const char* msg, size_t size)
 {
 	if(storage_.size()-length_ < size){

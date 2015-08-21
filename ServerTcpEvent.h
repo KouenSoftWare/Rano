@@ -17,7 +17,8 @@ public:
 	}
 
 	void setBuf(vector<char>& vc){
-		buf_.swap(vc);
+		buf_.clear();
+		buf_ = vc;
 	}
 	const vector<char>& getBuf() const{
 		return buf_;
