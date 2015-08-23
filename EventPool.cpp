@@ -6,11 +6,8 @@ EventPool::EventPool(int number)
 
 Event* EventPool::GetSpaceEvent(string name)
 {
-//	AutoMutex l(mutex_);
-	mutex_.lock();
 	map<string, queue<Event*> >::iterator iter = ep_.find(name);
 	if(iter == ep_.end()){
-		mutex_.unlock();
 		return NULL;
 	}
 	if(iter->second.empty()){
@@ -26,17 +23,14 @@ Event* EventPool::GetSpaceEvent(string name)
 
 	Event* p = iter->second.front();
 	iter->second.pop();
-	mutex_.unlock();
 	return p;
 }
 
 void EventPool::SaveEvent(string name, Event* pE)
 {
-	mutex_.lock();
 	map<string, queue<Event*> >::iterator iter = ep_.find(name);
 	assert(iter != ep_.end());
 	iter->second.push(pE);
-	mutex_.unlock();
 }
 
 void EventPool::InitEventPool(string name, boost::shared_ptr<EventFactory>& factory)

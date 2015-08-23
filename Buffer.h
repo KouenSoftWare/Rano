@@ -14,7 +14,7 @@ public:
 	Buffer():length_(0){}
 	~Buffer();
 	bool hasData();	
-	char* data();
+	char* data(int i = 0);
 	int length();
 	void append(const char*, size_t);
 	void update(size_t);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include "IOPool.h"
 #include "EventPool.h"
 #include "ServerTcpEvent.h"
 #include "AutoMutex.h"
@@ -21,7 +20,6 @@ private:
 	boost::lockfree::queue<Event*, boost::lockfree::fixed_sized<false> > &qError_;
 
 	EventPool eventPool_;
-	IOPool<ServerTcpEvent> ioPool_;
 
 	CMutex mutex_;
 
@@ -68,9 +66,6 @@ public:
 		}
 	}
 
-	ServerTcpEvent* GetIOEvent();
-
-	void SaveIOEvent(ServerTcpEvent* p);
 
 	Event* GetEvent(string name);
 

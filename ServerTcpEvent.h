@@ -7,20 +7,11 @@ class ServerTcpEvent:
 {
 private:
 	int fd_;
-	vector<char> buf_;
 public:
 	void setFd(int &i){
 		fd_ = i;
 	}
 	const int& getFd() const{
 		return fd_;
-	}
-
-	void setBuf(vector<char>& vc){
-		buf_.clear();
-		buf_ = vc;
-	}
-	const vector<char>& getBuf() const{
-		return buf_;
 	}
 };

@@ -5,24 +5,9 @@
 #include "ServerTcpEvent.h"
 #include "CommunicationsProtocol.h"
 #include "ThreadPool.h"
+#include "Protocol.pb.h"
 
 using namespace std;
-
-int TcpRecvEventToOtherEvent(Event*& event, ThreadPool* pool)
-{
-	char buf[1024];
-	assert(strcmp(event->getName(),"TcpRecvEvent")==0);	
-	ServerTcpEvent* pE = (ServerTcpEvent*)event;
-	Event* pEvent = pool->GetEvent(pE->l1.level2Name);
-	assert(pEvent != NULL);
-	memcpy(&buf[0], &pE->l1, sizeof(level1));	
-	memcpy(&buf[sizeof(level1)], &(pE->getBuf()[0]), pE->getBuf().size());	
-	memcpy(pEvent, &buf[0], pE->l1.level2Size);
-	pEvent->setName(pEvent->l1.level2Name);
-	pool->push(IN, pEvent);
-	pool->SaveIOEvent(pE);
-	return 0;
-}
 
 void TcpConnection::setFd(int f)
 {
@@ -63,12 +48,8 @@ int TcpConnection::send()
 
 int TcpConnection::write(Event*& event)
 {
-	ServerTcpEvent* pE = (ServerTcpEvent*)event;	
-	int msgSize= pE->getBuf().size();
-	writeBuffer_.append(&pE->getBuf()[0], msgSize);
-
-	//delete event;
-	ioPool_->SaveObject(pE);
+	//ServerTcpEvent* pE = (ServerTcpEvent*)event;	
+	//将Event内容转换成谷歌协议
 
 	if(isWrite_){
 		return send();		
@@ -111,35 +92,31 @@ int TcpConnection::OnRead(vector<Event*> &ret_vecEF)
 			//	3.将事件插入数据中
 			//3.将剩余数据放入readBuffer_
 			readBuffer_.append(buf, buflen);	
-			level1 check_head;
-			if(readBuffer_.length() >= int(sizeof(level1))){
-				memcpy(&check_head, readBuffer_.data(), sizeof(level1));
-				if(strcmp(check_head.level2Name, "InitEvent") == 0){
-					readBuffer_.update(sizeof(level1));
-					epoll_->SetSourceID(fd_, check_head.sourceID);
-					vector<Event*> temp;
-					epoll_->LoadEvents(check_head.sourceID, temp);
-					int tempSize = temp.size();
-					for(int i = 0; i < tempSize; i++){
-						write(temp[i]);	
-					}	
-				}	
-			}
-			while(readBuffer_.length() >= int(sizeof(level1))){
-				//ServerTcpEvent* pSTE = new ServerTcpEvent();
-				ServerTcpEvent* pSTE = NULL;
-				ioPool_->GetObject(pSTE);
-				assert(pSTE != NULL);
-				pSTE->setName("TcpRecvEvent");
-				memcpy(&pSTE->l1, readBuffer_.data(), sizeof(level1));	
-				if(readBuffer_.length() < int(pSTE->l1.level2Size))
-					break;
-				readBuffer_.update(sizeof(level1));
-				vector<char> temp; temp.resize(pSTE->l1.level2Size-sizeof(level1));
-				memcpy(&temp[0], readBuffer_.data(), pSTE->l1.level2Size-sizeof(level1));	
-				readBuffer_.update(pSTE->l1.level2Size - sizeof(level1));
-				pSTE->setBuf(temp);
-				ret_vecEF.push_back(pSTE);
+			
+			HeadProtocol checkHead;
+			const int intSize = 10;
+			int iHeadSize;
+			char cHeadSize[intSize];
+			char headData[1024];
+
+			memcpy(&cHeadSize[0], 0, 10);
+			memcpy(&headData[0], 0, 1024);
+
+			while(readBuffer_.length() >= intSize){
+				
+				memcpy(&cHeadSize[0], readBuffer_.data(), intSize);
+				iHeadSize = atoi(cHeadSize);
+
+				if(iHeadSize > readBuffer_.length())
+				  break;
+
+				memcpy(&headData, readBuffer_.data(intSize), iHeadSize);	
+				checkHead.ParseFromArray(headData, iHeadSize);
+				if(iHeadSize+intSize > readBuffer_.length())
+					break;	
+				readBuffer_.update(iHeadSize+intSize);	
+				
+				//将谷歌协议转换成对应的事件对象。
 			}
 		}
 		if(buflen == MAXREADBUFFER){

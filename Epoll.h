@@ -3,7 +3,6 @@
 #include "EventSourceBase.h"
 #include "EventTargetBase.h"
 #include "TcpConnection.h"
-#include "IOPool.h"
 
 #define MAXEVENTS 64
 
@@ -34,5 +33,4 @@ private:
 
 	map<int, int> mapSourceID_;
 	map<int, vector<Event*> > mapSourceIDToSaveEvents_;
-	IOPool<ServerTcpEvent> ioPool_;
 };

@@ -5,9 +5,9 @@ bool Buffer::hasData()
 	return length_?true:false;
 }
 
-char* Buffer::data()
+char* Buffer::data(int i)
 {
-	return &storage_[0];
+	return &storage_[i];
 }
 
 int Buffer::length()

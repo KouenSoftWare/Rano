@@ -43,7 +43,7 @@ class ProtocolFactory;
 class Epoll;
 class EventFunc;
 class EventLoop;
-
+/*
 struct level1{
 	char			featureCode[4];	
 	unsigned int	level2Size;
@@ -65,4 +65,4 @@ struct level1{
 		missCount = m;
 		serialNumber = se;
 	}
-};
+};*/
