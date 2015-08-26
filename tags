@@ -84,27 +84,55 @@ ArrayInt::~ArrayInt	Protocol.pb.cpp	/^ArrayInt::~ArrayInt() {$/;"	f	class:ArrayI
 ArrayInt::~ArrayInt	Protocol.pb.h	/^  virtual ~ArrayInt();$/;"	p	class:ArrayInt	access:public	signature:()
 ArrayInt_descriptor_	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* ArrayInt_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 ArrayInt_reflection_	Protocol.pb.cpp	/^  ArrayInt_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
+Buffer	Buffer.h	/^	Buffer():length_(0){}$/;"	f	class:Buffer	access:public	signature:()
+Buffer	Buffer.h	/^class Buffer$/;"	c
+Buffer::Buffer	Buffer.h	/^	Buffer():length_(0){}$/;"	f	class:Buffer	access:public	signature:()
+Buffer::append	Buffer.cpp	/^void Buffer::append(const char* msg, size_t size)$/;"	f	class:Buffer	signature:(const char* msg, size_t size)
+Buffer::append	Buffer.h	/^	void append(const char*, size_t);$/;"	p	class:Buffer	access:public	signature:(const char*, size_t)
+Buffer::clear	Buffer.h	/^	void clear(){$/;"	f	class:Buffer	access:public	signature:()
+Buffer::data	Buffer.cpp	/^char* Buffer::data()$/;"	f	class:Buffer	signature:()
+Buffer::data	Buffer.h	/^	char* data();$/;"	p	class:Buffer	access:public	signature:()
+Buffer::hasData	Buffer.cpp	/^bool Buffer::hasData()$/;"	f	class:Buffer	signature:()
+Buffer::hasData	Buffer.h	/^	bool hasData();	$/;"	p	class:Buffer	access:public	signature:()
+Buffer::length	Buffer.cpp	/^int Buffer::length()$/;"	f	class:Buffer	signature:()
+Buffer::length	Buffer.h	/^	int length();$/;"	p	class:Buffer	access:public	signature:()
+Buffer::length_	Buffer.h	/^	int length_;$/;"	m	class:Buffer	access:private
+Buffer::storage_	Buffer.h	/^	vector<char> storage_;$/;"	m	class:Buffer	access:private
+Buffer::update	Buffer.cpp	/^void Buffer::update(size_t size)$/;"	f	class:Buffer	signature:(size_t size)
+Buffer::update	Buffer.h	/^	void update(size_t);$/;"	p	class:Buffer	access:public	signature:(size_t)
+Buffer::~Buffer	Buffer.cpp	/^Buffer::~Buffer()$/;"	f	class:Buffer	signature:()
+Buffer::~Buffer	Buffer.h	/^	~Buffer();$/;"	p	class:Buffer	access:public	signature:()
 ByteSize	Protocol.pb.cpp	/^int ArrayInt::ByteSize() const {$/;"	f	class:ArrayInt	signature:() const
 ByteSize	Protocol.pb.cpp	/^int HeadProtocol::ByteSize() const {$/;"	f	class:HeadProtocol	signature:() const
+ByteSize	Protocol.pb.cpp	/^int TestProtocol::ByteSize() const {$/;"	f	class:TestProtocol	signature:() const
 ByteSize	Protocol.pb.h	/^  int ByteSize() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 ByteSize	Protocol.pb.h	/^  int ByteSize() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
+ByteSize	Protocol.pb.h	/^  int ByteSize() const;$/;"	p	class:TestProtocol	access:public	signature:() const
 CPPFLAGS	makefile	/^CPPFLAGS =  $(addprefix -I, $(include_dirs)) $(addprefix -L,$(LDFLAGS))$/;"	m
 Clear	Protocol.pb.cpp	/^void ArrayInt::Clear() {$/;"	f	class:ArrayInt	signature:()
 Clear	Protocol.pb.cpp	/^void HeadProtocol::Clear() {$/;"	f	class:HeadProtocol	signature:()
+Clear	Protocol.pb.cpp	/^void TestProtocol::Clear() {$/;"	f	class:TestProtocol	signature:()
 Clear	Protocol.pb.h	/^  void Clear();$/;"	p	class:ArrayInt	access:public	signature:()
 Clear	Protocol.pb.h	/^  void Clear();$/;"	p	class:HeadProtocol	access:public	signature:()
+Clear	Protocol.pb.h	/^  void Clear();$/;"	p	class:TestProtocol	access:public	signature:()
 CopyFrom	Protocol.pb.cpp	/^void ArrayInt::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:ArrayInt	signature:(const ::google::protobuf::Message& from)
 CopyFrom	Protocol.pb.cpp	/^void ArrayInt::CopyFrom(const ArrayInt& from) {$/;"	f	class:ArrayInt	signature:(const ArrayInt& from)
 CopyFrom	Protocol.pb.cpp	/^void HeadProtocol::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:HeadProtocol	signature:(const ::google::protobuf::Message& from)
 CopyFrom	Protocol.pb.cpp	/^void HeadProtocol::CopyFrom(const HeadProtocol& from) {$/;"	f	class:HeadProtocol	signature:(const HeadProtocol& from)
+CopyFrom	Protocol.pb.cpp	/^void TestProtocol::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:TestProtocol	signature:(const ::google::protobuf::Message& from)
+CopyFrom	Protocol.pb.cpp	/^void TestProtocol::CopyFrom(const TestProtocol& from) {$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
 CopyFrom	Protocol.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:ArrayInt	access:public	signature:(const ::google::protobuf::Message& from)
 CopyFrom	Protocol.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:HeadProtocol	access:public	signature:(const ::google::protobuf::Message& from)
+CopyFrom	Protocol.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:TestProtocol	access:public	signature:(const ::google::protobuf::Message& from)
 CopyFrom	Protocol.pb.h	/^  void CopyFrom(const ArrayInt& from);$/;"	p	class:ArrayInt	access:public	signature:(const ArrayInt& from)
 CopyFrom	Protocol.pb.h	/^  void CopyFrom(const HeadProtocol& from);$/;"	p	class:HeadProtocol	access:public	signature:(const HeadProtocol& from)
-DO_	Protocol.pb.cpp	197;"	d	file:
-DO_	Protocol.pb.cpp	243;"	d	file:
-DO_	Protocol.pb.cpp	477;"	d	file:
-DO_	Protocol.pb.cpp	625;"	d	file:
+CopyFrom	Protocol.pb.h	/^  void CopyFrom(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+DO_	Protocol.pb.cpp	1022;"	d	file:
+DO_	Protocol.pb.cpp	221;"	d	file:
+DO_	Protocol.pb.cpp	267;"	d	file:
+DO_	Protocol.pb.cpp	498;"	d	file:
+DO_	Protocol.pb.cpp	627;"	d	file:
+DO_	Protocol.pb.cpp	964;"	d	file:
 DelListen	Epoll.cpp	/^int Epoll::DelListen(const int& fd, map<int, boost::shared_ptr<TcpConnection> >::iterator& iter)$/;"	f	class:Epoll	signature:(const int& fd, map<int, boost::shared_ptr<TcpConnection> >::iterator& iter)
 DelListen	Epoll.h	/^	int DelListen(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&);$/;"	p	class:Epoll	access:private	signature:(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&)
 Epoll	Epoll.cpp	/^Epoll::Epoll():$/;"	f	class:Epoll	signature:()
@@ -114,28 +142,37 @@ Epoll::DelListen	Epoll.cpp	/^int Epoll::DelListen(const int& fd, map<int, boost:
 Epoll::DelListen	Epoll.h	/^	int DelListen(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&);$/;"	p	class:Epoll	access:private	signature:(const int&,map<int, boost::shared_ptr<TcpConnection> >::iterator&)
 Epoll::Epoll	Epoll.cpp	/^Epoll::Epoll():$/;"	f	class:Epoll	signature:()
 Epoll::Epoll	Epoll.h	/^	Epoll();$/;"	p	class:Epoll	access:public	signature:()
-Epoll::GetMessages	Epoll.cpp	/^void Epoll::GetMessages(vector<Message*> &retMessageArray)$/;"	f	class:Epoll	signature:(vector<Message*> &retMessageArray)
-Epoll::GetMessages	Epoll.h	/^	void GetMessages(vector<Message*>&);$/;"	p	class:Epoll	access:public	signature:(vector<Message*>&)
-Epoll::SendMessages	Epoll.cpp	/^int Epoll::SendMessages(Message* &msg)$/;"	f	class:Epoll	signature:(Message* &msg)
-Epoll::SendMessages	Epoll.h	/^	int SendMessages(Message* &);$/;"	p	class:Epoll	access:public	signature:(Message* &)
+Epoll::GetMessages	Epoll.cpp	/^void Epoll::GetMessages(vector<google::protobuf::Message*> &retMessageArray)$/;"	f	class:Epoll	signature:(vector<google::protobuf::Message*> &retMessageArray)
+Epoll::GetMessages	Epoll.h	/^	void GetMessages(vector<google::protobuf::Message*>&);$/;"	p	class:Epoll	access:public	signature:(vector<google::protobuf::Message*>&)
+Epoll::SendMessages	Epoll.cpp	/^int Epoll::SendMessages(google::protobuf::Message* &msg)$/;"	f	class:Epoll	signature:(google::protobuf::Message* &msg)
+Epoll::SendMessages	Epoll.h	/^	int SendMessages(google::protobuf::Message* &);$/;"	p	class:Epoll	access:public	signature:(google::protobuf::Message* &)
 Epoll::SetSourceID	Epoll.cpp	/^void Epoll::SetSourceID(int fd, int sId)$/;"	f	class:Epoll	signature:(int fd, int sId)
 Epoll::SetSourceID	Epoll.h	/^	void SetSourceID(int fd, int sId);$/;"	p	class:Epoll	access:public	signature:(int fd, int sId)
 Epoll::epfd_	Epoll.h	/^	int epfd_;$/;"	m	class:Epoll	access:private
 Epoll::listen_list_	Epoll.h	/^	map<int, boost::shared_ptr<TcpConnection> > listen_list_;$/;"	m	class:Epoll	access:private
-Epoll::mapSourceIDToSaveMessages_	Epoll.h	/^	map<int, vector<Message*> > mapSourceIDToSaveMessages_;$/;"	m	class:Epoll	access:private
 Epoll::mapSourceID_	Epoll.h	/^	map<int, int> mapSourceID_;$/;"	m	class:Epoll	access:private
 Epoll::server_	Epoll.h	/^	TcpConnection server_;$/;"	m	class:Epoll	access:private
-Epoll::waitEP_	Epoll.h	/^	epoll_Message	waitEP_[MAXMessageS];	$/;"	m	class:Epoll	access:private
+Epoll::waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
 Epoll::~Epoll	Epoll.h	/^	~Epoll(){}$/;"	f	class:Epoll	access:public	signature:()
+Execute	StateMachine.cpp	/^void StateMachine::Execute(int state,google::protobuf::Message* msg)$/;"	f	class:StateMachine	signature:(int state,google::protobuf::Message* msg)
+Execute	StateMachine.h	/^	static void Execute(int, google::protobuf::Message*);	$/;"	p	class:StateMachine	access:public	signature:(int, google::protobuf::Message*)
+Fd	TcpConnection.cpp	/^int TcpConnection::Fd()$/;"	f	class:TcpConnection	signature:()
+Fd	TcpConnection.h	/^	int Fd();$/;"	p	class:TcpConnection	access:public	signature:()
+FuncPtr	Common.h	/^typedef boost::function<int(google::protobuf::Message*, MessageLoop*)> FuncPtr;$/;"	t
 GOOGLE_PROTOBUF_DECLARE_ONCE	Protocol.pb.cpp	/^GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);$/;"	p	namespace:__anon2	file:	signature:(protobuf_AssignDescriptors_once_)
 GetCachedSize	Protocol.pb.h	/^  int GetCachedSize() const { return _cached_size_; }$/;"	f	class:ArrayInt	access:public	signature:() const
 GetCachedSize	Protocol.pb.h	/^  int GetCachedSize() const { return _cached_size_; }$/;"	f	class:HeadProtocol	access:public	signature:() const
-GetMessages	Epoll.cpp	/^void Epoll::GetMessages(vector<Message*> &retMessageArray)$/;"	f	class:Epoll	signature:(vector<Message*> &retMessageArray)
-GetMessages	Epoll.h	/^	void GetMessages(vector<Message*>&);$/;"	p	class:Epoll	access:public	signature:(vector<Message*>&)
+GetCachedSize	Protocol.pb.h	/^  int GetCachedSize() const { return _cached_size_; }$/;"	f	class:TestProtocol	access:public	signature:() const
+GetMessages	Epoll.cpp	/^void Epoll::GetMessages(vector<google::protobuf::Message*> &retMessageArray)$/;"	f	class:Epoll	signature:(vector<google::protobuf::Message*> &retMessageArray)
+GetMessages	Epoll.h	/^	void GetMessages(vector<google::protobuf::Message*>&);$/;"	p	class:Epoll	access:public	signature:(vector<google::protobuf::Message*>&)
 GetMetadata	Protocol.pb.cpp	/^::google::protobuf::Metadata ArrayInt::GetMetadata() const {$/;"	f	class:ArrayInt	signature:() const
 GetMetadata	Protocol.pb.cpp	/^::google::protobuf::Metadata HeadProtocol::GetMetadata() const {$/;"	f	class:HeadProtocol	signature:() const
+GetMetadata	Protocol.pb.cpp	/^::google::protobuf::Metadata TestProtocol::GetMetadata() const {$/;"	f	class:TestProtocol	signature:() const
 GetMetadata	Protocol.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 GetMetadata	Protocol.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
+GetMetadata	Protocol.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+GetNextState	StateMachine.cpp	/^int StateMachine::GetNextState(int current, int retValue)$/;"	f	class:StateMachine	signature:(int current, int retValue)
+GetNextState	StateMachine.h	/^	static int GetNextState(int, int);$/;"	p	class:StateMachine	access:public	signature:(int, int)
 HeadProtocol	Protocol.pb.cpp	/^HeadProtocol::HeadProtocol()$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol	Protocol.pb.cpp	/^HeadProtocol::HeadProtocol(const HeadProtocol& from)$/;"	f	class:HeadProtocol	signature:(const HeadProtocol& from)
 HeadProtocol	Protocol.pb.h	/^  HeadProtocol();$/;"	p	class:HeadProtocol	access:public	signature:()
@@ -198,8 +235,6 @@ HeadProtocol::clear_has_proto_body_name	Protocol.pb.h	/^  inline void clear_has_
 HeadProtocol::clear_has_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_has_proto_body_size	Protocol.pb.h	/^  inline void clear_has_proto_body_size();$/;"	p	class:HeadProtocol	access:private	signature:()
 HeadProtocol::clear_has_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-HeadProtocol::clear_has_proto_body_status	Protocol.pb.h	/^  inline void clear_has_proto_body_status();$/;"	p	class:HeadProtocol	access:private	signature:()
-HeadProtocol::clear_has_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_has_source_id	Protocol.pb.h	/^  inline void clear_has_source_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 HeadProtocol::clear_has_source_id	Protocol.pb.h	/^inline void HeadProtocol::clear_has_source_id() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_has_target_id	Protocol.pb.h	/^  inline void clear_has_target_id();$/;"	p	class:HeadProtocol	access:private	signature:()
@@ -212,8 +247,6 @@ HeadProtocol::clear_proto_body_name	Protocol.pb.h	/^  inline void clear_proto_bo
 HeadProtocol::clear_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_proto_body_size	Protocol.pb.h	/^  inline void clear_proto_body_size();$/;"	p	class:HeadProtocol	access:public	signature:()
 HeadProtocol::clear_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-HeadProtocol::clear_proto_body_status	Protocol.pb.h	/^  inline void clear_proto_body_status();$/;"	p	class:HeadProtocol	access:public	signature:()
-HeadProtocol::clear_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_source_id	Protocol.pb.h	/^  inline void clear_source_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 HeadProtocol::clear_source_id	Protocol.pb.h	/^inline void HeadProtocol::clear_source_id() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::clear_target_id	Protocol.pb.h	/^  inline void clear_target_id();$/;"	p	class:HeadProtocol	access:public	signature:()
@@ -234,8 +267,6 @@ HeadProtocol::has_proto_body_name	Protocol.pb.h	/^  inline bool has_proto_body_n
 HeadProtocol::has_proto_body_name	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_name() const {$/;"	f	class:HeadProtocol	signature:() const
 HeadProtocol::has_proto_body_size	Protocol.pb.h	/^  inline bool has_proto_body_size() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 HeadProtocol::has_proto_body_size	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_size() const {$/;"	f	class:HeadProtocol	signature:() const
-HeadProtocol::has_proto_body_status	Protocol.pb.h	/^  inline bool has_proto_body_status() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
-HeadProtocol::has_proto_body_status	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_status() const {$/;"	f	class:HeadProtocol	signature:() const
 HeadProtocol::has_source_id	Protocol.pb.h	/^  inline bool has_source_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 HeadProtocol::has_source_id	Protocol.pb.h	/^inline bool HeadProtocol::has_source_id() const {$/;"	f	class:HeadProtocol	signature:() const
 HeadProtocol::has_target_id	Protocol.pb.h	/^  inline bool has_target_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
@@ -245,13 +276,11 @@ HeadProtocol::kAccessPointFdFieldNumber	Protocol.pb.h	/^  static const int kAcce
 HeadProtocol::kPassByIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kPassByIdFieldNumber;$/;"	m	class:HeadProtocol	file:
 HeadProtocol::kPassByIdFieldNumber	Protocol.pb.h	/^  static const int kPassByIdFieldNumber = 4;$/;"	m	class:HeadProtocol	access:public
 HeadProtocol::kProtoBodyBufferFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyBufferFieldNumber;$/;"	m	class:HeadProtocol	file:
-HeadProtocol::kProtoBodyBufferFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyBufferFieldNumber = 8;$/;"	m	class:HeadProtocol	access:public
+HeadProtocol::kProtoBodyBufferFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyBufferFieldNumber = 7;$/;"	m	class:HeadProtocol	access:public
 HeadProtocol::kProtoBodyNameFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyNameFieldNumber;$/;"	m	class:HeadProtocol	file:
-HeadProtocol::kProtoBodyNameFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyNameFieldNumber = 7;$/;"	m	class:HeadProtocol	access:public
+HeadProtocol::kProtoBodyNameFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyNameFieldNumber = 6;$/;"	m	class:HeadProtocol	access:public
 HeadProtocol::kProtoBodySizeFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodySizeFieldNumber;$/;"	m	class:HeadProtocol	file:
 HeadProtocol::kProtoBodySizeFieldNumber	Protocol.pb.h	/^  static const int kProtoBodySizeFieldNumber = 5;$/;"	m	class:HeadProtocol	access:public
-HeadProtocol::kProtoBodyStatusFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyStatusFieldNumber;$/;"	m	class:HeadProtocol	file:
-HeadProtocol::kProtoBodyStatusFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyStatusFieldNumber = 6;$/;"	m	class:HeadProtocol	access:public
 HeadProtocol::kSourceIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kSourceIdFieldNumber;$/;"	m	class:HeadProtocol	file:
 HeadProtocol::kSourceIdFieldNumber	Protocol.pb.h	/^  static const int kSourceIdFieldNumber = 2;$/;"	m	class:HeadProtocol	access:public
 HeadProtocol::kTargetIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kTargetIdFieldNumber;$/;"	m	class:HeadProtocol	file:
@@ -276,9 +305,6 @@ HeadProtocol::proto_body_name_	Protocol.pb.h	/^  ::std::string* proto_body_name_
 HeadProtocol::proto_body_size	Protocol.pb.h	/^  inline ::google::protobuf::int32 proto_body_size() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 HeadProtocol::proto_body_size	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::proto_body_size() const {$/;"	f	class:HeadProtocol	signature:() const
 HeadProtocol::proto_body_size_	Protocol.pb.h	/^  ::google::protobuf::int32 proto_body_size_;$/;"	m	class:HeadProtocol	access:private
-HeadProtocol::proto_body_status	Protocol.pb.h	/^  inline ::google::protobuf::int32 proto_body_status() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
-HeadProtocol::proto_body_status	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::proto_body_status() const {$/;"	f	class:HeadProtocol	signature:() const
-HeadProtocol::proto_body_status_	Protocol.pb.h	/^  ::google::protobuf::int32 proto_body_status_;$/;"	m	class:HeadProtocol	access:private
 HeadProtocol::protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
 HeadProtocol::protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
 HeadProtocol::protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
@@ -306,18 +332,16 @@ HeadProtocol::set_has_proto_body_name	Protocol.pb.h	/^  inline void set_has_prot
 HeadProtocol::set_has_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::set_has_proto_body_size	Protocol.pb.h	/^  inline void set_has_proto_body_size();$/;"	p	class:HeadProtocol	access:private	signature:()
 HeadProtocol::set_has_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-HeadProtocol::set_has_proto_body_status	Protocol.pb.h	/^  inline void set_has_proto_body_status();$/;"	p	class:HeadProtocol	access:private	signature:()
-HeadProtocol::set_has_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::set_has_source_id	Protocol.pb.h	/^  inline void set_has_source_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 HeadProtocol::set_has_source_id	Protocol.pb.h	/^inline void HeadProtocol::set_has_source_id() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::set_has_target_id	Protocol.pb.h	/^  inline void set_has_target_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 HeadProtocol::set_has_target_id	Protocol.pb.h	/^inline void HeadProtocol::set_has_target_id() {$/;"	f	class:HeadProtocol	signature:()
 HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const ::std::string& value);$/;"	p	class:HeadProtocol	access:public	signature:(const ::std::string& value)
 HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const char* value);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value)
-HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const char* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value, size_t size)
+HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const void* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const void* value, size_t size)
 HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const ::std::string& value) {$/;"	f	class:HeadProtocol	signature:(const ::std::string& value)
 HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const char* value) {$/;"	f	class:HeadProtocol	signature:(const char* value)
-HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const char* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const char* value, size_t size)
+HeadProtocol::set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const void* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const void* value, size_t size)
 HeadProtocol::set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const ::std::string& value);$/;"	p	class:HeadProtocol	access:public	signature:(const ::std::string& value)
 HeadProtocol::set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const char* value);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value)
 HeadProtocol::set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const char* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value, size_t size)
@@ -326,8 +350,6 @@ HeadProtocol::set_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_
 HeadProtocol::set_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_name(const char* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const char* value, size_t size)
 HeadProtocol::set_proto_body_size	Protocol.pb.h	/^  inline void set_proto_body_size(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 HeadProtocol::set_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_size(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
-HeadProtocol::set_proto_body_status	Protocol.pb.h	/^  inline void set_proto_body_status(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
-HeadProtocol::set_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_status(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
 HeadProtocol::set_source_id	Protocol.pb.h	/^  inline void set_source_id(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 HeadProtocol::set_source_id	Protocol.pb.h	/^inline void HeadProtocol::set_source_id(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
 HeadProtocol::set_target_id	Protocol.pb.h	/^  inline void set_target_id(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
@@ -346,84 +368,311 @@ HeadProtocol_reflection_	Protocol.pb.cpp	/^  HeadProtocol_reflection_ = NULL;$/;
 INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	Protocol.pb.cpp	4;"	d	file:
 InitAsDefaultInstance	Protocol.pb.cpp	/^void ArrayInt::InitAsDefaultInstance() {$/;"	f	class:ArrayInt	signature:()
 InitAsDefaultInstance	Protocol.pb.cpp	/^void HeadProtocol::InitAsDefaultInstance() {$/;"	f	class:HeadProtocol	signature:()
+InitAsDefaultInstance	Protocol.pb.cpp	/^void TestProtocol::InitAsDefaultInstance() {$/;"	f	class:TestProtocol	signature:()
 InitAsDefaultInstance	Protocol.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:ArrayInt	access:private	signature:()
 InitAsDefaultInstance	Protocol.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:HeadProtocol	access:private	signature:()
+InitAsDefaultInstance	Protocol.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:TestProtocol	access:private	signature:()
 IsInitialized	Protocol.pb.cpp	/^bool ArrayInt::IsInitialized() const {$/;"	f	class:ArrayInt	signature:() const
 IsInitialized	Protocol.pb.cpp	/^bool HeadProtocol::IsInitialized() const {$/;"	f	class:HeadProtocol	signature:() const
+IsInitialized	Protocol.pb.cpp	/^bool TestProtocol::IsInitialized() const {$/;"	f	class:TestProtocol	signature:() const
 IsInitialized	Protocol.pb.h	/^  bool IsInitialized() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 IsInitialized	Protocol.pb.h	/^  bool IsInitialized() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
+IsInitialized	Protocol.pb.h	/^  bool IsInitialized() const;$/;"	p	class:TestProtocol	access:public	signature:() const
 LDFLAGS	makefile	/^LDFLAGS := $/;"	m
 LIBS	makefile	/^LIBS := boost_system pthread boost_thread protobuf$/;"	m
+LISTENQ	TcpConnection.h	8;"	d
+Loop	MessageLoop.cpp	/^void MessageLoop::Loop()$/;"	f	class:MessageLoop	signature:()
+Loop	MessageLoop.h	/^	void Loop();$/;"	p	class:MessageLoop	access:public	signature:()
+MAXEVENTS	Epoll.h	7;"	d
+MAXREADBUFFER	TcpConnection.h	7;"	d
 MergeFrom	Protocol.pb.cpp	/^void ArrayInt::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:ArrayInt	signature:(const ::google::protobuf::Message& from)
 MergeFrom	Protocol.pb.cpp	/^void ArrayInt::MergeFrom(const ArrayInt& from) {$/;"	f	class:ArrayInt	signature:(const ArrayInt& from)
 MergeFrom	Protocol.pb.cpp	/^void HeadProtocol::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:HeadProtocol	signature:(const ::google::protobuf::Message& from)
 MergeFrom	Protocol.pb.cpp	/^void HeadProtocol::MergeFrom(const HeadProtocol& from) {$/;"	f	class:HeadProtocol	signature:(const HeadProtocol& from)
+MergeFrom	Protocol.pb.cpp	/^void TestProtocol::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:TestProtocol	signature:(const ::google::protobuf::Message& from)
+MergeFrom	Protocol.pb.cpp	/^void TestProtocol::MergeFrom(const TestProtocol& from) {$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
 MergeFrom	Protocol.pb.h	/^  void MergeFrom(const ::google::protobuf::Message& from);$/;"	p	class:ArrayInt	access:public	signature:(const ::google::protobuf::Message& from)
 MergeFrom	Protocol.pb.h	/^  void MergeFrom(const ::google::protobuf::Message& from);$/;"	p	class:HeadProtocol	access:public	signature:(const ::google::protobuf::Message& from)
+MergeFrom	Protocol.pb.h	/^  void MergeFrom(const ::google::protobuf::Message& from);$/;"	p	class:TestProtocol	access:public	signature:(const ::google::protobuf::Message& from)
 MergeFrom	Protocol.pb.h	/^  void MergeFrom(const ArrayInt& from);$/;"	p	class:ArrayInt	access:public	signature:(const ArrayInt& from)
 MergeFrom	Protocol.pb.h	/^  void MergeFrom(const HeadProtocol& from);$/;"	p	class:HeadProtocol	access:public	signature:(const HeadProtocol& from)
+MergeFrom	Protocol.pb.h	/^  void MergeFrom(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
 MergePartialFromCodedStream	Protocol.pb.cpp	/^bool ArrayInt::MergePartialFromCodedStream($/;"	f	class:ArrayInt	signature:( ::google::protobuf::io::CodedInputStream* input)
 MergePartialFromCodedStream	Protocol.pb.cpp	/^bool HeadProtocol::MergePartialFromCodedStream($/;"	f	class:HeadProtocol	signature:( ::google::protobuf::io::CodedInputStream* input)
+MergePartialFromCodedStream	Protocol.pb.cpp	/^bool TestProtocol::MergePartialFromCodedStream($/;"	f	class:TestProtocol	signature:( ::google::protobuf::io::CodedInputStream* input)
 MergePartialFromCodedStream	Protocol.pb.h	/^  bool MergePartialFromCodedStream($/;"	p	class:ArrayInt	access:public	signature:( ::google::protobuf::io::CodedInputStream* input)
 MergePartialFromCodedStream	Protocol.pb.h	/^  bool MergePartialFromCodedStream($/;"	p	class:HeadProtocol	access:public	signature:( ::google::protobuf::io::CodedInputStream* input)
+MergePartialFromCodedStream	Protocol.pb.h	/^  bool MergePartialFromCodedStream($/;"	p	class:TestProtocol	access:public	signature:( ::google::protobuf::io::CodedInputStream* input)
+MessageLoop	MessageLoop.cpp	/^MessageLoop::MessageLoop()$/;"	f	class:MessageLoop	signature:()
+MessageLoop	MessageLoop.h	/^	MessageLoop();$/;"	p	class:MessageLoop	access:public	signature:()
+MessageLoop	MessageLoop.h	/^class MessageLoop{$/;"	c
+MessageLoop::Loop	MessageLoop.cpp	/^void MessageLoop::Loop()$/;"	f	class:MessageLoop	signature:()
+MessageLoop::Loop	MessageLoop.h	/^	void Loop();$/;"	p	class:MessageLoop	access:public	signature:()
+MessageLoop::MessageLoop	MessageLoop.cpp	/^MessageLoop::MessageLoop()$/;"	f	class:MessageLoop	signature:()
+MessageLoop::MessageLoop	MessageLoop.h	/^	MessageLoop();$/;"	p	class:MessageLoop	access:public	signature:()
+MessageLoop::PushMessage	MessageLoop.cpp	/^void MessageLoop::PushMessage(google::protobuf::Message* msg)$/;"	f	class:MessageLoop	signature:(google::protobuf::Message* msg)
+MessageLoop::PushMessage	MessageLoop.h	/^	void PushMessage(google::protobuf::Message* msg);$/;"	p	class:MessageLoop	access:public	signature:(google::protobuf::Message* msg)
+MessageLoop::ep_	MessageLoop.h	/^	Epoll* ep_;$/;"	m	class:MessageLoop	access:private
+MessageLoop::executeList_	MessageLoop.h	/^	map<string, FuncPtr> executeList_;$/;"	m	class:MessageLoop	access:private
+MessageLoop::reg	MessageLoop.cpp	/^void MessageLoop::reg(string name, FuncPtr f)$/;"	f	class:MessageLoop	signature:(string name, FuncPtr f)
+MessageLoop::reg	MessageLoop.h	/^	void reg(string, FuncPtr);$/;"	p	class:MessageLoop	access:public	signature:(string, FuncPtr)
+MessageLoop::vecMsgs_	MessageLoop.h	/^	vector<google::protobuf::Message*> vecMsgs_;$/;"	m	class:MessageLoop	access:private
 New	Protocol.pb.cpp	/^ArrayInt* ArrayInt::New() const {$/;"	f	class:ArrayInt	signature:() const
 New	Protocol.pb.cpp	/^HeadProtocol* HeadProtocol::New() const {$/;"	f	class:HeadProtocol	signature:() const
+New	Protocol.pb.cpp	/^TestProtocol* TestProtocol::New() const {$/;"	f	class:TestProtocol	signature:() const
 New	Protocol.pb.h	/^  ArrayInt* New() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 New	Protocol.pb.h	/^  HeadProtocol* New() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
-OFFSET_OF_FIELD_	Protocol.pb.cpp	439;"	d	file:
-OFFSET_OF_FIELD_	Protocol.pb.cpp	468;"	d	file:
+New	Protocol.pb.h	/^  TestProtocol* New() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+OFFSET_OF_FIELD_	Protocol.pb.cpp	461;"	d	file:
+OFFSET_OF_FIELD_	Protocol.pb.cpp	489;"	d	file:
+OnError	TcpConnection.cpp	/^int TcpConnection::OnError()$/;"	f	class:TcpConnection	signature:()
+OnError	TcpConnection.h	/^	int OnError();$/;"	p	class:TcpConnection	access:public	signature:()
+OnRead	TcpConnection.cpp	/^int TcpConnection::OnRead(vector<google::protobuf::Message*> &retVec)$/;"	f	class:TcpConnection	signature:(vector<google::protobuf::Message*> &retVec)
+OnRead	TcpConnection.h	/^	int OnRead(vector<google::protobuf::Message*>&);$/;"	p	class:TcpConnection	access:public	signature:(vector<google::protobuf::Message*>&)
+OnWrite	TcpConnection.cpp	/^int TcpConnection::OnWrite()$/;"	f	class:TcpConnection	signature:()
+OnWrite	TcpConnection.h	/^	int OnWrite();$/;"	p	class:TcpConnection	access:public	signature:()
 PROTOBUF_Protocol_2eproto__INCLUDED	Protocol.pb.h	5;"	d
-SendMessages	Epoll.cpp	/^int Epoll::SendMessages(Message* &msg)$/;"	f	class:Epoll	signature:(Message* &msg)
-SendMessages	Epoll.h	/^	int SendMessages(Message* &);$/;"	p	class:Epoll	access:public	signature:(Message* &)
+PushMessage	MessageLoop.cpp	/^void MessageLoop::PushMessage(google::protobuf::Message* msg)$/;"	f	class:MessageLoop	signature:(google::protobuf::Message* msg)
+PushMessage	MessageLoop.h	/^	void PushMessage(google::protobuf::Message* msg);$/;"	p	class:MessageLoop	access:public	signature:(google::protobuf::Message* msg)
+Remove	StateMachine.cpp	/^void StateMachine::Remove(int currentState)$/;"	f	class:StateMachine	signature:(int currentState)
+Remove	StateMachine.h	/^	static void Remove(int);$/;"	p	class:StateMachine	access:public	signature:(int)
+SendMessages	Epoll.cpp	/^int Epoll::SendMessages(google::protobuf::Message* &msg)$/;"	f	class:Epoll	signature:(google::protobuf::Message* &msg)
+SendMessages	Epoll.h	/^	int SendMessages(google::protobuf::Message* &);$/;"	p	class:Epoll	access:public	signature:(google::protobuf::Message* &)
 SerializeWithCachedSizes	Protocol.pb.cpp	/^void ArrayInt::SerializeWithCachedSizes($/;"	f	class:ArrayInt	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	Protocol.pb.cpp	/^void HeadProtocol::SerializeWithCachedSizes($/;"	f	class:HeadProtocol	signature:( ::google::protobuf::io::CodedOutputStream* output) const
+SerializeWithCachedSizes	Protocol.pb.cpp	/^void TestProtocol::SerializeWithCachedSizes($/;"	f	class:TestProtocol	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	Protocol.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:ArrayInt	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	Protocol.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:HeadProtocol	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
+SerializeWithCachedSizes	Protocol.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:TestProtocol	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizesToArray	Protocol.pb.cpp	/^::google::protobuf::uint8* ArrayInt::SerializeWithCachedSizesToArray($/;"	f	class:ArrayInt	signature:( ::google::protobuf::uint8* target) const
 SerializeWithCachedSizesToArray	Protocol.pb.cpp	/^::google::protobuf::uint8* HeadProtocol::SerializeWithCachedSizesToArray($/;"	f	class:HeadProtocol	signature:( ::google::protobuf::uint8* target) const
+SerializeWithCachedSizesToArray	Protocol.pb.cpp	/^::google::protobuf::uint8* TestProtocol::SerializeWithCachedSizesToArray($/;"	f	class:TestProtocol	signature:( ::google::protobuf::uint8* target) const
 SerializeWithCachedSizesToArray	Protocol.pb.h	/^  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;$/;"	p	class:ArrayInt	access:public	signature:(::google::protobuf::uint8* output) const
 SerializeWithCachedSizesToArray	Protocol.pb.h	/^  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::uint8* output) const
+SerializeWithCachedSizesToArray	Protocol.pb.h	/^  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;$/;"	p	class:TestProtocol	access:public	signature:(::google::protobuf::uint8* output) const
+Set	StateMachine.cpp	/^void StateMachine::Set(MessageLoop* ml)$/;"	f	class:StateMachine	signature:(MessageLoop* ml)
+Set	StateMachine.cpp	/^void StateMachine::Set(int currentState, FuncPtr f)$/;"	f	class:StateMachine	signature:(int currentState, FuncPtr f)
+Set	StateMachine.cpp	/^void StateMachine::Set(int currentState,int returnState,  int nextState)$/;"	f	class:StateMachine	signature:(int currentState,int returnState, int nextState)
+Set	StateMachine.h	/^	static void Set(MessageLoop*);$/;"	p	class:StateMachine	access:public	signature:(MessageLoop*)
+Set	StateMachine.h	/^	static void Set(int, FuncPtr);$/;"	p	class:StateMachine	access:public	signature:(int, FuncPtr)
+Set	StateMachine.h	/^    static void Set(int, int, int);$/;"	p	class:StateMachine	access:public	signature:(int, int, int)
 SetCachedSize	Protocol.pb.cpp	/^void ArrayInt::SetCachedSize(int size) const {$/;"	f	class:ArrayInt	signature:(int size) const
 SetCachedSize	Protocol.pb.cpp	/^void HeadProtocol::SetCachedSize(int size) const {$/;"	f	class:HeadProtocol	signature:(int size) const
+SetCachedSize	Protocol.pb.cpp	/^void TestProtocol::SetCachedSize(int size) const {$/;"	f	class:TestProtocol	signature:(int size) const
 SetCachedSize	Protocol.pb.h	/^  void SetCachedSize(int size) const;$/;"	p	class:ArrayInt	access:private	signature:(int size) const
 SetCachedSize	Protocol.pb.h	/^  void SetCachedSize(int size) const;$/;"	p	class:HeadProtocol	access:private	signature:(int size) const
+SetCachedSize	Protocol.pb.h	/^  void SetCachedSize(int size) const;$/;"	p	class:TestProtocol	access:private	signature:(int size) const
+SetIpPort	TcpConnection.cpp	/^void TcpConnection::SetIpPort(const string& ip, const string& port)$/;"	f	class:TcpConnection	signature:(const string& ip, const string& port)
+SetIpPort	TcpConnection.h	/^	void SetIpPort(const string&, const string&);$/;"	p	class:TcpConnection	access:public	signature:(const string&, const string&)
+SetNonBlock	TcpConnection.cpp	/^void TcpConnection::SetNonBlock()$/;"	f	class:TcpConnection	signature:()
+SetNonBlock	TcpConnection.h	/^	void SetNonBlock();\/\/构造函数，默认就会调用$/;"	p	class:TcpConnection	access:public	signature:()
 SetSourceID	Epoll.cpp	/^void Epoll::SetSourceID(int fd, int sId)$/;"	f	class:Epoll	signature:(int fd, int sId)
 SetSourceID	Epoll.h	/^	void SetSourceID(int fd, int sId);$/;"	p	class:Epoll	access:public	signature:(int fd, int sId)
 SharedCtor	Protocol.pb.cpp	/^void ArrayInt::SharedCtor() {$/;"	f	class:ArrayInt	signature:()
 SharedCtor	Protocol.pb.cpp	/^void HeadProtocol::SharedCtor() {$/;"	f	class:HeadProtocol	signature:()
+SharedCtor	Protocol.pb.cpp	/^void TestProtocol::SharedCtor() {$/;"	f	class:TestProtocol	signature:()
 SharedCtor	Protocol.pb.h	/^  void SharedCtor();$/;"	p	class:ArrayInt	access:private	signature:()
 SharedCtor	Protocol.pb.h	/^  void SharedCtor();$/;"	p	class:HeadProtocol	access:private	signature:()
+SharedCtor	Protocol.pb.h	/^  void SharedCtor();$/;"	p	class:TestProtocol	access:private	signature:()
 SharedDtor	Protocol.pb.cpp	/^void ArrayInt::SharedDtor() {$/;"	f	class:ArrayInt	signature:()
 SharedDtor	Protocol.pb.cpp	/^void HeadProtocol::SharedDtor() {$/;"	f	class:HeadProtocol	signature:()
+SharedDtor	Protocol.pb.cpp	/^void TestProtocol::SharedDtor() {$/;"	f	class:TestProtocol	signature:()
 SharedDtor	Protocol.pb.h	/^  void SharedDtor();$/;"	p	class:ArrayInt	access:private	signature:()
 SharedDtor	Protocol.pb.h	/^  void SharedDtor();$/;"	p	class:HeadProtocol	access:private	signature:()
+SharedDtor	Protocol.pb.h	/^  void SharedDtor();$/;"	p	class:TestProtocol	access:private	signature:()
+StateMachine	StateMachine.h	/^class StateMachine{$/;"	c
+StateMachine::Execute	StateMachine.cpp	/^void StateMachine::Execute(int state,google::protobuf::Message* msg)$/;"	f	class:StateMachine	signature:(int state,google::protobuf::Message* msg)
+StateMachine::Execute	StateMachine.h	/^	static void Execute(int, google::protobuf::Message*);	$/;"	p	class:StateMachine	access:public	signature:(int, google::protobuf::Message*)
+StateMachine::GetNextState	StateMachine.cpp	/^int StateMachine::GetNextState(int current, int retValue)$/;"	f	class:StateMachine	signature:(int current, int retValue)
+StateMachine::GetNextState	StateMachine.h	/^	static int GetNextState(int, int);$/;"	p	class:StateMachine	access:public	signature:(int, int)
+StateMachine::Remove	StateMachine.cpp	/^void StateMachine::Remove(int currentState)$/;"	f	class:StateMachine	signature:(int currentState)
+StateMachine::Remove	StateMachine.h	/^	static void Remove(int);$/;"	p	class:StateMachine	access:public	signature:(int)
+StateMachine::Set	StateMachine.cpp	/^void StateMachine::Set(MessageLoop* ml)$/;"	f	class:StateMachine	signature:(MessageLoop* ml)
+StateMachine::Set	StateMachine.cpp	/^void StateMachine::Set(int currentState, FuncPtr f)$/;"	f	class:StateMachine	signature:(int currentState, FuncPtr f)
+StateMachine::Set	StateMachine.cpp	/^void StateMachine::Set(int currentState,int returnState,  int nextState)$/;"	f	class:StateMachine	signature:(int currentState,int returnState, int nextState)
+StateMachine::Set	StateMachine.h	/^	static void Set(MessageLoop*);$/;"	p	class:StateMachine	access:public	signature:(MessageLoop*)
+StateMachine::Set	StateMachine.h	/^	static void Set(int, FuncPtr);$/;"	p	class:StateMachine	access:public	signature:(int, FuncPtr)
+StateMachine::Set	StateMachine.h	/^    static void Set(int, int, int);$/;"	p	class:StateMachine	access:public	signature:(int, int, int)
+StateMachine::jumpMap_	StateMachine.cpp	/^map<int, map<int, int> > StateMachine::jumpMap_;$/;"	m	class:StateMachine	file:
+StateMachine::jumpMap_	StateMachine.h	/^	static map<int, map<int, int> > jumpMap_;$/;"	m	class:StateMachine	access:private
+StateMachine::ml_	StateMachine.cpp	/^MessageLoop* StateMachine::ml_ = NULL;$/;"	m	class:StateMachine	file:
+StateMachine::ml_	StateMachine.h	/^	static MessageLoop* ml_; $/;"	m	class:StateMachine	access:private
+StateMachine::statusFunction_	StateMachine.cpp	/^map<int, FuncPtr> StateMachine::statusFunction_;$/;"	m	class:StateMachine	file:
+StateMachine::statusFunction_	StateMachine.h	/^	static map<int, FuncPtr> statusFunction_;$/;"	m	class:StateMachine	access:private
 StaticDescriptorInitializer_Protocol_2eproto	Protocol.pb.cpp	/^  StaticDescriptorInitializer_Protocol_2eproto() {$/;"	f	struct:StaticDescriptorInitializer_Protocol_2eproto	access:public	signature:()
 StaticDescriptorInitializer_Protocol_2eproto	Protocol.pb.cpp	/^struct StaticDescriptorInitializer_Protocol_2eproto {$/;"	s	file:
 StaticDescriptorInitializer_Protocol_2eproto::StaticDescriptorInitializer_Protocol_2eproto	Protocol.pb.cpp	/^  StaticDescriptorInitializer_Protocol_2eproto() {$/;"	f	struct:StaticDescriptorInitializer_Protocol_2eproto	access:public	signature:()
 Swap	Protocol.pb.cpp	/^void ArrayInt::Swap(ArrayInt* other) {$/;"	f	class:ArrayInt	signature:(ArrayInt* other)
 Swap	Protocol.pb.cpp	/^void HeadProtocol::Swap(HeadProtocol* other) {$/;"	f	class:HeadProtocol	signature:(HeadProtocol* other)
+Swap	Protocol.pb.cpp	/^void TestProtocol::Swap(TestProtocol* other) {$/;"	f	class:TestProtocol	signature:(TestProtocol* other)
 Swap	Protocol.pb.h	/^  void Swap(ArrayInt* other);$/;"	p	class:ArrayInt	access:public	signature:(ArrayInt* other)
 Swap	Protocol.pb.h	/^  void Swap(HeadProtocol* other);$/;"	p	class:HeadProtocol	access:public	signature:(HeadProtocol* other)
-ZR_	Protocol.pb.cpp	443;"	d	file:
-ZR_	Protocol.pb.cpp	469;"	d	file:
+Swap	Protocol.pb.h	/^  void Swap(TestProtocol* other);$/;"	p	class:TestProtocol	access:public	signature:(TestProtocol* other)
+TcpConnection	TcpConnection.h	/^	TcpConnection(Epoll* e):isWrite_(true){$/;"	f	class:TcpConnection	access:public	signature:(Epoll* e)
+TcpConnection	TcpConnection.h	/^class TcpConnection$/;"	c
+TcpConnection::Fd	TcpConnection.cpp	/^int TcpConnection::Fd()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::Fd	TcpConnection.h	/^	int Fd();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::OnError	TcpConnection.cpp	/^int TcpConnection::OnError()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::OnError	TcpConnection.h	/^	int OnError();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::OnRead	TcpConnection.cpp	/^int TcpConnection::OnRead(vector<google::protobuf::Message*> &retVec)$/;"	f	class:TcpConnection	signature:(vector<google::protobuf::Message*> &retVec)
+TcpConnection::OnRead	TcpConnection.h	/^	int OnRead(vector<google::protobuf::Message*>&);$/;"	p	class:TcpConnection	access:public	signature:(vector<google::protobuf::Message*>&)
+TcpConnection::OnWrite	TcpConnection.cpp	/^int TcpConnection::OnWrite()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::OnWrite	TcpConnection.h	/^	int OnWrite();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::SetIpPort	TcpConnection.cpp	/^void TcpConnection::SetIpPort(const string& ip, const string& port)$/;"	f	class:TcpConnection	signature:(const string& ip, const string& port)
+TcpConnection::SetIpPort	TcpConnection.h	/^	void SetIpPort(const string&, const string&);$/;"	p	class:TcpConnection	access:public	signature:(const string&, const string&)
+TcpConnection::SetNonBlock	TcpConnection.cpp	/^void TcpConnection::SetNonBlock()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::SetNonBlock	TcpConnection.h	/^	void SetNonBlock();\/\/构造函数，默认就会调用$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::TcpConnection	TcpConnection.h	/^	TcpConnection(Epoll* e):isWrite_(true){$/;"	f	class:TcpConnection	access:public	signature:(Epoll* e)
+TcpConnection::epoll_	TcpConnection.h	/^	Epoll* epoll_;$/;"	m	class:TcpConnection	access:private
+TcpConnection::fd_	TcpConnection.h	/^	int fd_;$/;"	m	class:TcpConnection	access:private
+TcpConnection::ip_	TcpConnection.h	/^	string ip_;$/;"	m	class:TcpConnection	access:private
+TcpConnection::isWrite_	TcpConnection.h	/^	bool isWrite_; \/\/能否进行写入$/;"	m	class:TcpConnection	access:private
+TcpConnection::openClient	TcpConnection.h	/^	bool openClient();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::openServer	TcpConnection.cpp	/^bool TcpConnection::openServer()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::openServer	TcpConnection.h	/^	bool openServer();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::open_	TcpConnection.h	/^	bool open_;\/\/是否已经开启某种模式$/;"	m	class:TcpConnection	access:private
+TcpConnection::port_	TcpConnection.h	/^	int port_;$/;"	m	class:TcpConnection	access:private
+TcpConnection::readBuffer_	TcpConnection.h	/^	Buffer readBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
+TcpConnection::send	TcpConnection.cpp	/^int TcpConnection::send()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::send	TcpConnection.h	/^	int send();$/;"	p	class:TcpConnection	access:public	signature:()
+TcpConnection::setFd	TcpConnection.cpp	/^void TcpConnection::setFd(int f)$/;"	f	class:TcpConnection	signature:(int f)
+TcpConnection::setFd	TcpConnection.h	/^	void setFd(int f);$/;"	p	class:TcpConnection	access:public	signature:(int f)
+TcpConnection::write	TcpConnection.cpp	/^int TcpConnection::write(google::protobuf::Message*& msg)$/;"	f	class:TcpConnection	signature:(google::protobuf::Message*& msg)
+TcpConnection::write	TcpConnection.h	/^	int write(google::protobuf::Message*&);\/\/用来发送数据的$/;"	p	class:TcpConnection	access:public	signature:(google::protobuf::Message*&)
+TcpConnection::writeBuffer_	TcpConnection.h	/^	Buffer writeBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
+TcpConnection::~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection()$/;"	f	class:TcpConnection	signature:()
+TcpConnection::~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
+TestFunction	main.cpp	/^int TestFunction(google::protobuf::Message* msg, MessageLoop* ml)$/;"	f	signature:(google::protobuf::Message* msg, MessageLoop* ml)
+TestProtocol	Protocol.pb.cpp	/^TestProtocol::TestProtocol()$/;"	f	class:TestProtocol	signature:()
+TestProtocol	Protocol.pb.cpp	/^TestProtocol::TestProtocol(const TestProtocol& from)$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
+TestProtocol	Protocol.pb.h	/^  TestProtocol();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol	Protocol.pb.h	/^  TestProtocol(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+TestProtocol	Protocol.pb.h	/^class TestProtocol : public ::google::protobuf::Message {$/;"	c	inherits:::google::protobuf::Message
+TestProtocol::ByteSize	Protocol.pb.cpp	/^int TestProtocol::ByteSize() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::ByteSize	Protocol.pb.h	/^  int ByteSize() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::Clear	Protocol.pb.cpp	/^void TestProtocol::Clear() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::Clear	Protocol.pb.h	/^  void Clear();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::CopyFrom	Protocol.pb.cpp	/^void TestProtocol::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:TestProtocol	signature:(const ::google::protobuf::Message& from)
+TestProtocol::CopyFrom	Protocol.pb.cpp	/^void TestProtocol::CopyFrom(const TestProtocol& from) {$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
+TestProtocol::CopyFrom	Protocol.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:TestProtocol	access:public	signature:(const ::google::protobuf::Message& from)
+TestProtocol::CopyFrom	Protocol.pb.h	/^  void CopyFrom(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+TestProtocol::GetCachedSize	Protocol.pb.h	/^  int GetCachedSize() const { return _cached_size_; }$/;"	f	class:TestProtocol	access:public	signature:() const
+TestProtocol::GetMetadata	Protocol.pb.cpp	/^::google::protobuf::Metadata TestProtocol::GetMetadata() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::GetMetadata	Protocol.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::InitAsDefaultInstance	Protocol.pb.cpp	/^void TestProtocol::InitAsDefaultInstance() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::InitAsDefaultInstance	Protocol.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::IsInitialized	Protocol.pb.cpp	/^bool TestProtocol::IsInitialized() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::IsInitialized	Protocol.pb.h	/^  bool IsInitialized() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::MergeFrom	Protocol.pb.cpp	/^void TestProtocol::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:TestProtocol	signature:(const ::google::protobuf::Message& from)
+TestProtocol::MergeFrom	Protocol.pb.cpp	/^void TestProtocol::MergeFrom(const TestProtocol& from) {$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
+TestProtocol::MergeFrom	Protocol.pb.h	/^  void MergeFrom(const ::google::protobuf::Message& from);$/;"	p	class:TestProtocol	access:public	signature:(const ::google::protobuf::Message& from)
+TestProtocol::MergeFrom	Protocol.pb.h	/^  void MergeFrom(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+TestProtocol::MergePartialFromCodedStream	Protocol.pb.cpp	/^bool TestProtocol::MergePartialFromCodedStream($/;"	f	class:TestProtocol	signature:( ::google::protobuf::io::CodedInputStream* input)
+TestProtocol::MergePartialFromCodedStream	Protocol.pb.h	/^  bool MergePartialFromCodedStream($/;"	p	class:TestProtocol	access:public	signature:( ::google::protobuf::io::CodedInputStream* input)
+TestProtocol::New	Protocol.pb.cpp	/^TestProtocol* TestProtocol::New() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::New	Protocol.pb.h	/^  TestProtocol* New() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::SerializeWithCachedSizes	Protocol.pb.cpp	/^void TestProtocol::SerializeWithCachedSizes($/;"	f	class:TestProtocol	signature:( ::google::protobuf::io::CodedOutputStream* output) const
+TestProtocol::SerializeWithCachedSizes	Protocol.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:TestProtocol	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
+TestProtocol::SerializeWithCachedSizesToArray	Protocol.pb.cpp	/^::google::protobuf::uint8* TestProtocol::SerializeWithCachedSizesToArray($/;"	f	class:TestProtocol	signature:( ::google::protobuf::uint8* target) const
+TestProtocol::SerializeWithCachedSizesToArray	Protocol.pb.h	/^  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;$/;"	p	class:TestProtocol	access:public	signature:(::google::protobuf::uint8* output) const
+TestProtocol::SetCachedSize	Protocol.pb.cpp	/^void TestProtocol::SetCachedSize(int size) const {$/;"	f	class:TestProtocol	signature:(int size) const
+TestProtocol::SetCachedSize	Protocol.pb.h	/^  void SetCachedSize(int size) const;$/;"	p	class:TestProtocol	access:private	signature:(int size) const
+TestProtocol::SharedCtor	Protocol.pb.cpp	/^void TestProtocol::SharedCtor() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::SharedCtor	Protocol.pb.h	/^  void SharedCtor();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::SharedDtor	Protocol.pb.cpp	/^void TestProtocol::SharedDtor() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::SharedDtor	Protocol.pb.h	/^  void SharedDtor();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::Swap	Protocol.pb.cpp	/^void TestProtocol::Swap(TestProtocol* other) {$/;"	f	class:TestProtocol	signature:(TestProtocol* other)
+TestProtocol::Swap	Protocol.pb.h	/^  void Swap(TestProtocol* other);$/;"	p	class:TestProtocol	access:public	signature:(TestProtocol* other)
+TestProtocol::TestProtocol	Protocol.pb.cpp	/^TestProtocol::TestProtocol()$/;"	f	class:TestProtocol	signature:()
+TestProtocol::TestProtocol	Protocol.pb.cpp	/^TestProtocol::TestProtocol(const TestProtocol& from)$/;"	f	class:TestProtocol	signature:(const TestProtocol& from)
+TestProtocol::TestProtocol	Protocol.pb.h	/^  TestProtocol();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::TestProtocol	Protocol.pb.h	/^  TestProtocol(const TestProtocol& from);$/;"	p	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+TestProtocol::_cached_size_	Protocol.pb.h	/^  mutable int _cached_size_;$/;"	m	class:TestProtocol	access:private
+TestProtocol::_has_bits_	Protocol.pb.h	/^  ::google::protobuf::uint32 _has_bits_[1];$/;"	m	class:TestProtocol	access:private
+TestProtocol::_unknown_fields_	Protocol.pb.h	/^  ::google::protobuf::UnknownFieldSet _unknown_fields_;$/;"	m	class:TestProtocol	access:private
+TestProtocol::clear_has_msg	Protocol.pb.h	/^  inline void clear_has_msg();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::clear_has_msg	Protocol.pb.h	/^inline void TestProtocol::clear_has_msg() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::clear_has_status	Protocol.pb.h	/^  inline void clear_has_status();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::clear_has_status	Protocol.pb.h	/^inline void TestProtocol::clear_has_status() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::clear_msg	Protocol.pb.h	/^  inline void clear_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::clear_msg	Protocol.pb.h	/^inline void TestProtocol::clear_msg() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::clear_status	Protocol.pb.h	/^  inline void clear_status();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::clear_status	Protocol.pb.h	/^inline void TestProtocol::clear_status() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::default_instance	Protocol.pb.cpp	/^const TestProtocol& TestProtocol::default_instance() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::default_instance	Protocol.pb.h	/^  static const TestProtocol& default_instance();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::default_instance_	Protocol.pb.cpp	/^TestProtocol* TestProtocol::default_instance_ = NULL;$/;"	m	class:TestProtocol	file:
+TestProtocol::default_instance_	Protocol.pb.h	/^  static TestProtocol* default_instance_;$/;"	m	class:TestProtocol	access:private
+TestProtocol::descriptor	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* TestProtocol::descriptor() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::descriptor	Protocol.pb.h	/^  static const ::google::protobuf::Descriptor* descriptor();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::has_msg	Protocol.pb.h	/^  inline bool has_msg() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::has_msg	Protocol.pb.h	/^inline bool TestProtocol::has_msg() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::has_status	Protocol.pb.h	/^  inline bool has_status() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::has_status	Protocol.pb.h	/^inline bool TestProtocol::has_status() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::kMsgFieldNumber	Protocol.pb.cpp	/^const int TestProtocol::kMsgFieldNumber;$/;"	m	class:TestProtocol	file:
+TestProtocol::kMsgFieldNumber	Protocol.pb.h	/^  static const int kMsgFieldNumber = 2;$/;"	m	class:TestProtocol	access:public
+TestProtocol::kStatusFieldNumber	Protocol.pb.cpp	/^const int TestProtocol::kStatusFieldNumber;$/;"	m	class:TestProtocol	file:
+TestProtocol::kStatusFieldNumber	Protocol.pb.h	/^  static const int kStatusFieldNumber = 1;$/;"	m	class:TestProtocol	access:public
+TestProtocol::msg	Protocol.pb.h	/^  inline const ::std::string& msg() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::msg	Protocol.pb.h	/^inline const ::std::string& TestProtocol::msg() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::msg_	Protocol.pb.h	/^  ::std::string* msg_;$/;"	m	class:TestProtocol	access:private
+TestProtocol::mutable_msg	Protocol.pb.h	/^  inline ::std::string* mutable_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::mutable_msg	Protocol.pb.h	/^inline ::std::string* TestProtocol::mutable_msg() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::mutable_unknown_fields	Protocol.pb.h	/^  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {$/;"	f	class:TestProtocol	access:public	signature:()
+TestProtocol::operator =	Protocol.pb.h	/^  inline TestProtocol& operator=(const TestProtocol& from) {$/;"	f	class:TestProtocol	access:public	signature:(const TestProtocol& from)
+TestProtocol::protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
+TestProtocol::protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
+TestProtocol::protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
+TestProtocol::release_msg	Protocol.pb.h	/^  inline ::std::string* release_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol::release_msg	Protocol.pb.h	/^inline ::std::string* TestProtocol::release_msg() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::set_allocated_msg	Protocol.pb.h	/^  inline void set_allocated_msg(::std::string* msg);$/;"	p	class:TestProtocol	access:public	signature:(::std::string* msg)
+TestProtocol::set_allocated_msg	Protocol.pb.h	/^inline void TestProtocol::set_allocated_msg(::std::string* msg) {$/;"	f	class:TestProtocol	signature:(::std::string* msg)
+TestProtocol::set_has_msg	Protocol.pb.h	/^  inline void set_has_msg();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::set_has_msg	Protocol.pb.h	/^inline void TestProtocol::set_has_msg() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::set_has_status	Protocol.pb.h	/^  inline void set_has_status();$/;"	p	class:TestProtocol	access:private	signature:()
+TestProtocol::set_has_status	Protocol.pb.h	/^inline void TestProtocol::set_has_status() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::set_msg	Protocol.pb.h	/^  inline void set_msg(const ::std::string& value);$/;"	p	class:TestProtocol	access:public	signature:(const ::std::string& value)
+TestProtocol::set_msg	Protocol.pb.h	/^  inline void set_msg(const char* value);$/;"	p	class:TestProtocol	access:public	signature:(const char* value)
+TestProtocol::set_msg	Protocol.pb.h	/^  inline void set_msg(const char* value, size_t size);$/;"	p	class:TestProtocol	access:public	signature:(const char* value, size_t size)
+TestProtocol::set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const ::std::string& value) {$/;"	f	class:TestProtocol	signature:(const ::std::string& value)
+TestProtocol::set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const char* value) {$/;"	f	class:TestProtocol	signature:(const char* value)
+TestProtocol::set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const char* value, size_t size) {$/;"	f	class:TestProtocol	signature:(const char* value, size_t size)
+TestProtocol::set_status	Protocol.pb.h	/^  inline void set_status(::google::protobuf::int32 value);$/;"	p	class:TestProtocol	access:public	signature:(::google::protobuf::int32 value)
+TestProtocol::set_status	Protocol.pb.h	/^inline void TestProtocol::set_status(::google::protobuf::int32 value) {$/;"	f	class:TestProtocol	signature:(::google::protobuf::int32 value)
+TestProtocol::status	Protocol.pb.h	/^  inline ::google::protobuf::int32 status() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+TestProtocol::status	Protocol.pb.h	/^inline ::google::protobuf::int32 TestProtocol::status() const {$/;"	f	class:TestProtocol	signature:() const
+TestProtocol::status_	Protocol.pb.h	/^  ::google::protobuf::int32 status_;$/;"	m	class:TestProtocol	access:private
+TestProtocol::unknown_fields	Protocol.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:TestProtocol	access:public	signature:() const
+TestProtocol::~TestProtocol	Protocol.pb.cpp	/^TestProtocol::~TestProtocol() {$/;"	f	class:TestProtocol	signature:()
+TestProtocol::~TestProtocol	Protocol.pb.h	/^  virtual ~TestProtocol();$/;"	p	class:TestProtocol	access:public	signature:()
+TestProtocol_descriptor_	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* TestProtocol_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
+TestProtocol_reflection_	Protocol.pb.cpp	/^  TestProtocol_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
+ZR_	Protocol.pb.cpp	465;"	d	file:
+ZR_	Protocol.pb.cpp	490;"	d	file:
 __anon1::ArrayInt_descriptor_	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* ArrayInt_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon1::ArrayInt_reflection_	Protocol.pb.cpp	/^  ArrayInt_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon1::HeadProtocol_descriptor_	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* HeadProtocol_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon1::HeadProtocol_reflection_	Protocol.pb.cpp	/^  HeadProtocol_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
+__anon1::TestProtocol_descriptor_	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* TestProtocol_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
+__anon1::TestProtocol_reflection_	Protocol.pb.cpp	/^  TestProtocol_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon2::GOOGLE_PROTOBUF_DECLARE_ONCE	Protocol.pb.cpp	/^GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);$/;"	p	namespace:__anon2	file:	signature:(protobuf_AssignDescriptors_once_)
 __anon2::protobuf_AssignDescriptorsOnce	Protocol.pb.cpp	/^inline void protobuf_AssignDescriptorsOnce() {$/;"	f	namespace:__anon2	signature:()
 __anon2::protobuf_RegisterTypes	Protocol.pb.cpp	/^void protobuf_RegisterTypes(const ::std::string&) {$/;"	f	namespace:__anon2	signature:(const ::std::string&)
 _cached_size_	Protocol.pb.h	/^  mutable int _cached_size_;$/;"	m	class:ArrayInt	access:private
 _cached_size_	Protocol.pb.h	/^  mutable int _cached_size_;$/;"	m	class:HeadProtocol	access:private
+_cached_size_	Protocol.pb.h	/^  mutable int _cached_size_;$/;"	m	class:TestProtocol	access:private
 _has_bits_	Protocol.pb.h	/^  ::google::protobuf::uint32 _has_bits_[1];$/;"	m	class:ArrayInt	access:private
 _has_bits_	Protocol.pb.h	/^  ::google::protobuf::uint32 _has_bits_[1];$/;"	m	class:HeadProtocol	access:private
+_has_bits_	Protocol.pb.h	/^  ::google::protobuf::uint32 _has_bits_[1];$/;"	m	class:TestProtocol	access:private
 _unknown_fields_	Protocol.pb.h	/^  ::google::protobuf::UnknownFieldSet _unknown_fields_;$/;"	m	class:ArrayInt	access:private
 _unknown_fields_	Protocol.pb.h	/^  ::google::protobuf::UnknownFieldSet _unknown_fields_;$/;"	m	class:HeadProtocol	access:private
+_unknown_fields_	Protocol.pb.h	/^  ::google::protobuf::UnknownFieldSet _unknown_fields_;$/;"	m	class:TestProtocol	access:private
 access_point_fd	Protocol.pb.h	/^  inline ::google::protobuf::int32 access_point_fd() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 access_point_fd	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::access_point_fd() const {$/;"	f	class:HeadProtocol	signature:() const
 access_point_fd_	Protocol.pb.h	/^  ::google::protobuf::int32 access_point_fd_;$/;"	m	class:HeadProtocol	access:private
 add_arrayint	Protocol.pb.h	/^  inline void add_arrayint(::google::protobuf::int32 value);$/;"	p	class:ArrayInt	access:public	signature:(::google::protobuf::int32 value)
 add_arrayint	Protocol.pb.h	/^inline void ArrayInt::add_arrayint(::google::protobuf::int32 value) {$/;"	f	class:ArrayInt	signature:(::google::protobuf::int32 value)
+append	Buffer.cpp	/^void Buffer::append(const char* msg, size_t size)$/;"	f	class:Buffer	signature:(const char* msg, size_t size)
+append	Buffer.h	/^	void append(const char*, size_t);$/;"	p	class:Buffer	access:public	signature:(const char*, size_t)
 arrayint	Protocol.pb.h	/^      arrayint() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 arrayint	Protocol.pb.h	/^  inline ::google::protobuf::int32 arrayint(int index) const;$/;"	p	class:ArrayInt	access:public	signature:(int index) const
 arrayint	Protocol.pb.h	/^ArrayInt::arrayint() const {$/;"	f	class:ArrayInt	signature:() const
@@ -432,12 +681,15 @@ arrayint_	Protocol.pb.h	/^  ::google::protobuf::RepeatedField< ::google::protobu
 arrayint_size	Protocol.pb.h	/^  inline int arrayint_size() const;$/;"	p	class:ArrayInt	access:public	signature:() const
 arrayint_size	Protocol.pb.h	/^inline int ArrayInt::arrayint_size() const {$/;"	f	class:ArrayInt	signature:() const
 cc	makefile	/^cc = g++$/;"	m
+clear	Buffer.h	/^	void clear(){$/;"	f	class:Buffer	access:public	signature:()
 clear_access_point_fd	Protocol.pb.h	/^  inline void clear_access_point_fd();$/;"	p	class:HeadProtocol	access:public	signature:()
 clear_access_point_fd	Protocol.pb.h	/^inline void HeadProtocol::clear_access_point_fd() {$/;"	f	class:HeadProtocol	signature:()
 clear_arrayint	Protocol.pb.h	/^  inline void clear_arrayint();$/;"	p	class:ArrayInt	access:public	signature:()
 clear_arrayint	Protocol.pb.h	/^inline void ArrayInt::clear_arrayint() {$/;"	f	class:ArrayInt	signature:()
 clear_has_access_point_fd	Protocol.pb.h	/^  inline void clear_has_access_point_fd();$/;"	p	class:HeadProtocol	access:private	signature:()
 clear_has_access_point_fd	Protocol.pb.h	/^inline void HeadProtocol::clear_has_access_point_fd() {$/;"	f	class:HeadProtocol	signature:()
+clear_has_msg	Protocol.pb.h	/^  inline void clear_has_msg();$/;"	p	class:TestProtocol	access:private	signature:()
+clear_has_msg	Protocol.pb.h	/^inline void TestProtocol::clear_has_msg() {$/;"	f	class:TestProtocol	signature:()
 clear_has_pass_by_id	Protocol.pb.h	/^  inline void clear_has_pass_by_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 clear_has_pass_by_id	Protocol.pb.h	/^inline void HeadProtocol::clear_has_pass_by_id() {$/;"	f	class:HeadProtocol	signature:()
 clear_has_proto_body_buffer	Protocol.pb.h	/^  inline void clear_has_proto_body_buffer();$/;"	p	class:HeadProtocol	access:private	signature:()
@@ -446,12 +698,14 @@ clear_has_proto_body_name	Protocol.pb.h	/^  inline void clear_has_proto_body_nam
 clear_has_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 clear_has_proto_body_size	Protocol.pb.h	/^  inline void clear_has_proto_body_size();$/;"	p	class:HeadProtocol	access:private	signature:()
 clear_has_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-clear_has_proto_body_status	Protocol.pb.h	/^  inline void clear_has_proto_body_status();$/;"	p	class:HeadProtocol	access:private	signature:()
-clear_has_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::clear_has_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 clear_has_source_id	Protocol.pb.h	/^  inline void clear_has_source_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 clear_has_source_id	Protocol.pb.h	/^inline void HeadProtocol::clear_has_source_id() {$/;"	f	class:HeadProtocol	signature:()
+clear_has_status	Protocol.pb.h	/^  inline void clear_has_status();$/;"	p	class:TestProtocol	access:private	signature:()
+clear_has_status	Protocol.pb.h	/^inline void TestProtocol::clear_has_status() {$/;"	f	class:TestProtocol	signature:()
 clear_has_target_id	Protocol.pb.h	/^  inline void clear_has_target_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 clear_has_target_id	Protocol.pb.h	/^inline void HeadProtocol::clear_has_target_id() {$/;"	f	class:HeadProtocol	signature:()
+clear_msg	Protocol.pb.h	/^  inline void clear_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+clear_msg	Protocol.pb.h	/^inline void TestProtocol::clear_msg() {$/;"	f	class:TestProtocol	signature:()
 clear_pass_by_id	Protocol.pb.h	/^  inline void clear_pass_by_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 clear_pass_by_id	Protocol.pb.h	/^inline void HeadProtocol::clear_pass_by_id() {$/;"	f	class:HeadProtocol	signature:()
 clear_proto_body_buffer	Protocol.pb.h	/^  inline void clear_proto_body_buffer();$/;"	p	class:HeadProtocol	access:public	signature:()
@@ -460,29 +714,45 @@ clear_proto_body_name	Protocol.pb.h	/^  inline void clear_proto_body_name();$/;"
 clear_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 clear_proto_body_size	Protocol.pb.h	/^  inline void clear_proto_body_size();$/;"	p	class:HeadProtocol	access:public	signature:()
 clear_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-clear_proto_body_status	Protocol.pb.h	/^  inline void clear_proto_body_status();$/;"	p	class:HeadProtocol	access:public	signature:()
-clear_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::clear_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 clear_source_id	Protocol.pb.h	/^  inline void clear_source_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 clear_source_id	Protocol.pb.h	/^inline void HeadProtocol::clear_source_id() {$/;"	f	class:HeadProtocol	signature:()
+clear_status	Protocol.pb.h	/^  inline void clear_status();$/;"	p	class:TestProtocol	access:public	signature:()
+clear_status	Protocol.pb.h	/^inline void TestProtocol::clear_status() {$/;"	f	class:TestProtocol	signature:()
 clear_target_id	Protocol.pb.h	/^  inline void clear_target_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 clear_target_id	Protocol.pb.h	/^inline void HeadProtocol::clear_target_id() {$/;"	f	class:HeadProtocol	signature:()
+data	Buffer.cpp	/^char* Buffer::data()$/;"	f	class:Buffer	signature:()
+data	Buffer.h	/^	char* data();$/;"	p	class:Buffer	access:public	signature:()
 default_instance	Protocol.pb.cpp	/^const ArrayInt& ArrayInt::default_instance() {$/;"	f	class:ArrayInt	signature:()
 default_instance	Protocol.pb.cpp	/^const HeadProtocol& HeadProtocol::default_instance() {$/;"	f	class:HeadProtocol	signature:()
+default_instance	Protocol.pb.cpp	/^const TestProtocol& TestProtocol::default_instance() {$/;"	f	class:TestProtocol	signature:()
 default_instance	Protocol.pb.h	/^  static const ArrayInt& default_instance();$/;"	p	class:ArrayInt	access:public	signature:()
 default_instance	Protocol.pb.h	/^  static const HeadProtocol& default_instance();$/;"	p	class:HeadProtocol	access:public	signature:()
+default_instance	Protocol.pb.h	/^  static const TestProtocol& default_instance();$/;"	p	class:TestProtocol	access:public	signature:()
 default_instance_	Protocol.pb.cpp	/^ArrayInt* ArrayInt::default_instance_ = NULL;$/;"	m	class:ArrayInt	file:
 default_instance_	Protocol.pb.cpp	/^HeadProtocol* HeadProtocol::default_instance_ = NULL;$/;"	m	class:HeadProtocol	file:
+default_instance_	Protocol.pb.cpp	/^TestProtocol* TestProtocol::default_instance_ = NULL;$/;"	m	class:TestProtocol	file:
 default_instance_	Protocol.pb.h	/^  static ArrayInt* default_instance_;$/;"	m	class:ArrayInt	access:private
 default_instance_	Protocol.pb.h	/^  static HeadProtocol* default_instance_;$/;"	m	class:HeadProtocol	access:private
+default_instance_	Protocol.pb.h	/^  static TestProtocol* default_instance_;$/;"	m	class:TestProtocol	access:private
 descriptor	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* ArrayInt::descriptor() {$/;"	f	class:ArrayInt	signature:()
 descriptor	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* HeadProtocol::descriptor() {$/;"	f	class:HeadProtocol	signature:()
+descriptor	Protocol.pb.cpp	/^const ::google::protobuf::Descriptor* TestProtocol::descriptor() {$/;"	f	class:TestProtocol	signature:()
 descriptor	Protocol.pb.h	/^  static const ::google::protobuf::Descriptor* descriptor();$/;"	p	class:ArrayInt	access:public	signature:()
 descriptor	Protocol.pb.h	/^  static const ::google::protobuf::Descriptor* descriptor();$/;"	p	class:HeadProtocol	access:public	signature:()
+descriptor	Protocol.pb.h	/^  static const ::google::protobuf::Descriptor* descriptor();$/;"	p	class:TestProtocol	access:public	signature:()
+ep_	MessageLoop.h	/^	Epoll* ep_;$/;"	m	class:MessageLoop	access:private
 epfd_	Epoll.h	/^	int epfd_;$/;"	m	class:Epoll	access:private
+epoll_	TcpConnection.h	/^	Epoll* epoll_;$/;"	m	class:TcpConnection	access:private
+executeList_	MessageLoop.h	/^	map<string, FuncPtr> executeList_;$/;"	m	class:MessageLoop	access:private
+fd_	TcpConnection.h	/^	int fd_;$/;"	m	class:TcpConnection	access:private
 google	Protocol.pb.h	/^namespace google {$/;"	n
 google::protobuf	Protocol.pb.h	/^namespace protobuf {$/;"	n	namespace:google
+hasData	Buffer.cpp	/^bool Buffer::hasData()$/;"	f	class:Buffer	signature:()
+hasData	Buffer.h	/^	bool hasData();	$/;"	p	class:Buffer	access:public	signature:()
 has_access_point_fd	Protocol.pb.h	/^  inline bool has_access_point_fd() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 has_access_point_fd	Protocol.pb.h	/^inline bool HeadProtocol::has_access_point_fd() const {$/;"	f	class:HeadProtocol	signature:() const
+has_msg	Protocol.pb.h	/^  inline bool has_msg() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+has_msg	Protocol.pb.h	/^inline bool TestProtocol::has_msg() const {$/;"	f	class:TestProtocol	signature:() const
 has_pass_by_id	Protocol.pb.h	/^  inline bool has_pass_by_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 has_pass_by_id	Protocol.pb.h	/^inline bool HeadProtocol::has_pass_by_id() const {$/;"	f	class:HeadProtocol	signature:() const
 has_proto_body_buffer	Protocol.pb.h	/^  inline bool has_proto_body_buffer() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
@@ -491,37 +761,53 @@ has_proto_body_name	Protocol.pb.h	/^  inline bool has_proto_body_name() const;$/
 has_proto_body_name	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_name() const {$/;"	f	class:HeadProtocol	signature:() const
 has_proto_body_size	Protocol.pb.h	/^  inline bool has_proto_body_size() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 has_proto_body_size	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_size() const {$/;"	f	class:HeadProtocol	signature:() const
-has_proto_body_status	Protocol.pb.h	/^  inline bool has_proto_body_status() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
-has_proto_body_status	Protocol.pb.h	/^inline bool HeadProtocol::has_proto_body_status() const {$/;"	f	class:HeadProtocol	signature:() const
 has_source_id	Protocol.pb.h	/^  inline bool has_source_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 has_source_id	Protocol.pb.h	/^inline bool HeadProtocol::has_source_id() const {$/;"	f	class:HeadProtocol	signature:() const
+has_status	Protocol.pb.h	/^  inline bool has_status() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+has_status	Protocol.pb.h	/^inline bool TestProtocol::has_status() const {$/;"	f	class:TestProtocol	signature:() const
 has_target_id	Protocol.pb.h	/^  inline bool has_target_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 has_target_id	Protocol.pb.h	/^inline bool HeadProtocol::has_target_id() const {$/;"	f	class:HeadProtocol	signature:() const
 include_dirs	makefile	/^include_dirs := $/;"	m
+ip_	TcpConnection.h	/^	string ip_;$/;"	m	class:TcpConnection	access:private
+isWrite_	TcpConnection.h	/^	bool isWrite_; \/\/能否进行写入$/;"	m	class:TcpConnection	access:private
+jumpMap_	StateMachine.cpp	/^map<int, map<int, int> > StateMachine::jumpMap_;$/;"	m	class:StateMachine	file:
+jumpMap_	StateMachine.h	/^	static map<int, map<int, int> > jumpMap_;$/;"	m	class:StateMachine	access:private
 kAccessPointFdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kAccessPointFdFieldNumber;$/;"	m	class:HeadProtocol	file:
 kAccessPointFdFieldNumber	Protocol.pb.h	/^  static const int kAccessPointFdFieldNumber = 1;$/;"	m	class:HeadProtocol	access:public
 kArrayIntFieldNumber	Protocol.pb.cpp	/^const int ArrayInt::kArrayIntFieldNumber;$/;"	m	class:ArrayInt	file:
 kArrayIntFieldNumber	Protocol.pb.h	/^  static const int kArrayIntFieldNumber = 1;$/;"	m	class:ArrayInt	access:public
+kMsgFieldNumber	Protocol.pb.cpp	/^const int TestProtocol::kMsgFieldNumber;$/;"	m	class:TestProtocol	file:
+kMsgFieldNumber	Protocol.pb.h	/^  static const int kMsgFieldNumber = 2;$/;"	m	class:TestProtocol	access:public
 kPassByIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kPassByIdFieldNumber;$/;"	m	class:HeadProtocol	file:
 kPassByIdFieldNumber	Protocol.pb.h	/^  static const int kPassByIdFieldNumber = 4;$/;"	m	class:HeadProtocol	access:public
 kProtoBodyBufferFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyBufferFieldNumber;$/;"	m	class:HeadProtocol	file:
-kProtoBodyBufferFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyBufferFieldNumber = 8;$/;"	m	class:HeadProtocol	access:public
+kProtoBodyBufferFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyBufferFieldNumber = 7;$/;"	m	class:HeadProtocol	access:public
 kProtoBodyNameFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyNameFieldNumber;$/;"	m	class:HeadProtocol	file:
-kProtoBodyNameFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyNameFieldNumber = 7;$/;"	m	class:HeadProtocol	access:public
+kProtoBodyNameFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyNameFieldNumber = 6;$/;"	m	class:HeadProtocol	access:public
 kProtoBodySizeFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodySizeFieldNumber;$/;"	m	class:HeadProtocol	file:
 kProtoBodySizeFieldNumber	Protocol.pb.h	/^  static const int kProtoBodySizeFieldNumber = 5;$/;"	m	class:HeadProtocol	access:public
-kProtoBodyStatusFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kProtoBodyStatusFieldNumber;$/;"	m	class:HeadProtocol	file:
-kProtoBodyStatusFieldNumber	Protocol.pb.h	/^  static const int kProtoBodyStatusFieldNumber = 6;$/;"	m	class:HeadProtocol	access:public
 kSourceIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kSourceIdFieldNumber;$/;"	m	class:HeadProtocol	file:
 kSourceIdFieldNumber	Protocol.pb.h	/^  static const int kSourceIdFieldNumber = 2;$/;"	m	class:HeadProtocol	access:public
+kStatusFieldNumber	Protocol.pb.cpp	/^const int TestProtocol::kStatusFieldNumber;$/;"	m	class:TestProtocol	file:
+kStatusFieldNumber	Protocol.pb.h	/^  static const int kStatusFieldNumber = 1;$/;"	m	class:TestProtocol	access:public
 kTargetIdFieldNumber	Protocol.pb.cpp	/^const int HeadProtocol::kTargetIdFieldNumber;$/;"	m	class:HeadProtocol	file:
 kTargetIdFieldNumber	Protocol.pb.h	/^  static const int kTargetIdFieldNumber = 3;$/;"	m	class:HeadProtocol	access:public
+length	Buffer.cpp	/^int Buffer::length()$/;"	f	class:Buffer	signature:()
+length	Buffer.h	/^	int length();$/;"	p	class:Buffer	access:public	signature:()
+length_	Buffer.h	/^	int length_;$/;"	m	class:Buffer	access:private
 linkFlags	makefile	/^linkFlags := -g -Wall $/;"	m
 listen_list_	Epoll.h	/^	map<int, boost::shared_ptr<TcpConnection> > listen_list_;$/;"	m	class:Epoll	access:private
-mapSourceIDToSaveMessages_	Epoll.h	/^	map<int, vector<Message*> > mapSourceIDToSaveMessages_;$/;"	m	class:Epoll	access:private
+main	main.cpp	/^int main()$/;"	f	signature:()
 mapSourceID_	Epoll.h	/^	map<int, int> mapSourceID_;$/;"	m	class:Epoll	access:private
+ml_	StateMachine.cpp	/^MessageLoop* StateMachine::ml_ = NULL;$/;"	m	class:StateMachine	file:
+ml_	StateMachine.h	/^	static MessageLoop* ml_; $/;"	m	class:StateMachine	access:private
+msg	Protocol.pb.h	/^  inline const ::std::string& msg() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+msg	Protocol.pb.h	/^inline const ::std::string& TestProtocol::msg() const {$/;"	f	class:TestProtocol	signature:() const
+msg_	Protocol.pb.h	/^  ::std::string* msg_;$/;"	m	class:TestProtocol	access:private
 mutable_arrayint	Protocol.pb.h	/^      mutable_arrayint();$/;"	p	class:ArrayInt	access:public	signature:()
 mutable_arrayint	Protocol.pb.h	/^ArrayInt::mutable_arrayint() {$/;"	f	class:ArrayInt	signature:()
+mutable_msg	Protocol.pb.h	/^  inline ::std::string* mutable_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+mutable_msg	Protocol.pb.h	/^inline ::std::string* TestProtocol::mutable_msg() {$/;"	f	class:TestProtocol	signature:()
 mutable_pass_by_id	Protocol.pb.h	/^  inline ::ArrayInt* mutable_pass_by_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 mutable_pass_by_id	Protocol.pb.h	/^inline ::ArrayInt* HeadProtocol::mutable_pass_by_id() {$/;"	f	class:HeadProtocol	signature:()
 mutable_proto_body_buffer	Protocol.pb.h	/^  inline ::std::string* mutable_proto_body_buffer();$/;"	p	class:HeadProtocol	access:public	signature:()
@@ -530,12 +816,19 @@ mutable_proto_body_name	Protocol.pb.h	/^  inline ::std::string* mutable_proto_bo
 mutable_proto_body_name	Protocol.pb.h	/^inline ::std::string* HeadProtocol::mutable_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 mutable_unknown_fields	Protocol.pb.h	/^  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {$/;"	f	class:ArrayInt	access:public	signature:()
 mutable_unknown_fields	Protocol.pb.h	/^  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {$/;"	f	class:HeadProtocol	access:public	signature:()
+mutable_unknown_fields	Protocol.pb.h	/^  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {$/;"	f	class:TestProtocol	access:public	signature:()
 objects	makefile	/^objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))$/;"	m
+openClient	TcpConnection.h	/^	bool openClient();$/;"	p	class:TcpConnection	access:public	signature:()
+openServer	TcpConnection.cpp	/^bool TcpConnection::openServer()$/;"	f	class:TcpConnection	signature:()
+openServer	TcpConnection.h	/^	bool openServer();$/;"	p	class:TcpConnection	access:public	signature:()
+open_	TcpConnection.h	/^	bool open_;\/\/是否已经开启某种模式$/;"	m	class:TcpConnection	access:private
 operator =	Protocol.pb.h	/^  inline ArrayInt& operator=(const ArrayInt& from) {$/;"	f	class:ArrayInt	access:public	signature:(const ArrayInt& from)
 operator =	Protocol.pb.h	/^  inline HeadProtocol& operator=(const HeadProtocol& from) {$/;"	f	class:HeadProtocol	access:public	signature:(const HeadProtocol& from)
+operator =	Protocol.pb.h	/^  inline TestProtocol& operator=(const TestProtocol& from) {$/;"	f	class:TestProtocol	access:public	signature:(const TestProtocol& from)
 pass_by_id	Protocol.pb.h	/^  inline const ::ArrayInt& pass_by_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 pass_by_id	Protocol.pb.h	/^inline const ::ArrayInt& HeadProtocol::pass_by_id() const {$/;"	f	class:HeadProtocol	signature:() const
 pass_by_id_	Protocol.pb.h	/^  ::ArrayInt* pass_by_id_;$/;"	m	class:HeadProtocol	access:private
+port_	TcpConnection.h	/^	int port_;$/;"	m	class:TcpConnection	access:private
 proto_body_buffer	Protocol.pb.h	/^  inline const ::std::string& proto_body_buffer() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 proto_body_buffer	Protocol.pb.h	/^inline const ::std::string& HeadProtocol::proto_body_buffer() const {$/;"	f	class:HeadProtocol	signature:() const
 proto_body_buffer_	Protocol.pb.h	/^  ::std::string* proto_body_buffer_;$/;"	m	class:HeadProtocol	access:private
@@ -545,33 +838,44 @@ proto_body_name_	Protocol.pb.h	/^  ::std::string* proto_body_name_;$/;"	m	class:
 proto_body_size	Protocol.pb.h	/^  inline ::google::protobuf::int32 proto_body_size() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 proto_body_size	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::proto_body_size() const {$/;"	f	class:HeadProtocol	signature:() const
 proto_body_size_	Protocol.pb.h	/^  ::google::protobuf::int32 proto_body_size_;$/;"	m	class:HeadProtocol	access:private
-proto_body_status	Protocol.pb.h	/^  inline ::google::protobuf::int32 proto_body_status() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
-proto_body_status	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::proto_body_status() const {$/;"	f	class:HeadProtocol	signature:() const
-proto_body_status_	Protocol.pb.h	/^  ::google::protobuf::int32 proto_body_status_;$/;"	m	class:HeadProtocol	access:private
 protobuf	Protocol.pb.h	/^namespace protobuf {$/;"	n	namespace:google
 protobuf_AddDesc_Protocol_2eproto	Protocol.pb.cpp	/^void protobuf_AddDesc_Protocol_2eproto() {$/;"	f	signature:()
 protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	class:ArrayInt	access:friend	signature:()
 protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
+protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
 protobuf_AddDesc_Protocol_2eproto	Protocol.pb.h	/^void  protobuf_AddDesc_Protocol_2eproto();$/;"	p	signature:()
 protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.cpp	/^void protobuf_AssignDesc_Protocol_2eproto() {$/;"	f	signature:()
 protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	class:ArrayInt	access:friend	signature:()
 protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
+protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
 protobuf_AssignDesc_Protocol_2eproto	Protocol.pb.h	/^void protobuf_AssignDesc_Protocol_2eproto();$/;"	p	signature:()
 protobuf_AssignDescriptorsOnce	Protocol.pb.cpp	/^inline void protobuf_AssignDescriptorsOnce() {$/;"	f	namespace:__anon2	signature:()
 protobuf_RegisterTypes	Protocol.pb.cpp	/^void protobuf_RegisterTypes(const ::std::string&) {$/;"	f	namespace:__anon2	signature:(const ::std::string&)
 protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.cpp	/^void protobuf_ShutdownFile_Protocol_2eproto() {$/;"	f	signature:()
 protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	class:ArrayInt	access:friend	signature:()
 protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	class:HeadProtocol	access:friend	signature:()
+protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^  friend void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	class:TestProtocol	access:friend	signature:()
 protobuf_ShutdownFile_Protocol_2eproto	Protocol.pb.h	/^void protobuf_ShutdownFile_Protocol_2eproto();$/;"	p	signature:()
+readBuffer_	TcpConnection.h	/^	Buffer readBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
+reg	MessageLoop.cpp	/^void MessageLoop::reg(string name, FuncPtr f)$/;"	f	class:MessageLoop	signature:(string name, FuncPtr f)
+reg	MessageLoop.h	/^	void reg(string, FuncPtr);$/;"	p	class:MessageLoop	access:public	signature:(string, FuncPtr)
+release_msg	Protocol.pb.h	/^  inline ::std::string* release_msg();$/;"	p	class:TestProtocol	access:public	signature:()
+release_msg	Protocol.pb.h	/^inline ::std::string* TestProtocol::release_msg() {$/;"	f	class:TestProtocol	signature:()
 release_pass_by_id	Protocol.pb.h	/^  inline ::ArrayInt* release_pass_by_id();$/;"	p	class:HeadProtocol	access:public	signature:()
 release_pass_by_id	Protocol.pb.h	/^inline ::ArrayInt* HeadProtocol::release_pass_by_id() {$/;"	f	class:HeadProtocol	signature:()
 release_proto_body_buffer	Protocol.pb.h	/^  inline ::std::string* release_proto_body_buffer();$/;"	p	class:HeadProtocol	access:public	signature:()
 release_proto_body_buffer	Protocol.pb.h	/^inline ::std::string* HeadProtocol::release_proto_body_buffer() {$/;"	f	class:HeadProtocol	signature:()
 release_proto_body_name	Protocol.pb.h	/^  inline ::std::string* release_proto_body_name();$/;"	p	class:HeadProtocol	access:public	signature:()
 release_proto_body_name	Protocol.pb.h	/^inline ::std::string* HeadProtocol::release_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
+send	TcpConnection.cpp	/^int TcpConnection::send()$/;"	f	class:TcpConnection	signature:()
+send	TcpConnection.h	/^	int send();$/;"	p	class:TcpConnection	access:public	signature:()
 server_	Epoll.h	/^	TcpConnection server_;$/;"	m	class:Epoll	access:private
+setFd	TcpConnection.cpp	/^void TcpConnection::setFd(int f)$/;"	f	class:TcpConnection	signature:(int f)
+setFd	TcpConnection.h	/^	void setFd(int f);$/;"	p	class:TcpConnection	access:public	signature:(int f)
 set_access_point_fd	Protocol.pb.h	/^  inline void set_access_point_fd(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 set_access_point_fd	Protocol.pb.h	/^inline void HeadProtocol::set_access_point_fd(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
+set_allocated_msg	Protocol.pb.h	/^  inline void set_allocated_msg(::std::string* msg);$/;"	p	class:TestProtocol	access:public	signature:(::std::string* msg)
+set_allocated_msg	Protocol.pb.h	/^inline void TestProtocol::set_allocated_msg(::std::string* msg) {$/;"	f	class:TestProtocol	signature:(::std::string* msg)
 set_allocated_pass_by_id	Protocol.pb.h	/^  inline void set_allocated_pass_by_id(::ArrayInt* pass_by_id);$/;"	p	class:HeadProtocol	access:public	signature:(::ArrayInt* pass_by_id)
 set_allocated_pass_by_id	Protocol.pb.h	/^inline void HeadProtocol::set_allocated_pass_by_id(::ArrayInt* pass_by_id) {$/;"	f	class:HeadProtocol	signature:(::ArrayInt* pass_by_id)
 set_allocated_proto_body_buffer	Protocol.pb.h	/^  inline void set_allocated_proto_body_buffer(::std::string* proto_body_buffer);$/;"	p	class:HeadProtocol	access:public	signature:(::std::string* proto_body_buffer)
@@ -582,6 +886,8 @@ set_arrayint	Protocol.pb.h	/^  inline void set_arrayint(int index, ::google::pro
 set_arrayint	Protocol.pb.h	/^inline void ArrayInt::set_arrayint(int index, ::google::protobuf::int32 value) {$/;"	f	class:ArrayInt	signature:(int index, ::google::protobuf::int32 value)
 set_has_access_point_fd	Protocol.pb.h	/^  inline void set_has_access_point_fd();$/;"	p	class:HeadProtocol	access:private	signature:()
 set_has_access_point_fd	Protocol.pb.h	/^inline void HeadProtocol::set_has_access_point_fd() {$/;"	f	class:HeadProtocol	signature:()
+set_has_msg	Protocol.pb.h	/^  inline void set_has_msg();$/;"	p	class:TestProtocol	access:private	signature:()
+set_has_msg	Protocol.pb.h	/^inline void TestProtocol::set_has_msg() {$/;"	f	class:TestProtocol	signature:()
 set_has_pass_by_id	Protocol.pb.h	/^  inline void set_has_pass_by_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 set_has_pass_by_id	Protocol.pb.h	/^inline void HeadProtocol::set_has_pass_by_id() {$/;"	f	class:HeadProtocol	signature:()
 set_has_proto_body_buffer	Protocol.pb.h	/^  inline void set_has_proto_body_buffer();$/;"	p	class:HeadProtocol	access:private	signature:()
@@ -590,18 +896,24 @@ set_has_proto_body_name	Protocol.pb.h	/^  inline void set_has_proto_body_name();
 set_has_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_name() {$/;"	f	class:HeadProtocol	signature:()
 set_has_proto_body_size	Protocol.pb.h	/^  inline void set_has_proto_body_size();$/;"	p	class:HeadProtocol	access:private	signature:()
 set_has_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_size() {$/;"	f	class:HeadProtocol	signature:()
-set_has_proto_body_status	Protocol.pb.h	/^  inline void set_has_proto_body_status();$/;"	p	class:HeadProtocol	access:private	signature:()
-set_has_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::set_has_proto_body_status() {$/;"	f	class:HeadProtocol	signature:()
 set_has_source_id	Protocol.pb.h	/^  inline void set_has_source_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 set_has_source_id	Protocol.pb.h	/^inline void HeadProtocol::set_has_source_id() {$/;"	f	class:HeadProtocol	signature:()
+set_has_status	Protocol.pb.h	/^  inline void set_has_status();$/;"	p	class:TestProtocol	access:private	signature:()
+set_has_status	Protocol.pb.h	/^inline void TestProtocol::set_has_status() {$/;"	f	class:TestProtocol	signature:()
 set_has_target_id	Protocol.pb.h	/^  inline void set_has_target_id();$/;"	p	class:HeadProtocol	access:private	signature:()
 set_has_target_id	Protocol.pb.h	/^inline void HeadProtocol::set_has_target_id() {$/;"	f	class:HeadProtocol	signature:()
+set_msg	Protocol.pb.h	/^  inline void set_msg(const ::std::string& value);$/;"	p	class:TestProtocol	access:public	signature:(const ::std::string& value)
+set_msg	Protocol.pb.h	/^  inline void set_msg(const char* value);$/;"	p	class:TestProtocol	access:public	signature:(const char* value)
+set_msg	Protocol.pb.h	/^  inline void set_msg(const char* value, size_t size);$/;"	p	class:TestProtocol	access:public	signature:(const char* value, size_t size)
+set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const ::std::string& value) {$/;"	f	class:TestProtocol	signature:(const ::std::string& value)
+set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const char* value) {$/;"	f	class:TestProtocol	signature:(const char* value)
+set_msg	Protocol.pb.h	/^inline void TestProtocol::set_msg(const char* value, size_t size) {$/;"	f	class:TestProtocol	signature:(const char* value, size_t size)
 set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const ::std::string& value);$/;"	p	class:HeadProtocol	access:public	signature:(const ::std::string& value)
 set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const char* value);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value)
-set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const char* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value, size_t size)
+set_proto_body_buffer	Protocol.pb.h	/^  inline void set_proto_body_buffer(const void* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const void* value, size_t size)
 set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const ::std::string& value) {$/;"	f	class:HeadProtocol	signature:(const ::std::string& value)
 set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const char* value) {$/;"	f	class:HeadProtocol	signature:(const char* value)
-set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const char* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const char* value, size_t size)
+set_proto_body_buffer	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_buffer(const void* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const void* value, size_t size)
 set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const ::std::string& value);$/;"	p	class:HeadProtocol	access:public	signature:(const ::std::string& value)
 set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const char* value);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value)
 set_proto_body_name	Protocol.pb.h	/^  inline void set_proto_body_name(const char* value, size_t size);$/;"	p	class:HeadProtocol	access:public	signature:(const char* value, size_t size)
@@ -610,25 +922,48 @@ set_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_nam
 set_proto_body_name	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_name(const char* value, size_t size) {$/;"	f	class:HeadProtocol	signature:(const char* value, size_t size)
 set_proto_body_size	Protocol.pb.h	/^  inline void set_proto_body_size(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 set_proto_body_size	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_size(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
-set_proto_body_status	Protocol.pb.h	/^  inline void set_proto_body_status(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
-set_proto_body_status	Protocol.pb.h	/^inline void HeadProtocol::set_proto_body_status(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
 set_source_id	Protocol.pb.h	/^  inline void set_source_id(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 set_source_id	Protocol.pb.h	/^inline void HeadProtocol::set_source_id(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
+set_status	Protocol.pb.h	/^  inline void set_status(::google::protobuf::int32 value);$/;"	p	class:TestProtocol	access:public	signature:(::google::protobuf::int32 value)
+set_status	Protocol.pb.h	/^inline void TestProtocol::set_status(::google::protobuf::int32 value) {$/;"	f	class:TestProtocol	signature:(::google::protobuf::int32 value)
 set_target_id	Protocol.pb.h	/^  inline void set_target_id(::google::protobuf::int32 value);$/;"	p	class:HeadProtocol	access:public	signature:(::google::protobuf::int32 value)
 set_target_id	Protocol.pb.h	/^inline void HeadProtocol::set_target_id(::google::protobuf::int32 value) {$/;"	f	class:HeadProtocol	signature:(::google::protobuf::int32 value)
 source_id	Protocol.pb.h	/^  inline ::google::protobuf::int32 source_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 source_id	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::source_id() const {$/;"	f	class:HeadProtocol	signature:() const
 source_id_	Protocol.pb.h	/^  ::google::protobuf::int32 source_id_;$/;"	m	class:HeadProtocol	access:private
 static_descriptor_initializer_Protocol_2eproto_	Protocol.pb.cpp	/^} static_descriptor_initializer_Protocol_2eproto_;$/;"	v	typeref:struct:StaticDescriptorInitializer_Protocol_2eproto
-target	makefile	/^target = Rano$/;"	m
+status	Protocol.pb.h	/^  inline ::google::protobuf::int32 status() const;$/;"	p	class:TestProtocol	access:public	signature:() const
+status	Protocol.pb.h	/^inline ::google::protobuf::int32 TestProtocol::status() const {$/;"	f	class:TestProtocol	signature:() const
+statusFunction_	StateMachine.cpp	/^map<int, FuncPtr> StateMachine::statusFunction_;$/;"	m	class:StateMachine	file:
+statusFunction_	StateMachine.h	/^	static map<int, FuncPtr> statusFunction_;$/;"	m	class:StateMachine	access:private
+status_	Protocol.pb.h	/^  ::google::protobuf::int32 status_;$/;"	m	class:TestProtocol	access:private
+storage_	Buffer.h	/^	vector<char> storage_;$/;"	m	class:Buffer	access:private
+target	makefile	/^target = Rano_RouteNode$/;"	m
 target_id	Protocol.pb.h	/^  inline ::google::protobuf::int32 target_id() const;$/;"	p	class:HeadProtocol	access:public	signature:() const
 target_id	Protocol.pb.h	/^inline ::google::protobuf::int32 HeadProtocol::target_id() const {$/;"	f	class:HeadProtocol	signature:() const
 target_id_	Protocol.pb.h	/^  ::google::protobuf::int32 target_id_;$/;"	m	class:HeadProtocol	access:private
+test_10001	main.cpp	/^int test_10001(google::protobuf::Message* msg, MessageLoop* ml)$/;"	f	signature:(google::protobuf::Message* msg, MessageLoop* ml)
+test_10002	main.cpp	/^int test_10002(google::protobuf::Message* msg, MessageLoop* ml)$/;"	f	signature:(google::protobuf::Message* msg, MessageLoop* ml)
+test_10003	main.cpp	/^int test_10003(google::protobuf::Message* msg, MessageLoop* ml)$/;"	f	signature:(google::protobuf::Message* msg, MessageLoop* ml)
+test_10004	main.cpp	/^int test_10004(google::protobuf::Message* msg, MessageLoop* ml)$/;"	f	signature:(google::protobuf::Message* msg, MessageLoop* ml)
 unknown_fields	Protocol.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:ArrayInt	access:public	signature:() const
 unknown_fields	Protocol.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:HeadProtocol	access:public	signature:() const
-waitEP_	Epoll.h	/^	epoll_Message	waitEP_[MAXMessageS];	$/;"	m	class:Epoll	access:private
+unknown_fields	Protocol.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:TestProtocol	access:public	signature:() const
+update	Buffer.cpp	/^void Buffer::update(size_t size)$/;"	f	class:Buffer	signature:(size_t size)
+update	Buffer.h	/^	void update(size_t);$/;"	p	class:Buffer	access:public	signature:(size_t)
+vecMsgs_	MessageLoop.h	/^	vector<google::protobuf::Message*> vecMsgs_;$/;"	m	class:MessageLoop	access:private
+waitEP_	Epoll.h	/^	epoll_event	waitEP_[MAXEVENTS];	$/;"	m	class:Epoll	access:private
+write	TcpConnection.cpp	/^int TcpConnection::write(google::protobuf::Message*& msg)$/;"	f	class:TcpConnection	signature:(google::protobuf::Message*& msg)
+write	TcpConnection.h	/^	int write(google::protobuf::Message*&);\/\/用来发送数据的$/;"	p	class:TcpConnection	access:public	signature:(google::protobuf::Message*&)
+writeBuffer_	TcpConnection.h	/^	Buffer writeBuffer_; \/\/缓冲区$/;"	m	class:TcpConnection	access:private
 ~ArrayInt	Protocol.pb.cpp	/^ArrayInt::~ArrayInt() {$/;"	f	class:ArrayInt	signature:()
 ~ArrayInt	Protocol.pb.h	/^  virtual ~ArrayInt();$/;"	p	class:ArrayInt	access:public	signature:()
+~Buffer	Buffer.cpp	/^Buffer::~Buffer()$/;"	f	class:Buffer	signature:()
+~Buffer	Buffer.h	/^	~Buffer();$/;"	p	class:Buffer	access:public	signature:()
 ~Epoll	Epoll.h	/^	~Epoll(){}$/;"	f	class:Epoll	access:public	signature:()
 ~HeadProtocol	Protocol.pb.cpp	/^HeadProtocol::~HeadProtocol() {$/;"	f	class:HeadProtocol	signature:()
 ~HeadProtocol	Protocol.pb.h	/^  virtual ~HeadProtocol();$/;"	p	class:HeadProtocol	access:public	signature:()
+~TcpConnection	TcpConnection.cpp	/^TcpConnection::~TcpConnection()$/;"	f	class:TcpConnection	signature:()
+~TcpConnection	TcpConnection.h	/^	~TcpConnection();$/;"	p	class:TcpConnection	access:public	signature:()
+~TestProtocol	Protocol.pb.cpp	/^TestProtocol::~TestProtocol() {$/;"	f	class:TestProtocol	signature:()
+~TestProtocol	Protocol.pb.h	/^  virtual ~TestProtocol();$/;"	p	class:TestProtocol	access:public	signature:()

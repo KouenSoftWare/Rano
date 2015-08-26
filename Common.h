@@ -17,6 +17,7 @@
 #include <boost/lockfree/queue.hpp>
 
 #include <string.h>
+#include <stdio.h>
 #include <sys/epoll.h>
 #include <sys/syscall.h>
 #include <unistd.h>
@@ -31,5 +32,9 @@
 #include <fcntl.h>
 #include <signal.h>
 
+#include "Protocol.pb.h"
 
 using namespace std;
+
+class MessageLoop;
+typedef boost::function<int(google::protobuf::Message*, MessageLoop*)> FuncPtr;

@@ -6,7 +6,7 @@ Epoll::Epoll():
 {
 	signal(SIGPIPE, SIG_IGN);
 	epfd_ =	epoll_create(MAXEVENTS);
-	string ip("127.0.0.1"), port("17392");
+	string ip("127.0.0.1"), port("17772");
 	server_.SetIpPort(ip, port);
 	assert(server_.openServer());
 	struct epoll_event event;

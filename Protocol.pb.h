@@ -33,6 +33,7 @@ void protobuf_ShutdownFile_Protocol_2eproto();
 
 class ArrayInt;
 class HeadProtocol;
+class TestProtocol;
 
 // ===================================================================
 
@@ -208,17 +209,10 @@ class HeadProtocol : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 proto_body_size() const;
   inline void set_proto_body_size(::google::protobuf::int32 value);
 
-  // optional int32 proto_body_status = 6;
-  inline bool has_proto_body_status() const;
-  inline void clear_proto_body_status();
-  static const int kProtoBodyStatusFieldNumber = 6;
-  inline ::google::protobuf::int32 proto_body_status() const;
-  inline void set_proto_body_status(::google::protobuf::int32 value);
-
-  // optional string proto_body_name = 7;
+  // optional string proto_body_name = 6;
   inline bool has_proto_body_name() const;
   inline void clear_proto_body_name();
-  static const int kProtoBodyNameFieldNumber = 7;
+  static const int kProtoBodyNameFieldNumber = 6;
   inline const ::std::string& proto_body_name() const;
   inline void set_proto_body_name(const ::std::string& value);
   inline void set_proto_body_name(const char* value);
@@ -227,14 +221,14 @@ class HeadProtocol : public ::google::protobuf::Message {
   inline ::std::string* release_proto_body_name();
   inline void set_allocated_proto_body_name(::std::string* proto_body_name);
 
-  // optional string proto_body_buffer = 8;
+  // optional bytes proto_body_buffer = 7;
   inline bool has_proto_body_buffer() const;
   inline void clear_proto_body_buffer();
-  static const int kProtoBodyBufferFieldNumber = 8;
+  static const int kProtoBodyBufferFieldNumber = 7;
   inline const ::std::string& proto_body_buffer() const;
   inline void set_proto_body_buffer(const ::std::string& value);
   inline void set_proto_body_buffer(const char* value);
-  inline void set_proto_body_buffer(const char* value, size_t size);
+  inline void set_proto_body_buffer(const void* value, size_t size);
   inline ::std::string* mutable_proto_body_buffer();
   inline ::std::string* release_proto_body_buffer();
   inline void set_allocated_proto_body_buffer(::std::string* proto_body_buffer);
@@ -251,8 +245,6 @@ class HeadProtocol : public ::google::protobuf::Message {
   inline void clear_has_pass_by_id();
   inline void set_has_proto_body_size();
   inline void clear_has_proto_body_size();
-  inline void set_has_proto_body_status();
-  inline void clear_has_proto_body_status();
   inline void set_has_proto_body_name();
   inline void clear_has_proto_body_name();
   inline void set_has_proto_body_buffer();
@@ -269,13 +261,106 @@ class HeadProtocol : public ::google::protobuf::Message {
   ::google::protobuf::int32 proto_body_size_;
   ::std::string* proto_body_name_;
   ::std::string* proto_body_buffer_;
-  ::google::protobuf::int32 proto_body_status_;
   friend void  protobuf_AddDesc_Protocol_2eproto();
   friend void protobuf_AssignDesc_Protocol_2eproto();
   friend void protobuf_ShutdownFile_Protocol_2eproto();
 
   void InitAsDefaultInstance();
   static HeadProtocol* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class TestProtocol : public ::google::protobuf::Message {
+ public:
+  TestProtocol();
+  virtual ~TestProtocol();
+
+  TestProtocol(const TestProtocol& from);
+
+  inline TestProtocol& operator=(const TestProtocol& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TestProtocol& default_instance();
+
+  void Swap(TestProtocol* other);
+
+  // implements Message ----------------------------------------------
+
+  TestProtocol* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TestProtocol& from);
+  void MergeFrom(const TestProtocol& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 status = 1;
+  inline bool has_status() const;
+  inline void clear_status();
+  static const int kStatusFieldNumber = 1;
+  inline ::google::protobuf::int32 status() const;
+  inline void set_status(::google::protobuf::int32 value);
+
+  // optional string msg = 2;
+  inline bool has_msg() const;
+  inline void clear_msg();
+  static const int kMsgFieldNumber = 2;
+  inline const ::std::string& msg() const;
+  inline void set_msg(const ::std::string& value);
+  inline void set_msg(const char* value);
+  inline void set_msg(const char* value, size_t size);
+  inline ::std::string* mutable_msg();
+  inline ::std::string* release_msg();
+  inline void set_allocated_msg(::std::string* msg);
+
+  // @@protoc_insertion_point(class_scope:TestProtocol)
+ private:
+  inline void set_has_status();
+  inline void clear_has_status();
+  inline void set_has_msg();
+  inline void clear_has_msg();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* msg_;
+  ::google::protobuf::int32 status_;
+  friend void  protobuf_AddDesc_Protocol_2eproto();
+  friend void protobuf_AssignDesc_Protocol_2eproto();
+  friend void protobuf_ShutdownFile_Protocol_2eproto();
+
+  void InitAsDefaultInstance();
+  static TestProtocol* default_instance_;
 };
 // ===================================================================
 
@@ -455,39 +540,15 @@ inline void HeadProtocol::set_proto_body_size(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:HeadProtocol.proto_body_size)
 }
 
-// optional int32 proto_body_status = 6;
-inline bool HeadProtocol::has_proto_body_status() const {
+// optional string proto_body_name = 6;
+inline bool HeadProtocol::has_proto_body_name() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
-inline void HeadProtocol::set_has_proto_body_status() {
+inline void HeadProtocol::set_has_proto_body_name() {
   _has_bits_[0] |= 0x00000020u;
 }
-inline void HeadProtocol::clear_has_proto_body_status() {
-  _has_bits_[0] &= ~0x00000020u;
-}
-inline void HeadProtocol::clear_proto_body_status() {
-  proto_body_status_ = 0;
-  clear_has_proto_body_status();
-}
-inline ::google::protobuf::int32 HeadProtocol::proto_body_status() const {
-  // @@protoc_insertion_point(field_get:HeadProtocol.proto_body_status)
-  return proto_body_status_;
-}
-inline void HeadProtocol::set_proto_body_status(::google::protobuf::int32 value) {
-  set_has_proto_body_status();
-  proto_body_status_ = value;
-  // @@protoc_insertion_point(field_set:HeadProtocol.proto_body_status)
-}
-
-// optional string proto_body_name = 7;
-inline bool HeadProtocol::has_proto_body_name() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void HeadProtocol::set_has_proto_body_name() {
-  _has_bits_[0] |= 0x00000040u;
-}
 inline void HeadProtocol::clear_has_proto_body_name() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void HeadProtocol::clear_proto_body_name() {
   if (proto_body_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -555,15 +616,15 @@ inline void HeadProtocol::set_allocated_proto_body_name(::std::string* proto_bod
   // @@protoc_insertion_point(field_set_allocated:HeadProtocol.proto_body_name)
 }
 
-// optional string proto_body_buffer = 8;
+// optional bytes proto_body_buffer = 7;
 inline bool HeadProtocol::has_proto_body_buffer() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void HeadProtocol::set_has_proto_body_buffer() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void HeadProtocol::clear_has_proto_body_buffer() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void HeadProtocol::clear_proto_body_buffer() {
   if (proto_body_buffer_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -591,7 +652,7 @@ inline void HeadProtocol::set_proto_body_buffer(const char* value) {
   proto_body_buffer_->assign(value);
   // @@protoc_insertion_point(field_set_char:HeadProtocol.proto_body_buffer)
 }
-inline void HeadProtocol::set_proto_body_buffer(const char* value, size_t size) {
+inline void HeadProtocol::set_proto_body_buffer(const void* value, size_t size) {
   set_has_proto_body_buffer();
   if (proto_body_buffer_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     proto_body_buffer_ = new ::std::string;
@@ -629,6 +690,110 @@ inline void HeadProtocol::set_allocated_proto_body_buffer(::std::string* proto_b
     proto_body_buffer_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:HeadProtocol.proto_body_buffer)
+}
+
+// -------------------------------------------------------------------
+
+// TestProtocol
+
+// optional int32 status = 1;
+inline bool TestProtocol::has_status() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void TestProtocol::set_has_status() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void TestProtocol::clear_has_status() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void TestProtocol::clear_status() {
+  status_ = 0;
+  clear_has_status();
+}
+inline ::google::protobuf::int32 TestProtocol::status() const {
+  // @@protoc_insertion_point(field_get:TestProtocol.status)
+  return status_;
+}
+inline void TestProtocol::set_status(::google::protobuf::int32 value) {
+  set_has_status();
+  status_ = value;
+  // @@protoc_insertion_point(field_set:TestProtocol.status)
+}
+
+// optional string msg = 2;
+inline bool TestProtocol::has_msg() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TestProtocol::set_has_msg() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TestProtocol::clear_has_msg() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TestProtocol::clear_msg() {
+  if (msg_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msg_->clear();
+  }
+  clear_has_msg();
+}
+inline const ::std::string& TestProtocol::msg() const {
+  // @@protoc_insertion_point(field_get:TestProtocol.msg)
+  return *msg_;
+}
+inline void TestProtocol::set_msg(const ::std::string& value) {
+  set_has_msg();
+  if (msg_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msg_ = new ::std::string;
+  }
+  msg_->assign(value);
+  // @@protoc_insertion_point(field_set:TestProtocol.msg)
+}
+inline void TestProtocol::set_msg(const char* value) {
+  set_has_msg();
+  if (msg_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msg_ = new ::std::string;
+  }
+  msg_->assign(value);
+  // @@protoc_insertion_point(field_set_char:TestProtocol.msg)
+}
+inline void TestProtocol::set_msg(const char* value, size_t size) {
+  set_has_msg();
+  if (msg_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msg_ = new ::std::string;
+  }
+  msg_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:TestProtocol.msg)
+}
+inline ::std::string* TestProtocol::mutable_msg() {
+  set_has_msg();
+  if (msg_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msg_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:TestProtocol.msg)
+  return msg_;
+}
+inline ::std::string* TestProtocol::release_msg() {
+  clear_has_msg();
+  if (msg_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = msg_;
+    msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void TestProtocol::set_allocated_msg(::std::string* msg) {
+  if (msg_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete msg_;
+  }
+  if (msg) {
+    set_has_msg();
+    msg_ = msg;
+  } else {
+    clear_has_msg();
+    msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:TestProtocol.msg)
 }
 
 

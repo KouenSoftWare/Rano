@@ -1,5 +1,6 @@
 #include "Epoll.h"
 #include "TcpConnection.h"
+#include "Protocol.pb.h"
 
 void TcpConnection::setFd(int f)
 {
@@ -38,9 +39,15 @@ int TcpConnection::send()
 	}
 }
 
-int TcpConnection::write(google::protobuf::Message*& event)
+int TcpConnection::write(google::protobuf::Message*& msg)
 {
-	//writeBuffer_.append(&pE->getBuf()[0], msgSize);
+	string strMsg;
+	msg->SerializeToString(&strMsg);
+	delete msg;
+	char temp[10];
+	sprintf(&temp[0], "%d", strMsg.size());
+	writeBuffer_.append(&temp[0], 8);
+	writeBuffer_.append(strMsg.c_str(), strMsg.size());
 
 	if(isWrite_){
 		return send();		
@@ -56,7 +63,7 @@ int TcpConnection::OnError()
 	return 0;
 }
 
-int TcpConnection::OnRead(vector<google::protobuf::Message*> &ret_vecEF)
+int TcpConnection::OnRead(vector<google::protobuf::Message*> &retVec)
 {
 	/*
 	 * 接受数据，并将数据转换成具体的处理事件
@@ -82,10 +89,22 @@ int TcpConnection::OnRead(vector<google::protobuf::Message*> &ret_vecEF)
 			//	2.根据第一层协议构造事件
 			//	3.将事件插入数据中
 			//3.将剩余数据放入readBuffer_
+			//！！！！！！！！！！！！！注册ID号码到这里来
 			readBuffer_.append(buf, buflen);	
-			/*while(1){
-			
-			}*/
+			char temp[10];
+			int iHeadProtoSize = 0;
+			while(readBuffer_.length() > 8){
+				memcpy(&temp[0], readBuffer_.data(), 8);
+				iHeadProtoSize = atoi(temp);
+				if(readBuffer_.length() < iHeadProtoSize)
+				  break;
+				readBuffer_.update(8);
+				HeadProtocol* headProtocol = new HeadProtocol();
+				headProtocol->ParseFromArray(readBuffer_.data(), iHeadProtoSize);
+				epoll_->SetSourceID(fd_, headProtocol->source_id());
+				readBuffer_.update(iHeadProtoSize);
+				retVec.push_back(headProtocol);		
+			}
 		}
 		if(buflen == MAXREADBUFFER){
 			flag = 1;

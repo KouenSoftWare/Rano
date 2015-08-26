@@ -1,6 +1,6 @@
 cc = g++
 objects := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
-target = Rano
+target = Rano_RouteNode
 
 linkFlags := -g -Wall 
 include_dirs := 
