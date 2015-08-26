@@ -14,7 +14,6 @@ Currently supported languages: C++
 [v0.2]	ServerNode: main responsibility for receiving and handling events.
 
 #RouteNode Ver 0.1
-
 1 Set up the RouteNode processing framework;
 
 2 Comfirm that Communication Protocol:Google Protocol
@@ -22,7 +21,6 @@ Currently supported languages: C++
 3 Confirm that the State Machine
 
 #ServerNode Ver 0.2
-
 1 adding thread pool
 
 2 adding object pool
@@ -32,5 +30,7 @@ Currently supported languages: C++
 
 #ServerNode Ver 0.1
 1 set up the ServerNode event stream processing framework
+
 2 adding Epoll as an event source
+
 3 add Tcp support
